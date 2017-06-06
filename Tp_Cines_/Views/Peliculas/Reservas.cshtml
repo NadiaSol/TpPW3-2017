@@ -1,0 +1,44 @@
+﻿@model Tp_Cines_.Peliculas
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reservas</title>
+</head>
+<body>
+    <div>
+        <form action="/" method="post">
+
+            Version: <select>
+                <option value="DobladaEspañol" >Doblada al eapañol</option> 
+                 <option value="Subtitulada">Subtitulada</option>
+                
+                
+            </select>
+            <br />
+            Sedes: <select>
+                <option value="SanJusto">San Justo</option> 
+                 <option value="Ramos Mejia">Ramos Mejia</option>
+                 <option value="Palermo">Palermo</option>
+
+            </select>
+            <br />
+            
+            Dia: <input type="date" name="fecha" min="2013-10-08">
+            <br />
+
+
+
+        
+
+        </form>
+        
+    </div>
+</body>
+</html>
