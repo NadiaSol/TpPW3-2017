@@ -1,16 +1,56 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/main.css")
+
+
+
+
 </head>
 <body>
+    <!--Menu-->
+    <section id="sidebar">
+        <div class="inner">
+            <nav>
+                <ul>
+                    <li><a href="#intro">Bienvenidos!</a></li>
+                    <li><a href="#one">Cartelera</a></li>
+                    <li><a href="#two">What we do</a></li>
+                    <li><a href="#three">Get in touch</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!--Body de cada página-->
+
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+
+    <!--Footer-->
+
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner">
+            <ul class="menu">
+                <li>&copy; Untitled. All rights reserved.</li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/Scripts/jquery.min.js")
+    @Scripts.Render("~/Scripts/jquery.scrollex.min.js")
+    @Scripts.Render("~/Scripts/jquery.scrolly.min.js")
+    @Scripts.Render("~/Scripts/skel.min.js")
+    @Scripts.Render("~/Scripts/util.js")
+    @Scripts.Render("~/Scripts/main.js")
+
+
+
 </body>
 </html>
