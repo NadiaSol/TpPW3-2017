@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/main.css")
+
+
+</head>
+<body>
+    <!--Menu-->
+    <header id="header">
+        <a href="index.html" class="title"><img src="~/img/Logo_MM.png" width="200" height="40" alt="Alternate Text" /></a>
+        <nav>
+            <ul>
+                <li><a href="/Administracion/Peliculas" class="active">Gestión de Películas</a></li>
+                <li><a href="/Administracion/Sedes" class="active">Gestión de Sedes</a></li>
+                <li><a href="/Administracion/Carteleras" class="active">Gestión de Carteleras</a></li>
+                <li><a href="/Administracion/Reportes" class="active">Reporte de Reservas</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <!--Body de cada página-->
+    @RenderBody()
+
+    <!--Footer-->
+    <footer id="footer" class="wrapper style1-alt">
+        <div class="inner">
+            <ul class="menu">
+                <li>Trabajo Práctico - Programación Web 3 - 2017</li>
+                <li>Alumnas: Paola Ferrara, Nadia Jara, Nadia Villalva</li>
+            </ul>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/Scripts/jquery.min.js")
+    @Scripts.Render("~/Scripts/jquery.scrollex.min.js")
+    @Scripts.Render("~/Scripts/jquery.scrolly.min.js")
+    @Scripts.Render("~/Scripts/skel.min.js")
+    @Scripts.Render("~/Scripts/util.js")
+    @Scripts.Render("~/Scripts/main.js")
+
+</body>
+</html>
+

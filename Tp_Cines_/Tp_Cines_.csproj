@@ -135,6 +135,7 @@
     <Compile Include="Carteleras.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeliculasController.cs" />
     <Compile Include="Generos.cs">
@@ -308,6 +309,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\Peliculas\Reservas.cshtml" />
+    <Content Include="Views\Administracion\Inicio.cshtml" />
+    <Content Include="Views\Administracion\_LayoutAdministrador.cshtml" />
+    <Content Include="Views\Administracion\Peliculas.cshtml" />
+    <Content Include="Views\Administracion\Sedes.cshtml" />
+    <Content Include="Views\Administracion\Carteleras.cshtml" />
+    <Content Include="Views\Administracion\Reportes.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
