@@ -16,6 +16,11 @@ namespace Tp_Cines_.Controllers
         {
             return View();
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        
 
     }
 }
