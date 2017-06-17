@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Servicios;
+using CapaSevicio;
+
+
+
 
 namespace Tp_Cines_.Controllers
 {
@@ -12,15 +15,16 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Home/
 
+        Entities1 ctx = new Entities1();
+
+
         public ActionResult Inicio()
         {
-            return View();
+            //var p= (SELECT * from Peliculas);
+            IQueryable<Peliculas> p = from Peliculas in ctx.Peliculas select Peliculas;
+
+            return View(p.ToList());
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
-        
 
     }
 }

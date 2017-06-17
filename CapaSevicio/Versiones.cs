@@ -7,21 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tp_Cines_
+namespace CapaSevicio
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TiposDocumentos
+    public partial class Versiones
     {
-        public TiposDocumentos()
+        public Versiones()
         {
+            this.Carteleras = new HashSet<Carteleras>();
             this.Reservas = new HashSet<Reservas>();
         }
     
-        public int IdTipoDocumento { get; set; }
-        public string Descripcion { get; set; }
+        public int IdVersion { get; set; }
+        public string Nombre { get; set; }
     
+        public virtual ICollection<Carteleras> Carteleras { get; set; }
         public virtual ICollection<Reservas> Reservas { get; set; }
     }
 }

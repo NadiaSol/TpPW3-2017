@@ -7,19 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tp_Cines_
+namespace CapaSevicio
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Generos
+    public partial class Calificaciones
     {
-        public Generos()
+        public Calificaciones()
         {
             this.Peliculas = new HashSet<Peliculas>();
         }
     
-        public int IdGenero { get; set; }
+        public int IdCalificacion { get; set; }
         public string Nombre { get; set; }
     
         public virtual ICollection<Peliculas> Peliculas { get; set; }

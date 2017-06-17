@@ -1,0 +1,44 @@
+﻿@using CapaNegocio;
+@model CapaNegocio.Versiones
+
+
+@{
+    Layout = null;
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Versiones</title>
+</head>
+<body>
+    <div>
+      
+        
+        <form action="/" method="post">
+
+            @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones,"IdVersion", "Nombre"))
+
+
+          @*  @Html.DropDownList("Version","Elegir Version")*@
+           
+          @*  @Html.ActionLink("Seleccionar", "Sedes", "Peliculas", null);*@
+
+            @Html.DropDownList("Sede","Elegir Sede")
+
+           
+    @*        @Html.DropDownList("Sedes","Elegir Sedes");*@
+           
+          
+          @* @Html.Partial("_PartialSedes", new ViewDataDictionary { ViewData["Sedes"] });*@
+         
+            @* @Html.Partial("_PartialSedes", CapaNegocio.Sedes )*@
+        </form>
+
+
+    </div>
+</body>
+</html>

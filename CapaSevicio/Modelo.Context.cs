@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tp_Cines_
+namespace CapaSevicio
 {
     using System;
     using System.Data.Entity;
@@ -16,10 +16,10 @@ namespace Tp_Cines_
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class Entities : DbContext
+    public partial class Entities1 : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Entities1()
+            : base("name=Entities1")
         {
         }
     

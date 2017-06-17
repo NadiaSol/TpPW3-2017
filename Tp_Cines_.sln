@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tp_Cines_", "Tp_Cines_\Tp_Cines_.csproj", "{7FB6850B-443B-4D52-9BA3-B3C86F923F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servicios", "Servicios\Servicios.csproj", "{506B838B-4D5D-498A-8695-15BEB381E6D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaSevicio", "CapaSevicio\CapaSevicio.csproj", "{BD555D67-7316-4CE8-9938-C719BC4EB278}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,10 @@ Global
 		{7FB6850B-443B-4D52-9BA3-B3C86F923F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB6850B-443B-4D52-9BA3-B3C86F923F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB6850B-443B-4D52-9BA3-B3C86F923F4B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{506B838B-4D5D-498A-8695-15BEB381E6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{506B838B-4D5D-498A-8695-15BEB381E6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{506B838B-4D5D-498A-8695-15BEB381E6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{506B838B-4D5D-498A-8695-15BEB381E6D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD555D67-7316-4CE8-9938-C719BC4EB278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD555D67-7316-4CE8-9938-C719BC4EB278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD555D67-7316-4CE8-9938-C719BC4EB278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD555D67-7316-4CE8-9938-C719BC4EB278}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

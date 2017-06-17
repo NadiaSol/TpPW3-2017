@@ -7,16 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tp_Cines_
+namespace CapaSevicio
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Generos
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public Generos()
+        {
+            this.Peliculas = new HashSet<Peliculas>();
+        }
+    
+        public int IdGenero { get; set; }
+        public string Nombre { get; set; }
+    
+        public virtual ICollection<Peliculas> Peliculas { get; set; }
     }
 }

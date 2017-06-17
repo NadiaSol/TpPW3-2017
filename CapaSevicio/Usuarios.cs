@@ -7,25 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tp_Cines_
+namespace CapaSevicio
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Sedes
+    public partial class Usuarios
     {
-        public Sedes()
-        {
-            this.Carteleras = new HashSet<Carteleras>();
-            this.Reservas = new HashSet<Reservas>();
-        }
-    
-        public int IdSede { get; set; }
-        public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        public decimal PrecioGeneral { get; set; }
-    
-        public virtual ICollection<Carteleras> Carteleras { get; set; }
-        public virtual ICollection<Reservas> Reservas { get; set; }
+        public int IdUsuario { get; set; }
+        public string NombreUsuario { get; set; }
+        public string Password { get; set; }
     }
 }
