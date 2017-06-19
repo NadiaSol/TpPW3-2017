@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CapaSevicio;
+using CapaServicio;
 
 
 namespace Tp_Cines_.Controllers
@@ -12,7 +12,7 @@ namespace Tp_Cines_.Controllers
     {
         //
         // GET: /Peliculas/
-        Entities1 ctx = new Entities1();
+        Entities ctx = new Entities();
         // public static List<Version> versiones= new List<Version>();
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CapaSevicio;
+using CapaServicio;
 
 
 
@@ -15,7 +15,7 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Home/
 
-        Entities1 ctx = new Entities1();
+        Entities ctx = new Entities();
 
 
         public ActionResult Inicio()

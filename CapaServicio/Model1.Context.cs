@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaSevicio
+namespace CapaServicio
 {
     using System;
     using System.Data.Entity;
@@ -16,10 +16,10 @@ namespace CapaSevicio
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class Entities2 : DbContext
+    public partial class Entities : DbContext
     {
-        public Entities2()
-            : base("name=Entities2")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
