@@ -13,9 +13,7 @@ namespace CapaSevicio
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
-    using System.Linq;
-    
+
     public partial class Entities1 : DbContext
     {
         public Entities1()

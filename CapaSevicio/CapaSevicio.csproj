@@ -96,6 +96,7 @@
     <Compile Include="Usuarios.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsuarioServicio.cs" />
     <Compile Include="Versiones.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

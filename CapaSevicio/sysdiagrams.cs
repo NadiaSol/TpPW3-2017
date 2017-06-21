@@ -10,8 +10,7 @@
 namespace CapaSevicio
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class sysdiagrams
     {
         public string name { get; set; }

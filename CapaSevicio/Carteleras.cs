@@ -9,9 +9,7 @@
 
 namespace CapaSevicio
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class Carteleras
     {
         public int IdCartelera { get; set; }

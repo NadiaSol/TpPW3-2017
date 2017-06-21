@@ -9,9 +9,8 @@
 
 namespace CapaSevicio
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class Versiones
     {
         public Versiones()
