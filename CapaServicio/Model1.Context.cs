@@ -7,24 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CapaSevicio
+namespace CapaServicio
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Objects;
-<<<<<<< HEAD
-
-    public partial class Entities1 : DbContext
-=======
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class Entities2 : DbContext
->>>>>>> origin/master
+    public partial class Entities : DbContext
     {
-        public Entities2()
-            : base("name=Entities2")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

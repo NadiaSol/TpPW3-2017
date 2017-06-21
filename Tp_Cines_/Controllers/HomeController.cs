@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using CapaSevicio;
+using CapaServicio;
 
 namespace Tp_Cines_.Controllers
 {
@@ -9,7 +9,7 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Home/
 
-        Entities1 ctx = new Entities1();
+        Entities ctx = new Entities();
 
         private UsuarioServicio _usuariosServicio;
         public ActionResult Inicio()

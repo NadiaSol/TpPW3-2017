@@ -301,7 +301,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="C_TPModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Entities2" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Calificaciones" EntityType="C_TPModel.Calificaciones" />
           <EntitySet Name="Carteleras" EntityType="C_TPModel.Carteleras" />
           <EntitySet Name="Generos" EntityType="C_TPModel.Generos" />
@@ -625,7 +625,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="C_TPModelStoreContainer" CdmEntityContainer="Entities2">
+        <EntityContainerMapping StorageEntityContainer="C_TPModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Calificaciones">
             <EntityTypeMapping TypeName="C_TPModel.Calificaciones">
               <MappingFragment StoreEntitySet="Calificaciones">
