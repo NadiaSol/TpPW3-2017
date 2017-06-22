@@ -1,6 +1,7 @@
-﻿
+﻿@using CapaServicio;
 
-@model  CapaServicio.Peliculas
+@model IEnumerable<CapaServicio.Peliculas>
+
 @{
     ViewBag.Title = "MovieMark";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,24 +25,33 @@
 
     <!-- One -->
     <section id="one" class="wrapper style2 spotlights">
-        <section>
-            <a href="#"><img src="~/img/mujer_maravilla.jpg" width="350" height="450" alt="Mujer_Maravilla" data-position="center center" /></a>
+       
+@*            <a href="#"><img src="~/img/mujer_maravilla.jpg" width="350" height="450" alt="Mujer_Maravilla" data-position="center center" /></a>*@
+            @foreach(var item in Model)
+            {  <section>
+              <a href="#"><img src="@item.Imagen" width="350" height="450" alt="Mujer_Maravilla" data-position="center center" /></a>
+         
             <div class="content">
                 <div class="inner">
-                    <h2>Mujer Maravilla</h2>
+                    <h2>@item.Nombre</h2>
                     <h5>
-                        Antes de ser Wonder Woman, era Diana, princesa de las Amazonas, entrenada para ser una guerrera invencible.
-                        Habiendo crecido en una apartada isla paradisíaca, cuando un piloto americano se estrella en sus orillas y
-                        le advierte de un conflicto masivo que sacude el mundo exterior, Diana abandona su hogar, convencida de que puede detener la amenaza.
-                        Luchando junto a los hombres en una guerra para acabar con todas las guerras, Diana descubrirá el alcance de su poder y su verdadero destino
+                        @item.Descripcion
                     </h5>
                     <ul class="actions">
-                        <li><a href="#" class="button">Comprar Entrada</a></li>
+                        @*<li><a href="#" class="button">Comprar Entrada</a></li>*@
+                         <li>@*<a href="#" class="button">Comprar Entrada</a>*@ @Html.ActionLink("Comprar entradas", "Versiones", "Peliculas", new { id = @item.IdPelicula }, null)</li>
                     </ul>
                 </div>
             </div>
+
+                 </section>
+            }
+       
+
         </section>
-        <section>
+
+
+   @*     <section>
             <a href="#"><img src="~/img/piratas.jpg" width="350" height="450" alt="Mujer_Maravilla" data-position="center center" /></a>
             <div class="content">
                 <div class="inner">
@@ -72,7 +82,11 @@
                 </div>
             </div>
         </section>
-    </section>
+    </section>*@
+
+
+
+
     <!-- Two -->
     <section id="two" class="wrapper style3 fade-up">
         <div class="inner">
