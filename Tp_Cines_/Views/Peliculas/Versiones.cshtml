@@ -16,25 +16,58 @@
 </head>
 <body>
     <div>
-      
-        
+
+
         <form action="/" method="post">
 
-            @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones,"IdVersion", "Nombre"))
+            <fieldset>
+                <legend>Seleccionar</legend>
+                <div>
+                    <label>Version</label>
+                    @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"))
+
+                </div>
+
+                <br />
+
+                @*  @Html.DropDownList("Version","Elegir Version")*@
+
+                @*  @Html.ActionLink("Seleccionar", "Sedes", "Peliculas", null);*@
+
+                <div>
+
+                    <label>Sedes</label>
+                    @Html.DropDownList("Sede", "Elegir Sede")
+
+                </div>
+
+                <br />
+
+                <div>
+                    <label>Dias</label>
+                  @*  @Html.DropDownList("Dias", "Elegir dia")*@
+
+                </div>
 
 
-          @*  @Html.DropDownList("Version","Elegir Version")*@
-           
-          @*  @Html.ActionLink("Seleccionar", "Sedes", "Peliculas", null);*@
+      @*          <br />
 
-            @Html.DropDownList("Sede","Elegir Sede")
+                <div>
+                    <label>Horario</label>
+                    @Html.DropDownList("hora", "Elegir horario")
 
-           
-    @*        @Html.DropDownList("Sedes","Elegir Sedes");*@
-           
-          
-          @* @Html.Partial("_PartialSedes", new ViewDataDictionary { ViewData["Sedes"] });*@
-         
+                </div>*@
+
+
+            </fieldset>
+
+
+
+            @*        @Html.DropDownList("Sedes","Elegir Sedes");*@
+
+
+            @* @Html.Partial("_PartialSedes", new ViewDataDictionary { ViewData["Sedes"] });*@
+
             @* @Html.Partial("_PartialSedes", CapaNegocio.Sedes )*@
         </form>
 
