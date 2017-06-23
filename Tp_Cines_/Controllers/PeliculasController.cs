@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Web.Mvc;
 using CapaServicio;
+using Tp_Cines_.Models;
+using System.Collections.Generic;
+
 
 
 namespace Tp_Cines_.Controllers
@@ -11,30 +14,8 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Peliculas/
         Entities ctx = new Entities();
-        // public static List<Version> versiones= new List<Version>();
+       
 
-
-        //ViewBag.IdPeli = id;
-        //var query = (from Pelicula in ctx.Peliculas
-        //             join
-        //                 Carteleras in ctx.Carteleras on
-        //                 Pelicula.IdPelicula equals Carteleras.IdPelicula
-        //             where
-        //                 Pelicula.IdPelicula == id
-        //             select Carteleras).ToList();
-        //public ActionResult Reservas(int id)
-        //{
-        //    var lista = ctx.Carteleras.Include("Sedes")
-        //                        .Include("Peliculas")
-        //                        .Include("Versiones").ToList();
-        //    //ViewBag.peliculas = ctx.Peliculas;
-
-
-
-        //    return ViewBag(lista);
-
-
-        //}
 
         public ActionResult Versiones(int id)
         {
@@ -54,32 +35,56 @@ namespace Tp_Cines_.Controllers
             int Peli = Convert.ToInt32(TempData["Id_peli"]);
 
             var carteleras = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == Peli).ToList();
-            var Sedes = carteleras.Select(x => x.Sedes).ToList();
+            var Sedess = carteleras.Select(x => x.Sedes).ToList();
 
-            ViewData["Sede"] = new SelectList(Sedes, "IdSede", "Nombre");
+            ViewData["Sede"] = new SelectList(Sedess, "IdSede", "Nombre");
 
 
-            return View();
-        }
+            // Para los dias:
+            //List<dias> lisDias = new List<dias>();
+          // dias Dias = new dias();
 
-        //public ActionResult Sedes()
-        //{
-        //    int Peli = Convert.ToInt32(TempData["Id_peli"]);
+            var d =(from Carteleras in ctx.Carteleras
+                    join Sedes in ctx.Sedes on Carteleras.IdSede equals Sedes.IdSede
+                    where Carteleras.IdPelicula == Peli
+                    select new dias
+                    {
+                        IdPelicula=Peli,
+                        Lunes= Carteleras.Lunes,
+                        Martes= Carteleras.Martes,
+                        Miercoles =Carteleras.Miercoles,
+                        Jueves= Carteleras.Jueves,
+                        Viernes= Carteleras.Viernes,
+                        Sabado=Carteleras.Sabado,
+                        Domingo= Carteleras.Domingo,
 
-        //    var cartelera = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == Peli).ToList();
-        //    var Sedes = cartelera.Select(x => x.Sedes).ToList();
-        //    ViewData["Sede"] = new SelectList(Sedes, "IdSede", "Nombre");
+                    }).ToList();
 
-        //   // ViewData["Sedes"] = new SelectList(Sedes, "Id", "Name");
 
-        //    //ViewBag.Sedes = Sedes;
-        //    //TempData["Sedes"] = Sedes;
+           // var d1 = d.ToList();
+          
+            ViewData["dias"] = new SelectList(d,"IdPelicula","Lunes");
 
-        //    return View("Versiones");
+            return View(); 
+            
+            }
 
-        //}
+       
 
 
 
     }
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
