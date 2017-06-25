@@ -33,7 +33,7 @@ namespace CapaServicio
         [Required(ErrorMessage = "Seleccione tipo de documento")]
         public int IdTipoDocumento { get; set; }
         [Required(ErrorMessage = "Campo Obligatorio")]
-        [StringLength(50, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos"]
+        [StringLength(50, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos")]
         public string NumeroDocumento { get; set; }
         [Required(ErrorMessage = "Campo Obligatorio")]
         public int CantidadEntradas { get; set; }
