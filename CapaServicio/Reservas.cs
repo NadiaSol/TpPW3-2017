@@ -11,17 +11,31 @@ namespace CapaServicio
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Reservas
     {
         public int IdReserva { get; set; }
+        [Required(ErrorMessage = "Seleccione Sede")]
         public int IdSede { get; set; }
+        [Required(ErrorMessage = "Seleccione Versión")]
         public int IdVersion { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")]
+        [DisplayName("Película")]
         public int IdPelicula { get; set; }
+        [Required]
         public System.DateTime FechaHoraInicio { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail no válido")]
+        [StringLength(250,ErrorMessage ="Ha sobrepasado el límite de caracteres permitidos")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Seleccione tipo de documento")]
         public int IdTipoDocumento { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")]
+        [StringLength(50, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos"]
         public string NumeroDocumento { get; set; }
+        [Required(ErrorMessage = "Campo Obligatorio")]
         public int CantidadEntradas { get; set; }
         public System.DateTime FechaCarga { get; set; }
     

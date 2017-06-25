@@ -11,7 +11,8 @@ namespace CapaServicio
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Peliculas
     {
         public Peliculas()
@@ -21,12 +22,23 @@ namespace CapaServicio
         }
     
         public int IdPelicula { get; set; }
+        [Required(ErrorMessage = "Campo Requerido")]
+        [StringLength(50)]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Escriba una descripción")]
+        [StringLength(750)]
         public string Descripcion { get; set; }
+        [Required(ErrorMessage = "Falta cargar el enlace de imagen")]
+        [StringLength(300)]
         public string Imagen { get; set; }
+        [Required(ErrorMessage = "Seleccione la Calificación")]
         public int IdCalificacion { get; set; }
+        [Required(ErrorMessage = "Seleccione el Género")]
         public int IdGenero { get; set; }
+        [Required(ErrorMessage = "Ingrese la duración")]
+        [Range(1,90,ErrorMessage ="La película no puede superar los 90 minutos")]
         public int Duracion { get; set; }
+        [Required]
         public System.DateTime FechaCarga { get; set; }
     
         public virtual Calificaciones Calificaciones { get; set; }

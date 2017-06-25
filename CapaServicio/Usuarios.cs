@@ -11,11 +11,14 @@ namespace CapaServicio
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuarios
     {
         public int IdUsuario { get; set; }
+        [StringLength(50, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos")]
         public string NombreUsuario { get; set; }
+        [StringLength(50, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos")]
         public string Password { get; set; }
     }
 }

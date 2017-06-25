@@ -11,7 +11,8 @@ namespace CapaServicio
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Sedes
     {
         public Sedes()
@@ -21,10 +22,15 @@ namespace CapaServicio
         }
     
         public int IdSede { get; set; }
+        [Required(ErrorMessage = "Complete Nombre")]
+        [StringLength(100, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Complete Dirección")]
+        [StringLength(300, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos")]
         public string Direccion { get; set; }
+        [Required(ErrorMessage = "Complete Precio de Entrada")]
+        [Range(0.05,999999999999999999.99,ErrorMessage ="Ha sobrepasado el valor permitido o el mismo es menor a 0,05")]
         public decimal PrecioGeneral { get; set; }
-    
         public virtual ICollection<Carteleras> Carteleras { get; set; }
         public virtual ICollection<Reservas> Reservas { get; set; }
     }
