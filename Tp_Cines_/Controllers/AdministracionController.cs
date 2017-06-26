@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace Tp_Cines_.Controllers
 {
+    [Authorize]
     public class AdministracionController : Controller
     {
         //
@@ -21,6 +22,7 @@ namespace Tp_Cines_.Controllers
         {
             var us = from p in ctx.Peliculas orderby p.Nombre ascending select p;
             return View(us);
+
         }
         public ActionResult Sedes()
         {

@@ -57,6 +57,13 @@ namespace Tp_Cines_.Controllers
             return View(user);
         }
 
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Inicio", "Home");
+        }
+
         private bool Isvalid(string Nombre, string Password)
         {
             bool Isvalid = false;
@@ -67,6 +74,7 @@ namespace Tp_Cines_.Controllers
                 {
                     if (user.Password == Password) //Verificar password del usuario
                     {
+                        Session["Nombre"] = user.NombreUsuario;
                         Isvalid = true;
                     }
                 }
