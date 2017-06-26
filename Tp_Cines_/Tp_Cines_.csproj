@@ -248,6 +248,7 @@
     <Content Include="Views\Administracion\Carteleras.cshtml" />
     <Content Include="Views\Administracion\Reportes.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Peliculas\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

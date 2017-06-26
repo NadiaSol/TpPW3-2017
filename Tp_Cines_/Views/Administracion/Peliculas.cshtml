@@ -1,6 +1,75 @@
-﻿@{
+﻿@model IEnumerable<CapaServicio.Peliculas>
+
+@{
     ViewBag.Title = "Gestión de Películas";
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-<h2>Peliculas</h2>
+
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Películas vigentes</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pelicula</th>
+                        <th>Descripción</th>
+                        <th>Genero</th>
+                        <th>Calificacion</th>
+                        <th>Imagen</th>
+
+                        <th>Duración</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdGenero)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdCalificacion)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Imagen)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Duracion)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", new { id = item.IdPelicula })
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+            <ul class="actions fit">
+                <li class="button special fit">
+                @Html.ActionLink("Crear nuevo", "Crear", "Peliculas") </li>
+            </ul>
+            </div>
+</section>
+
+</div>
+

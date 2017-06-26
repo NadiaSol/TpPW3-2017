@@ -1,0 +1,81 @@
+﻿@model CapaServicio.Peliculas
+
+@{
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
+}
+
+<h2>CREAR</h2>
+
+@using (Html.BeginForm("Crear", "Peliculas", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.LabelFor(model => model.Nombre)
+
+    @Html.EditorFor(model => model.Nombre)
+
+
+
+
+    @Html.LabelFor(model => model.Descripcion)
+
+    <textarea rows="5" id="Descripcion" name="Descripcion"></textarea>
+
+    @Html.LabelFor(model => model.IdCalificacion)
+
+
+    <select id="IdCalificacion" name="IdCalificacion">
+        <option>ATP</option>
+        <option>+13</option>
+        <option>+16</option>
+        <option>+18</option>
+
+    </select>
+
+
+    @Html.LabelFor(model => model.IdGenero)
+
+
+    <select id="IdGenero" name="IdGenero">
+        <option>Comedia</option>
+        <option>Drama</option>
+        <option>Thriller</option>
+        <option>Infantil</option>
+        <option>Terror</option>
+        <option>Comedia Romántica</option>
+        <option>Acción</option>
+        <option>Aventura</option>
+        <option>Suspenso</option>
+        <option>Animación</option>
+        <option>Ciencia Ficción</option>
+    </select>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input id="Imagen" name="Imagen" type="file" class="file" >
+
+        </div>
+    </div>
+
+    @Html.LabelFor(model => model.Duracion)
+    <input type="text" id="Duracion" name="Duracion">
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-default" />
+            </div>
+        </div>
+
+        }
+
+
