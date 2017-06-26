@@ -46,4 +46,6 @@ namespace CapaServicio
         public virtual Generos Generos { get; set; }
         public virtual ICollection<Reservas> Reservas { get; set; }
     }
+    
+
 }

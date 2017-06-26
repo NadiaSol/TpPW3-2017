@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using CapaServicio;
+using System.Linq;
+using System.Web.Mvc;
+
 
 namespace Tp_Cines_.Controllers
 {
@@ -7,13 +10,16 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Administracion/
 
+        Entities ctx = new Entities();
+
         public ActionResult Inicio()
         {
             return View();
         }
         public ActionResult Peliculas()
         {
-            return View();
+            var us = from p in ctx.Peliculas orderby p.Nombre ascending select p;
+            return View(us);
         }
         public ActionResult Sedes()
         {

@@ -62,6 +62,38 @@ namespace Tp_Cines_.Controllers
             return View();
         }
 
+        public ActionResult Crear() {
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Crear(Peliculas peliculas)
+        {
+            if (ModelState.IsValid)
+            {
+
+                ctx.Peliculas.Add(peliculas);
+                ctx.SaveChanges();
+                return RedirectToAction("Peliculas","Administracion");
+            }
+
+            return View(peliculas);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ctx.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+
+
+
         //public ActionResult Sedes()
         //{
         //    int Peli = Convert.ToInt32(TempData["Id_peli"]);
