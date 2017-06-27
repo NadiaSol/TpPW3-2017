@@ -7,83 +7,93 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-<h2>CREAR</h2>
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
 
-@using (Html.BeginForm())
-{
+            <h2>Crear Nueva Pelicula</h2>
 
-    @Html.ValidationSummary(true)
+            @using (Html.BeginForm())
+            {
 
-
-    @Html.LabelFor(u => u.Nombre)
-
-    @Html.EditorFor(u => u.Nombre)
-    @Html.ValidationMessageFor(u => u.Nombre)
+                @Html.ValidationSummary(true)
 
 
+                @Html.LabelFor(u => u.Nombre)
 
-
-    @*@Html.LabelFor(model => model.Descripcion)
-
-        <textarea rows="5" id="Descripcion" name="Descripcion"></textarea>*@
-
-    @Html.LabelFor(u => u.Descripcion)
-    @Html.TextBoxFor(u => u.Descripcion)
-    @Html.ValidationMessageFor(u => u.Descripcion)
-
-    @*@Html.LabelFor(model => model.IdCalificacion)*@
-
-    @Html.LabelFor(u => u.IdCalificacion, "Calificaciones")
-
-    @Html.DropDownList("IdCalificacion", String.Empty)
-
-
-    @*<select id="Nombre" name="Nombre">
-            <option>ATP</option>
-            <option>+13</option>
-            <option>+16</option>
-            <option>+18</option>
-
-        </select>*@
-    @*@Html.ValidationMessageFor(u => u.Calificaciones.Nombre)*@
-
-    @Html.LabelFor(u => u.IdGenero, "Generos")
-
-    @Html.DropDownList("IdGenero", String.Empty)
-   
-
-
-    @*<select id="Nombre" name="Nombre">
-            <option>Comedia</option>
-            <option>Drama</option>
-            <option>Thriller</option>
-            <option>Infantil</option>
-            <option>Terror</option>
-            <option>Comedia Romántica</option>
-            <option>Acción</option>
-            <option>Aventura</option>
-            <option>Suspenso</option>
-            <option>Animación</option>
-            <option>Ciencia Ficción</option>
-        </select>*@
-
-    @*@Html.ValidationMessageFor(u => u.Generos.Nombre)*@
-
-@Html.LabelFor(u => u.Imagen)
-    @Html.TextBoxFor(u => u.Imagen, new { type = "file" })
-    @Html.ValidationMessageFor(u => u.Imagen)
-
-
-    @Html.LabelFor(u => u.Duracion)
-    @Html.TextBoxFor(u => u.Duracion)
-    @Html.ValidationMessageFor(u => u.Duracion)
+                @Html.EditorFor(u => u.Nombre)
+                @Html.ValidationMessageFor(u => u.Nombre)
 
 
 
-    <input type="submit" value="Crear" class="btn btn-default" />
+
+                @*@Html.LabelFor(model => model.Descripcion)
+
+                    <textarea rows="5" id="Descripcion" name="Descripcion"></textarea>*@
+
+                @Html.LabelFor(u => u.Descripcion)
+                @Html.TextBoxFor(u => u.Descripcion)
+                @Html.ValidationMessageFor(u => u.Descripcion)
+
+                @*@Html.LabelFor(model => model.IdCalificacion)*@
+
+                @Html.LabelFor(u => u.IdCalificacion, "Calificaciones")
+
+                @Html.DropDownList("IdCalificacion", String.Empty)
 
 
-}
+                @*<select id="Nombre" name="Nombre">
+                        <option>ATP</option>
+                        <option>+13</option>
+                        <option>+16</option>
+                        <option>+18</option>
+
+                    </select>*@
+                @*@Html.ValidationMessageFor(u => u.Calificaciones.Nombre)*@
+
+                @Html.LabelFor(u => u.IdGenero, "Generos")
+
+                @Html.DropDownList("IdGenero", String.Empty)
+
+
+
+                @*<select id="Nombre" name="Nombre">
+                        <option>Comedia</option>
+                        <option>Drama</option>
+                        <option>Thriller</option>
+                        <option>Infantil</option>
+                        <option>Terror</option>
+                        <option>Comedia Romántica</option>
+                        <option>Acción</option>
+                        <option>Aventura</option>
+                        <option>Suspenso</option>
+                        <option>Animación</option>
+                        <option>Ciencia Ficción</option>
+                    </select>*@
+
+                @*@Html.ValidationMessageFor(u => u.Generos.Nombre)*@
+
+                @Html.LabelFor(u => u.Imagen)
+                @Html.TextBoxFor(u => u.Imagen, new { type = "file" })
+                @Html.ValidationMessageFor(u => u.Imagen)
+
+
+                @Html.LabelFor(u => u.Duracion)
+                @Html.TextBoxFor(u => u.Duracion)
+                @Html.ValidationMessageFor(u => u.Duracion)
+
+
+
+                <input type="submit" value="Crear" class="button fit" />
+
+
+            }
+
+
+
+        </div>
+    </section>
+</div>
 
 
 

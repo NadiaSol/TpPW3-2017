@@ -258,6 +258,7 @@
     <Content Include="Views\Administracion\CrearSede.cshtml" />
     <Content Include="Views\Administracion\CrearCartelera.cshtml" />
     <Content Include="Views\Administracion\EditarCartelera.cshtml" />
+    <Content Include="Views\Administracion\EditarPelicula.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

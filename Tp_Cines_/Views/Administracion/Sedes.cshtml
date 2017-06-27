@@ -5,11 +5,10 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-<h2>Sedes</h2>
 
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
-        <h2>Películas vigentes</h2>
+        <h2>Sedes</h2>
 
         <table>
             <thead>
@@ -22,27 +21,28 @@
             <tbody>
                 @if (Model != null)
                 {
-                foreach (var s in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => s.Nombre)
-                        </td>
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => s.Direccion)
-                        </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Direccion)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => s.PrecioGeneral)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Editar", "CrearSede",  new { @id = s.IdSede } )
-                        </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecioGeneral)
+                            </td>
+                            <td>
+                                <!--Corregir para que vaya a Editar-->
+                                @Html.ActionLink("Editar", "EditarSede", new { id = item.IdSede })
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                }
+                    }
                 }
 
             </tbody>
@@ -50,7 +50,7 @@
         </table>
 
         <ul class="actions fit">
-            <li class="button special fit">
+            <li class="button fit">
                 @Html.ActionLink("Crear nuevo", "CrearSede")
             </li>
         </ul>
