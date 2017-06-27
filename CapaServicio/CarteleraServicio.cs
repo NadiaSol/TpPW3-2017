@@ -19,10 +19,8 @@ namespace CapaServicio
                 || (x.FechaFin.CompareTo(cartelera.FechaInicio) >= 0 && x.FechaFin.CompareTo(cartelera.FechaFin) <= 0)
                 || (x.FechaInicio.CompareTo(cartelera.FechaInicio) <= 0 && x.FechaFin.CompareTo(cartelera.FechaFin) >= 0))))
                 {
-                    Carteleras carteleraNueva = new Carteleras();
-                    carteleraNueva = cartelera;
-                    carteleraNueva.FechaCarga = DateTime.Now;
-                    db.Carteleras.Add(carteleraNueva);
+                    cartelera.FechaCarga = DateTime.Now;
+                    db.Carteleras.Add(cartelera);
                     db.SaveChanges();
                     return true;
                 }

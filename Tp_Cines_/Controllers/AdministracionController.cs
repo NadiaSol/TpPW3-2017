@@ -39,7 +39,6 @@ namespace Tp_Cines_.Controllers
                 {
                     _sedeServicio.Crear(sede);
                     return RedirectToAction("Sedes", "Administracion");
-
                 }
             }
             ViewBag.Mensaje = "Valores incorrectos";
@@ -68,8 +67,17 @@ namespace Tp_Cines_.Controllers
             return View(carteleraActual);
         }
         [HttpGet]
-        public ActionResult CrearCartelera()
+        public ActionResult CrearCartelera(int? id)
         {
+            if (id != null)
+            {
+                if (ctx.Carteleras.Any(x => x.IdCartelera == id))
+                {
+                    var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == id);
+                    return View("CrearCartelera", carteleraEditar);
+                }
+                ModelState.AddModelError("Error", "No se encontró la cartelera elegida");
+            }
             return View();
         }
         [HttpPost]
@@ -85,19 +93,19 @@ namespace Tp_Cines_.Controllers
                 }
             return RedirectToAction("Carteleras", "Administracion");
         }
-        [HttpGet]
-        public ActionResult EditarCartelera(int IdCartelera)
-        {
+        //[HttpGet]
+        //public ActionResult EditarCartelera(int IdCartelera)
+        //{
 
-                if (ctx.Sedes.Any(x => x.IdSede == IdCartelera))
-                {
-                    var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == IdCartelera);
-                    return View("CrearCartelera", carteleraEditar);
-                }
-            ModelState.AddModelError("Error", "No se encontró la cartelera elegida"); //adicionar mensaje de error al model
-            return RedirectToAction("Carteleras", "Administracion");
+        //        if (ctx.Sedes.Any(x => x.IdSede == IdCartelera))
+        //        {
+        //            var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == IdCartelera);
+        //            return View("CrearCartelera", carteleraEditar);
+        //        }
+        //    ModelState.AddModelError("Error", "No se encontró la cartelera elegida"); //adicionar mensaje de error al model
+        //    return RedirectToAction("Carteleras", "Administracion");
 
-        }
+        //}
         public ActionResult Reportes()
         {
             return View();
