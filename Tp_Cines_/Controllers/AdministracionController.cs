@@ -21,8 +21,7 @@ namespace Tp_Cines_.Controllers
         public ActionResult Peliculas()
         {
             var us = from p in ctx.Peliculas orderby p.Nombre ascending select p;
-            return View(us);
-
+            return View(us.ToList());
         }
         [HttpGet]
         public ActionResult Sedes()

@@ -12,7 +12,7 @@ namespace Tp_Cines_.Controllers
     {
         //
         // GET: /Peliculas/
-        Entities ctx = new Entities();
+        private Entities ctx = new Entities();
 
         public ActionResult Versiones(int id)
         {
@@ -31,7 +31,33 @@ namespace Tp_Cines_.Controllers
 
         }
 
-         [HttpPost]
+
+        public ActionResult Crear()
+        {
+
+            ViewBag.IdGenero = new SelectList(ctx.Generos, "IdGenero", "Nombre");
+            ViewBag.IdCalificacion = new SelectList(ctx.Calificaciones, "IdCalificacion", "Nombre");
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Crear(Peliculas peliculas)
+        {
+            if (ModelState.IsValid)
+            {
+                peliculas.FechaCarga = DateTime.Now;
+                ctx.Peliculas.Add(peliculas);
+                ctx.SaveChanges();
+                return RedirectToAction("Peliculas", "Administracion");
+            }
+            ViewBag.IdGenero = new SelectList(ctx.Generos, "IdGenero", "Nombre", peliculas.IdGenero);
+            ViewBag.IdCalificacion = new SelectList(ctx.Calificaciones, "IdCalificacion", "Nombre", peliculas.IdCalificacion);
+            return View(peliculas);
+        }
+
+
+        [HttpPost]
         public ActionResult sedes(CapaServicio.Versiones v)
         {
             int Peli = Convert.ToInt32(TempData["Id_peli"]);
@@ -132,37 +158,7 @@ namespace Tp_Cines_.Controllers
 
             return View();
         }
-         [HttpPost]
-
-        public ActionResult Crear() {
-
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Crear(Peliculas peliculas)
-        {
-            if (ModelState.IsValid)
-            {
-
-                ctx.Peliculas.Add(peliculas);
-                ctx.SaveChanges();
-                return RedirectToAction("Peliculas","Administracion");
-            }
-
-            return View(peliculas);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                ctx.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
+  
 
 
 
