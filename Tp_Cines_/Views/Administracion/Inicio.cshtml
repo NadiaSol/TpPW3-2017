@@ -4,3 +4,9 @@
 }
 
 <h2>Bienvenido!</h2>
+
+<h2>¿Quiere irse?</h2>
+
+<strong>@Html.Encode(User.Identity.Name)</strong></br>
+@Html.ActionLink("Log Out", "Logout", "Home")
+  

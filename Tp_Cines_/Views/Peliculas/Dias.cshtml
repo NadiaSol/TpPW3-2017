@@ -1,0 +1,30 @@
+﻿@model CapaServicio.Carteleras
+
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dias</title>
+</head>
+<body>
+
+
+ @using(Html.BeginForm("Hora","Peliculas", FormMethod.Post))
+ {
+                    <label>Dias</label>
+                    @Html.DropDownList("lis","Elegir dia")
+
+                  // @Html.DropDownListFor(m => m.HoraInicio, new SelectList(ViewBag.Versio, "IdPelicula"),"Seleccionar")
+     
+                        <input type="submit" name="enviar" value="Enviar" />
+ }
+                
+
+</body>
+</html>

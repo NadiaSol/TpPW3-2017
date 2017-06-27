@@ -1,10 +1,8 @@
-﻿@using CapaServicio;
-@model CapaServicio.Versiones
-
+﻿@model CapaServicio.Carteleras
 
 @{
     Layout = null;
-   
+
 }
 
 <!DOCTYPE html>
@@ -15,63 +13,37 @@
     <title>Versiones</title>
 </head>
 <body>
-    <div>
-
-
-        <form action="/" method="post">
-
-            <fieldset>
+    @using(Html.BeginForm("sedes","Peliculas", FormMethod.Post))
+    {
+     
+           <fieldset>
                 <legend>Seleccionar</legend>
                 <div>
                     <label>Version</label>
-                    @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"))
+                   @* @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre",ViewBag.ItemSeleccionado), new {onchange= "form.submit();"})
+                    @Html.ActionLink("sedes", "Peliculas", new { ItemSelected = ViewBag.ItemSeleccionado }) 
+                    @Html.Hidden("Id_Peli");  
+             *@
 
+                     @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"),"seleccionar")
+                    
+                    
+                   
                 </div>
 
                 <br />
-
-                @*  @Html.DropDownList("Version","Elegir Version")*@
-
-                @*  @Html.ActionLink("Seleccionar", "Sedes", "Peliculas", null);*@
-
-                <div>
-
-                    <label>Sedes</label>
-                    @Html.DropDownList("Sede", "Elegir Sede")
-
-                </div>
-
-                <br />
-
-                <div>
-                    <label>Dias</label>
-                  @*  @Html.DropDownList("Dias", "Elegir dia")*@
-
-                </div>
+                <input type="submit" name="Enviar" value="Enviar" />
+                </fieldset>
+    
+    
+    
+    }
+         
 
 
-      @*          <br />
-
-                <div>
-                    <label>Horario</label>
-                    @Html.DropDownList("hora", "Elegir horario")
-
-                </div>*@
-
-
-            </fieldset>
+                
 
 
 
-            @*        @Html.DropDownList("Sedes","Elegir Sedes");*@
-
-
-            @* @Html.Partial("_PartialSedes", new ViewDataDictionary { ViewData["Sedes"] });*@
-
-            @* @Html.Partial("_PartialSedes", CapaNegocio.Sedes )*@
-        </form>
-
-
-    </div>
 </body>
 </html>
