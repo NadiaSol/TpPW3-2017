@@ -1,0 +1,88 @@
+﻿@model CapaServicio.Reservas
+
+
+@{
+
+    ViewBag.Title = "Reservas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+
+            <h2>Haga su reserva!</h2>
+
+            @using (Html.BeginForm())
+            {
+
+                @Html.ValidationSummary(true)
+
+
+                @Html.LabelFor(r => r.IdSede, "Sedes")
+
+                @Html.DropDownList("IdSede", String.Empty)
+
+
+
+
+                @*@Html.LabelFor(model => model.Descripcion)
+
+                    <textarea rows="5" id="Descripcion" name="Descripcion"></textarea>*@
+
+                @Html.LabelFor(r => r.IdVersion, "Versiones")
+
+                @Html.DropDownList("IdVersion", String.Empty)
+
+                @*@Html.LabelFor(model => model.IdCalificacion)*@
+
+                @Html.LabelFor(r => r.IdPelicula, "Peliculas")
+
+                @Html.DropDownList("IdPelicula", String.Empty)
+
+                @Html.LabelFor(r => r.FechaHoraInicio)
+
+                @Html.DropDownListFor(r => r.FechaHoraInicio, new List<SelectListItem>
+    {
+                        new SelectListItem() {Text = "2017/06/29 11:00:00", Value="2017/06/29 11:00:00"},
+                        new SelectListItem() {Text = "2017/06/29 14:00:00", Value="2017/06/29 14:00:00"},
+                        new SelectListItem() {Text = "2017/06/29 20:00:00", Value="2017/06/29 20:00:00"}
+    })
+
+                @Html.ValidationMessageFor(r => r.FechaHoraInicio)
+
+
+                @Html.LabelFor(r => r.Email)
+                @Html.TextBoxFor(r => r.Email)
+                @Html.ValidationMessageFor(r => r.Email)
+
+
+
+                @Html.LabelFor(r => r.IdTipoDocumento, "TiposDocumentos")
+
+                @Html.DropDownList("IdTipoDocumento", String.Empty)
+
+                @Html.LabelFor(r => r.NumeroDocumento)
+                @Html.TextBoxFor(r => r.NumeroDocumento)
+                @Html.ValidationMessageFor(r => r.NumeroDocumento)
+
+
+
+
+                @Html.LabelFor(r => r.CantidadEntradas)
+                @Html.TextBoxFor(r => r.CantidadEntradas)
+                @Html.ValidationMessageFor(r => r.CantidadEntradas)
+
+
+                <input type="submit" value="Crear" class="button fit" />
+
+
+            }
+
+
+
+        </div>
+    </section>
+</div>
+
+

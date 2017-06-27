@@ -14,12 +14,9 @@
         <div class="inner">
   
             <p>
-                Acá podría ir un slider, intente pero no me sale :( <br />
-                Futuro slider(?)
+                <img src="~/img/Publicidad.jpg" width="1150" height="450" alt="Publicidad" data-position="center center" />
             </p>
-            <ul class="actions">
-                <li><a href="#one" class="button scrolly">Learn more</a></li>
-            </ul>
+          
         </div>
     </section>
 
@@ -37,10 +34,15 @@
                     <h5>
                         @item.Descripcion
                     </h5>
-                    <ul class="actions">
-                        @*<li><a href="#" class="button">Comprar Entrada</a></li>*@
-                         <li>@*<a href="#" class="button">Comprar Entrada</a>*@ @Html.ActionLink("Comprar entradas", "Versiones", "Peliculas", new { id = @item.IdPelicula }, null)</li>
-                    </ul>
+
+                    <h5>
+                        @item.Generos.Nombre
+                    </h5>
+
+                    <h5>
+                        Calificación: @item.Calificaciones.Nombre
+                    </h5>
+                  
                 </div>
             </div>
 

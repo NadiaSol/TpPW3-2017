@@ -82,6 +82,34 @@ namespace Tp_Cines_.Controllers
         //    Session["Nombre"] = usuario.NombreUsuario;
         //    Session["IdUsuario"] = usuario.IdUsuario;
         //}
+        public ActionResult Reserva()
+        {
 
+            //IdSede, Idversion, Idpelicula
+
+            ViewBag.IdSede = new SelectList(ctx.Sedes, "IdSede", "Nombre");
+            ViewBag.IdVersion = new SelectList(ctx.Versiones, "IdVersion", "Nombre");
+            ViewBag.IdPelicula = new SelectList(ctx.Peliculas, "IdPelicula", "Nombre");
+            ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Reserva(Reservas reservas)
+        {
+            if (ModelState.IsValid)
+            {
+
+                reservas.FechaCarga = DateTime.Now;
+                ctx.Reservas.Add(reservas);
+                ctx.SaveChanges();
+                return RedirectToAction("Inicio", "Home");
+            }
+            ViewBag.IdSede = new SelectList(ctx.Sedes, "IdSede", "Nombre", reservas.IdSede);
+            ViewBag.IdVersion = new SelectList(ctx.Versiones, "IdVersion", "Nombre", reservas.IdVersion);
+            ViewBag.IdPelicula = new SelectList(ctx.Peliculas, "IdPelicula", "Nombre", reservas.IdPelicula);
+            ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion", reservas.IdTipoDocumento);
+            return View(reservas);
+        }
     }
 }

@@ -5,7 +5,6 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-<h2>Carteleras</h2>
 
 <div id="wrapper">
     <section id="main" class="wrapper style1 fade-up">
@@ -89,7 +88,7 @@
                                 @Html.DisplayFor(modelItem => item.FechaCarga)
                             </td>
 
-                            <td>
+                            <td >
                                 @Html.ActionLink("Editar", "CrearCartelera", new { id = item.IdCartelera })
                             </td>
 
@@ -101,7 +100,7 @@
 
             </table>
             <ul class="actions fit">
-                <li class="button special fit">
+                <li class="button fit">
                     @Html.ActionLink("Crear nuevo", "CrearCartelera")
                 </li>
             </ul>

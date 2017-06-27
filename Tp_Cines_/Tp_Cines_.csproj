@@ -204,6 +204,7 @@
     <Content Include="img\mujer_maravilla.jpg" />
     <Content Include="img\piratas.jpg" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="img\Publicidad.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
@@ -257,8 +258,8 @@
     <Content Include="Views\Home\LogOut.cshtml" />
     <Content Include="Views\Administracion\CrearSede.cshtml" />
     <Content Include="Views\Administracion\CrearCartelera.cshtml" />
-
     <Content Include="Views\Administracion\EditarPelicula.cshtml" />
+    <Content Include="Views\Home\Reserva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
