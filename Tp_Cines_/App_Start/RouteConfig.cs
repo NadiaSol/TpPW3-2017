@@ -71,6 +71,11 @@ namespace Tp_Cines_
                url: "{controller}/{action}/{id}",
                defaults: new { controller = "Peliculas", action = "Versiones", id = UrlParameter.Optional }
            );
+            routes.MapRoute(
+                name: "Seleccionado",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Peliculas", action = "Seleccionado", id = UrlParameter.Optional }
+            );
           
 
         }

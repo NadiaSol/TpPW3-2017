@@ -23,10 +23,11 @@ namespace Tp_Cines_.Controllers
             ViewBag.Versiones = versiones;
 
             TempData["Id_peli"] = id;
-            
+
             ViewData["Version"] = new SelectList(versiones, "IdVersion", "Nombre");
 
-           
+
+
             return View();
 
         }
@@ -63,6 +64,7 @@ namespace Tp_Cines_.Controllers
             int Peli = Convert.ToInt32(TempData["Id_peli"]);
             TempData["peli_id"] = Peli;
 
+
             var carteleras = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == Peli).Where(x => x.IdVersion == v.IdVersion).ToList();
             var Sedess = carteleras.Select(x => x.Sedes).ToList();
 
@@ -72,34 +74,37 @@ namespace Tp_Cines_.Controllers
 
 
             TempData["id_version"] = v.IdVersion;
-            
+
 
             return View();
-        
-        
+
+
         }
-         [HttpPost]
- 
+        [HttpPost]
+
         public ActionResult Dias(CapaServicio.Sedes s)
         {
             int Peli = Convert.ToInt32(TempData["peli_id"]);
             TempData["peli_h"] = Peli;
+            int version1 = Convert.ToInt32(TempData["id_version"]);
+            TempData["version_"] = version1;
+            TempData["id_sede"] = s.IdSede;
 
             var d = (from Carteleras in ctx.Carteleras
                      join Sedes in ctx.Sedes on Carteleras.IdSede equals Sedes.IdSede
                      where Sedes.IdSede == s.IdSede && Carteleras.IdPelicula == Peli
                      select new
-                      {
-                          IdPelicula = Peli,
-                          Lunes = Carteleras.Lunes,
-                          Martes = Carteleras.Martes,
-                          Miercoles = Carteleras.Miercoles,
-                          Jueves = Carteleras.Jueves,
-                          Viernes = Carteleras.Viernes,
-                          Sabado = Carteleras.Sabado,
-                          Domingo = Carteleras.Domingo,
+                     {
+                         IdPelicula = Peli,
+                         Lunes = Carteleras.Lunes,
+                         Martes = Carteleras.Martes,
+                         Miercoles = Carteleras.Miercoles,
+                         Jueves = Carteleras.Jueves,
+                         Viernes = Carteleras.Viernes,
+                         Sabado = Carteleras.Sabado,
+                         Domingo = Carteleras.Domingo,
 
-                      }).ToList();
+                     }).ToList();
 
             List<SelectListItem> dias = new List<SelectListItem>();
             foreach (var item in d)
@@ -158,7 +163,7 @@ namespace Tp_Cines_.Controllers
 
             return View();
         }
-  
+
 
 
 
@@ -169,38 +174,46 @@ namespace Tp_Cines_.Controllers
 
         public ActionResult Hora()
         {
-            int pe =Convert.ToInt32(TempData["peli_h"]);
+            int pe = Convert.ToInt32(TempData["peli_h"]);
+            int sede = Convert.ToInt32(TempData["id_sede"]);
+            int version = Convert.ToInt32(TempData["version_"]);
 
-            //var h = (from Carteleras in ctx.Carteleras
-            //         join Sedes in ctx.Sedes on Carteleras.IdSede
-            //         equals Sedes.IdSede
-            //         join Versiones in ctx.Versiones on Carteleras.IdVersion
-            //         equals Versiones.IdVersion).Where(Carteleras.IdPelicula == pe).select(Carteleras.HoraInicio).ToList();
+            TempData["sedee"] = sede;
+            TempData["id_Version"] = version;
 
-              var h = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == pe).ToList();
-              var hora = h.Select(x => x.HoraInicio).ToList();
-
-              
+            var h = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == pe).ToList();
+            var hora = h.Select(x => x.HoraInicio).ToList();
 
 
-             ViewBag.horaInicio = hora;
+
+
+            ViewBag.horaInicio = hora;
 
             //ViewData["horaInicio"] = new SelectList(h, "IdPelicula",);
 
             return View();
-        
+
         }
 
 
 
         // public int Pe { get; set; }
 
-         public ActionResult Seleccionado()
-         {
+        [HttpPost]
 
-             return View();
-         
-         }
+        public ActionResult Seleccionado(CapaServicio.Carteleras h)
+        {
+
+
+            ViewBag.sede = TempData["sedee"];
+            ViewBag.version = TempData["id_Version"];
+            ViewBag.hora = h.HoraInicio;
+
+
+
+            return View();
+
+        }
 
 
     }
