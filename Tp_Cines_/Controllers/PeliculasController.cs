@@ -180,7 +180,7 @@ namespace Tp_Cines_.Controllers
 
             TempData["sedee"] = sede;
             TempData["id_Version"] = version;
-
+            TempData["peli_id"] = pe;
             var h = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == pe).ToList();
             var hora = h.Select(x => x.HoraInicio).ToList();
 
@@ -205,9 +205,10 @@ namespace Tp_Cines_.Controllers
         {
 
 
-            ViewBag.sede = TempData["sedee"];
-            ViewBag.version = TempData["id_Version"];
+            ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
+            ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
             ViewBag.hora = h.HoraInicio;
+            ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
 
 
 
