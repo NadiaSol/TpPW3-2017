@@ -30,7 +30,7 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult Sedes()
         {
-            var sedesActuales = ctx.Sedes.OrderBy(x=>x.Nombre).ToList();
+            var sedesActuales = ctx.Sedes.OrderBy(x => x.Nombre).ToList();
             return View(sedesActuales);
         }
         [HttpPost]
@@ -51,13 +51,14 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult CrearSede(int? id)
         {
-            if (id != null) {
+            if (id != null)
+            {
                 if (ctx.Sedes.Any(x => x.IdSede == id))
                 {
                     var sedeEditar = ctx.Sedes.FirstOrDefault(x => x.IdSede == id);
                     return View(sedeEditar);
                 }
-               ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
+                ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
 
             }
             return View();
@@ -72,50 +73,42 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult CrearCartelera(int? id)
         {
-            var peliculas = ctx.Peliculas.ToList();
-            ViewBag.Peliculas = peliculas;
-            var sedes = ctx.Sedes.ToList();
-            ViewBag.Sedes = sedes;
-            var versiones = ctx.Versiones.ToList();
-            ViewBag.versiones = versiones;
+         Initialize();   
             if (id != null)
             {
                 if (ctx.Carteleras.Any(x => x.IdCartelera == id))
                 {
                     var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == id);
-                    return View( carteleraEditar);
+                    
+                    return View(carteleraEditar);
                 }
                 ModelState.AddModelError("Error", "No se encontró la cartelera elegida");
             }
 
-            return View();
+            return View(new Carteleras { IdCartelera = 0 });
         }
         [HttpPost]
-        public ActionResult CrearCartelera (Carteleras carteleraNueva)
+        public ActionResult CrearCartelera(Carteleras carteleraNueva)
         {
-            if(carteleraNueva.HoraInicio<=15&& carteleraNueva.HoraInicio > 23)
+            if (carteleraNueva.HoraInicio <= 15 && carteleraNueva.HoraInicio > 23)
                 ModelState.AddModelError("Hora Inicio", "No puede ser anterior a las 15hs"); //adicionar mensaje de error al model
             if (ModelState.IsValid)
             {
                 if (!_carteleraServicio.Create(carteleraNueva))
+                {
                     ModelState.AddModelError("Error", "No se pudo guardar la cartelera"); //adicionar mensaje de error al model
-
+                    Initialize();
+                    return View(carteleraNueva);
                 }
-            return RedirectToAction("Carteleras", "Administracion");
+
+
+                return RedirectToAction("Carteleras", "Administracion");
+            }
+
+            Initialize();
+            return View(carteleraNueva);
         }
-        //[HttpGet]
-        //public ActionResult EditarCartelera(int IdCartelera)
-        //{
 
-        //        if (ctx.Sedes.Any(x => x.IdSede == IdCartelera))
-        //        {
-        //            var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == IdCartelera);
-        //            return View("CrearCartelera", carteleraEditar);
-        //        }
-        //    ModelState.AddModelError("Error", "No se encontró la cartelera elegida"); //adicionar mensaje de error al model
-        //    return RedirectToAction("Carteleras", "Administracion");
-
-        //}
         public ActionResult Reportes()
         {
             return View();
@@ -154,6 +147,16 @@ namespace Tp_Cines_.Controllers
             ViewBag.IdGenero = new SelectList(ctx.Generos, "IdGenero", "Nombre", peliculas.IdGenero);
             ViewBag.IdCalificacion = new SelectList(ctx.Calificaciones, "IdCalificacion", "Nombre", peliculas.IdCalificacion);
             return View(peliculas);
+        }
+
+        private void Initialize()
+        {
+            var peliculas = ctx.Peliculas.ToList();
+            ViewBag.Peliculas = peliculas;
+            var sedes = ctx.Sedes.ToList();
+            ViewBag.Sedes = sedes;
+            var versiones = ctx.Versiones.ToList();
+            ViewBag.versiones = versiones;
         }
     }
 }

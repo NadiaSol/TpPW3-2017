@@ -6,6 +6,7 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
+
 <h2>Sedes</h2>
 
 <section id="three" class="wrapper style1 fade-up">
@@ -32,25 +33,25 @@
                     <!--HoraInicio-->
                     <div>
                         @Html.LabelFor(u => u.HoraInicio)
-                        @Html.TextBoxFor(u => u.HoraInicio, new { @type = "number", @min = "1"})
+                        @Html.TextBoxFor(u => u.HoraInicio, new {@type = "number", @min = "1"})
                         @Html.ValidationMessageFor(u => u.HoraInicio)
                     </div>
                     <!--FechaInicio-->
                     <div>
                         @Html.LabelFor(u => u.FechaInicio)
-                        @Html.TextBoxFor(u => u.FechaInicio, new {type="date"})
+                        @Html.TextBoxFor(u => u.FechaInicio,new {@style="datepicker"})
                         @Html.ValidationMessageFor(u => u.FechaInicio)
                     </div>
                     <!--FechaFin-->
                     <div>
-                        @Html.LabelFor(u => u.FechaFin)
-                        @Html.TextBoxFor(u => u.FechaFin, new { type = "date"})
+                        @Html.LabelFor(u => u.FechaFin, new { @style = "datepicker" })
+                        @Html.TextBoxFor(u => u.FechaFin)
                         @Html.ValidationMessageFor(u => u.FechaFin)
                     </div>
                     <!--NumeroSala-->
                     <div>
                         @Html.LabelFor(u => u.NumeroSala)
-                        @Html.TextBoxFor(u => u.NumeroSala, new { @type = "number", @min = "1"})
+                        @Html.TextBoxFor(u => u.NumeroSala, new {@type = "number", @min = "1"})
                         @Html.ValidationMessageFor(u => u.NumeroSala)
                     </div>
                     <!--Version-->
@@ -85,7 +86,7 @@
                     @Html.CheckBoxFor(u => u.Domingo)
                     @Html.LabelFor(u => u.Domingo)
 
-
+                    @Html.ValidationSummary(true)
                     <ul class="actions">
                         <li><a href="" class="button submit">Guardar</a></li>
                     </ul>

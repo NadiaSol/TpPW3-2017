@@ -43,6 +43,13 @@
     @Scripts.Render("~/Scripts/skel.min.js")
     @Scripts.Render("~/Scripts/util.js")
     @Scripts.Render("~/Scripts/main.js")
+    @Scripts.Render("~/Scripts/jquery-ui-1.8.24.js")
 
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".datepicker").datepicker();
+    });
+    </script>
 </body>
 </html>

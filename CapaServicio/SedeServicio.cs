@@ -15,14 +15,10 @@ namespace CapaServicio
             if (db.Sedes.Any(x => x.Nombre == sede.Nombre))
                 return false;
             if (db.Sedes.Any(x => x.IdSede == sede.IdSede))
-                foreach (var s in db.Sedes)
-                {
-                    if (s.IdSede != sede.IdSede) continue;
-                    s.Direccion = sede.Direccion;
-                    s.Nombre = sede.Nombre;
-                    s.PrecioGeneral = sede.PrecioGeneral;
-                }
-
+            {
+                var sedeDb = db.Carteleras.SingleOrDefault(x => x.IdSede == sede.IdSede);
+                db.Entry(sedeDb).CurrentValues.SetValues(sede);
+            }
             else
             {
                 db.Sedes.Add(sede);

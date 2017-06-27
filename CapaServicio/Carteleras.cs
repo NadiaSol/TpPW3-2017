@@ -24,11 +24,14 @@ namespace CapaServicio
         [Range(15,23,ErrorMessage ="Hora Inicio no puede ser anterior a las 15 hs")]
         public int HoraInicio { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date,ErrorMessage = "Debe ingresar ua fecha válida")]
         public System.DateTime FechaInicio { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date, ErrorMessage = "Debe ingresar ua fecha válida")]
         public System.DateTime FechaFin { get; set; }
         [Required]
-        [StringLength(2)]
         public int NumeroSala { get; set; }
         [Required]
         public int IdVersion { get; set; }

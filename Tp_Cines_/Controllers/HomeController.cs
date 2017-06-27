@@ -17,25 +17,15 @@ namespace Tp_Cines_.Controllers
         //private UsuarioServicio _usuariosServicio;
         public ActionResult Inicio()
         {
-            //var p= (SELECT * from Peliculas);
             IQueryable<Peliculas> p = from Peliculas in ctx.Peliculas select Peliculas;
 
             return View(p.ToList());
         }
         [HttpGet]
-        public ActionResult Login(/*Usuarios usuario*/)
+        public ActionResult Login(string returnUrl/*Usuarios usuario*/)
         {
-            //var usuarioValido = _usuariosServicio.Autenticar(usuario);
+            TempData["returnUrl"] = returnUrl;
 
-            //if (usuarioValido == null)
-            //{
-            //    ViewBag.Mensaje = "Usuario o contraseña inválida.";
-            //    return View();
-            //}
-
-            //AlmacenarEnSesion(usuarioValido);
-
-            //return RedirectToAction("Administracion", "Inicio");
             return View();
         }
 
@@ -48,6 +38,9 @@ namespace Tp_Cines_.Controllers
                 {
 
                     FormsAuthentication.SetAuthCookie(user.Nombre, false); //crea variable de usuario con el correo del usuario
+                    if (TempData["returnUrl"] != null)
+                        return Redirect(TempData["returnUrl"].ToString());
+
                     return RedirectToAction("Inicio", "Administracion"); //dirigir al controlador home vista Index una vez se a autenticado en el sistema
                 }
                 else
@@ -55,6 +48,8 @@ namespace Tp_Cines_.Controllers
                     ModelState.AddModelError("", "Login Incorrecto"); //adicionar mensaje de error al model
                 }
             }
+
+            
             return View(user);
         }
 
