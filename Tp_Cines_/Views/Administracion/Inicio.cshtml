@@ -3,10 +3,19 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-<h2>Bienvenido!</h2>
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Bienvenido! @Html.Encode(User.Identity.Name)</h2>
 
-<h2>¿Quiere irse?</h2>
+            <p class="align-center">¿Quiere irse?</p>
 
-<strong>@Html.Encode(User.Identity.Name)</strong></br>
-@Html.ActionLink("Log Out", "Logout", "Home")
-  
+            <ul class="actions fit">
+                <li class="button fit">
+                    @Html.ActionLink("Log Out", "LogOut", "Home")
+                </li>
+            </ul>
+
+        </div>
+    </section>
+</div>

@@ -31,7 +31,7 @@ namespace Tp_Cines_.Controllers
 
         }
 
-
+        [Authorize]
         public ActionResult Crear()
         {
 
@@ -40,7 +40,7 @@ namespace Tp_Cines_.Controllers
             return View();
         }
 
-
+        [Authorize]
         [HttpPost]
         public ActionResult Crear(Peliculas peliculas)
         {

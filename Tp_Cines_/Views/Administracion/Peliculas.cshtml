@@ -53,7 +53,7 @@
                             </td>
 
                             <td>
-                                @Html.ActionLink("Editar", "Editar", new { id = item.IdPelicula })
+                                <a href="/Administracion/EditarPelicula/@item.IdPelicula " class="button fit">Editar</a>
                             </td>
 
                         </tr>
@@ -65,7 +65,7 @@
             </table>
 
             <ul class="actions fit">
-                <li class="button special fit">
+                <li class="button fit">
                     @Html.ActionLink("Crear nuevo", "Crear", "Peliculas")
                 </li>
             </ul>

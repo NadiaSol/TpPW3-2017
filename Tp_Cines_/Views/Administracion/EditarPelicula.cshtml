@@ -1,0 +1,71 @@
+﻿@model CapaServicio.Peliculas
+
+@{
+    ViewBag.Title = "EditarPelicula";
+    Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
+}
+
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+
+            <h2>Editar Pelicula</h2>
+
+            @using (Html.BeginForm())
+            {
+
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+
+                    @Html.HiddenFor(u => u.IdPelicula)
+
+                    @Html.Label("Codigo Pelicula")
+                    @Html.DisplayFor(u => u.IdPelicula)
+
+
+
+
+                    @Html.LabelFor(u => u.Nombre)
+
+                    @Html.EditorFor(u => u.Nombre)
+                    @Html.ValidationMessageFor(u => u.Nombre)
+
+                    @Html.LabelFor(u => u.Descripcion)
+                    @Html.TextBoxFor(u => u.Descripcion)
+                    @Html.ValidationMessageFor(u => u.Descripcion)
+
+                    @Html.LabelFor(u => u.IdCalificacion, "Calificaciones")
+
+                    @Html.DropDownList("IdCalificacion", String.Empty)
+
+                    @Html.LabelFor(u => u.IdGenero, "Generos")
+
+                    @Html.DropDownList("IdGenero", String.Empty)
+
+                    @Html.LabelFor(u => u.Imagen)
+                    @if (!string.IsNullOrEmpty(Model.Imagen))
+                    {
+                        <img src="@Model.Imagen" height="300" class="img-responsive" alt="@Model.Nombre" />
+                    }
+                    @Html.TextBoxFor(u => u.Imagen, new { type = "file" })
+                    <div>
+                        @Html.LabelFor(u => u.Duracion)
+                        @Html.TextBoxFor(u => u.Duracion)
+                        @Html.ValidationMessageFor(u => u.Duracion)
+
+
+
+                    </div>
+
+
+                    <div>
+                        <input type="submit" value="Guardar" class="button fit" />
+                    </div>
+
+                </fieldset>
+
+            }
+        </div>
+    </section>
+</div>
