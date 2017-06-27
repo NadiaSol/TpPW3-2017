@@ -1,6 +1,111 @@
-﻿@{
+﻿@using CapaServicio;
+@model IEnumerable<Carteleras>
+@{
     ViewBag.Title = "Gestión de Carteleras";
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
 <h2>Carteleras</h2>
+
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Carteleras vigentes</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sede</th>>
+                        <th>Pelicula</th>
+                        <th>Hora Inicio</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Número de Sala</th>
+                        <th>Versión</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                        <th>Domingo</th>
+                        <th>Fecha Carga</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sedes.Nombre)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Peliculas.Nombre)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HoraInicio)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaInicio)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaFin)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NumeroSala)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Versiones.Nombre)
+                            </td>
+                            <td>
+                                @((bool)item.Lunes ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @((bool)item.Martes ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @((bool)item.Miercoles ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @((bool)item.Jueves ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @((bool)item.Viernes ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @((bool)item.Sabado ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @((bool)item.Domingo ? "Sí" : "No")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaCarga)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Editar", "Editar", new { id = item.IdCartelera })
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+            <ul class="actions fit">
+                <li class="button special fit">
+                    @Html.ActionLink("Crear nuevo", "CrearCartelera")
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>

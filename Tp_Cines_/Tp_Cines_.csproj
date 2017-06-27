@@ -249,6 +249,10 @@
     <Content Include="Views\Administracion\Reportes.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Peliculas\Crear.cshtml" />
+    <Content Include="Views\Administracion\CrearSede.cshtml" />
+    <Content Include="Views\Administracion\EditarSede.cshtml" />
+    <Content Include="Views\Administracion\CrearCartelera.cshtml" />
+    <Content Include="Views\Administracion\EditarCartelera.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

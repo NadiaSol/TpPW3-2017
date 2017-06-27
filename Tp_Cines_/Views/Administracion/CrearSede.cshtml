@@ -1,0 +1,45 @@
+﻿@using CapaServicio;
+@model  Sedes
+@{
+    ViewBag.Title = "Gestión de Sedes-Nueva Sede";
+    Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
+}
+
+<h2>Sedes</h2>
+
+<section id="three" class="wrapper style1 fade-up">
+    <div class="inner">
+
+        @using (Html.BeginForm())
+        {
+            <div class="split style2">
+                <section>
+                    <h2>Crear Sede</h2>
+                </section>
+                <section>
+                    <div class="field half first">
+                        @Html.LabelFor(u => u.Nombre)
+                        @Html.TextBoxFor(u => u.Nombre)
+                        @Html.ValidationMessageFor(u => u.Nombre)
+                    </div>
+
+                    <div class="field half">
+                        @Html.LabelFor(u => u.PrecioGeneral)
+                        @Html.TextBoxFor(u => u.PrecioGeneral)
+                        @Html.ValidationMessageFor(u => u.PrecioGeneral)
+                    </div>
+                    <div class="field half">
+                        @Html.LabelFor(u => u.Direccion)
+                        @Html.TextBoxFor(u => u.Direccion)
+                        @Html.ValidationMessageFor(u => u.Direccion)
+                    </div>
+                    <ul class="actions">
+                        <li><a href="" class="button submit">Guardar</a></li>
+                    </ul>
+                </section>
+            </div>
+
+
+        }
+    </div>
+</section>

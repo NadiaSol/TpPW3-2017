@@ -1,0 +1,36 @@
+﻿@using CapaServicio;
+@model  Carteleras
+@{
+    ViewBag.Title = "Gestión de Carteleras";
+    Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
+}
+
+<h2>Sedes</h2>
+
+<section id="three" class="wrapper style1 fade-up">
+    <div class="inner">
+
+        @using (Html.BeginForm())
+        {
+            <div class="split style2">
+                <section>
+                    <h2>Crear Cartelera</h2>
+                </section>
+                <section>
+                    <!--Armar formulario-->
+                    <div class="field half first">
+                        @Html.LabelFor(u => u.HoraInicio)
+                        @Html.TextBoxFor(u => u.HoraInicio)
+                        @Html.ValidationMessageFor(u => u.HoraInicio)
+                    </div>
+
+                    <ul class="actions">
+                        <li><a href="" class="button submit">Guardar</a></li>
+                    </ul>
+                </section>
+            </div>
+
+
+        }
+    </div>
+</section>

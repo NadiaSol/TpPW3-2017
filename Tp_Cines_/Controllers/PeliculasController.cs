@@ -12,8 +12,6 @@ namespace Tp_Cines_.Controllers
         // GET: /Peliculas/
         Entities ctx = new Entities();
         // public static List<Version> versiones= new List<Version>();
-
-
         //ViewBag.IdPeli = id;
         //var query = (from Pelicula in ctx.Peliculas
         //             join
@@ -55,7 +53,6 @@ namespace Tp_Cines_.Controllers
 
             var carteleras = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == Peli).ToList();
             var Sedes = carteleras.Select(x => x.Sedes).ToList();
-
             ViewData["Sede"] = new SelectList(Sedes, "IdSede", "Nombre");
 
 

@@ -1,47 +1,59 @@
 ﻿@using CapaServicio;
-@model  Sedes
+@model  IEnumerable<Sedes>
 @{
     ViewBag.Title = "Gestión de Sedes";
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
 <h2>Sedes</h2>
+
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
+        <h2>Películas vigentes</h2>
 
-        @using (Html.BeginForm())
-        {
-            @*@Html.ValidationSummary(true, "Login fallido, verificar los datos.");*@
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Precio Entrada General</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
 
-            <div class="split style2">
-                <section>
-                    <h2>Crear Sede</h2>
-                </section>
-                <section>
-                    <div class="field half first">
-                        @Html.LabelFor(u => u.Nombre)           
-                        @Html.TextBoxFor(u => u.Nombre)
-                        @Html.ValidationMessageFor(u => u.Nombre)
-                    </div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrecioGeneral)
+                        </td>
+                        <td>
+                            <!--Corregir para que vaya a Editar-->
+                            @Html.ActionLink("Editar", "EditarSede",  new { id = item.IdSede } )
+                        </td>
 
-                    <div class="field half">
-                        @Html.LabelFor(u => u.PrecioGeneral)
-                        @Html.TextBoxFor(u => u.PrecioGeneral)
-                        @Html.ValidationMessageFor(u => u.PrecioGeneral)
-                    </div>
-                    <div class="field half">
-                        @Html.LabelFor(u => u.Direccion)
-                        @Html.TextBoxFor(u => u.Direccion)
-                        @Html.ValidationMessageFor(u => u.Direccion)
-                    </div>
-                    <ul class="actions">
-                        <li><a href="" class="button submit">Guardar</a></li>
-                    </ul>
-                </section>
-            </div>
+                    </tr>
 
+                }
+                }
 
-        }
+            </tbody>
+
+        </table>
+
+        <ul class="actions fit">
+            <li class="button special fit">
+                @Html.ActionLink("Crear nuevo", "CrearSede")
+            </li>
+        </ul>
     </div>
 </section>

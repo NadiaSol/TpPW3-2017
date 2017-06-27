@@ -21,6 +21,7 @@ namespace CapaServicio
         [Required]
         public int IdPelicula { get; set; }
         [Required]
+        [Range(15,23,ErrorMessage ="Hora Inicio no puede ser anterior a las 15 hs")]
         public int HoraInicio { get; set; }
         [Required]
         public System.DateTime FechaInicio { get; set; }
