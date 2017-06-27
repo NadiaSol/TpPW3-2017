@@ -18,6 +18,29 @@
                 </section>
                 <section>
                     <!--Armar formulario-->
+                    <!--Peliculas-->
+                    @Html.LabelFor(u => u.IdPelicula, "Peliculas")
+
+                    @Html.DropDownList("IdPelicula", String.Empty)
+                    <!--Sedes-->
+
+                    @Html.LabelFor(u => u.IdSede, "Sedes")
+
+                    @Html.DropDownList("IdSede", String.Empty)
+
+                    <!--Version-->
+
+                    @Html.LabelFor(u => u.IdVersion, "Versiones")
+
+                    @Html.DropDownList("IdVersion", String.Empty)
+
+
+
+
+
+
+
+
                     <div class="field half first">
                         @Html.LabelFor(u => u.HoraInicio)
                         @Html.TextBoxFor(u => u.HoraInicio)
