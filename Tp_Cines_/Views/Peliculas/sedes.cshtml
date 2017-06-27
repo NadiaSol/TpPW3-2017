@@ -1,0 +1,38 @@
+﻿@model CapaServicio.Sedes
+
+@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>sedes</title>
+</head>
+<body>
+    
+     @using(Html.BeginForm("Dias","Peliculas", FormMethod.Post))
+     {   
+     <fieldset>
+                <legend>Seleccionar</legend>
+               
+                 
+         <label>Sedes</label>
+      @*   @Html.DropDownList("Sede1", "Elegir Sede")*@
+          @Html.DropDownListFor(m => m.IdSede, new SelectList(ViewBag.Sede1,"IdSede", "Nombre"),"seleccionar")
+         @Html.Hidden("id_version")
+
+   
+
+            <input type="submit" name="enviar" value="Enviar" />
+            </fieldset>
+        
+
+     }
+
+
+</body>
+</html>
