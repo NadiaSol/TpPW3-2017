@@ -1,6 +1,43 @@
-﻿@{
+﻿@model CapaServicio.UsuarioServicio
+
+@{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Login</h2>
+<section id="three" class="wrapper style1 fade-up">
+    <div class="inner">
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true, "Login fallido, verificar los datos.");
+
+
+            <div class="split style2">
+                <section>
+                    <h2>Hola Admin!</h2>
+                    <p>*Para entrar a la Administración, debe tener un nombre de Usuario y Contraseña Válidos*</p>
+                </section>
+                <section>
+                    <div class="field half first">
+                        @Html.LabelFor(u => u.Nombre)
+                        @Html.TextBoxFor(u => u.Nombre)
+                        @Html.ValidationMessageFor(u => u.Nombre)
+                    </div>
+
+                    <div class="field half">
+                        @Html.LabelFor(u => u.Password)
+                        @Html.PasswordFor(u => u.Password)
+                        @Html.ValidationMessageFor(u => u.Password)
+                    </div>
+
+                    <ul class="actions">
+                        <li><a href="" class="button submit">Entrar</a></li>
+                    </ul>
+                </section>
+            </div>
+
+
+        }
+    </div>
+</section>

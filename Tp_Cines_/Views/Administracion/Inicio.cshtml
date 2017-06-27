@@ -1,6 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Home Administrador";
+    ViewBag.Title = "Gestión de Películas";
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-<h2>Inicio</h2>
+<h2>Bienvenido!</h2>
+
+<h2>¿Quiere irse?</h2>
+
+<strong>@Html.Encode(User.Identity.Name)</strong></br>
+@Html.ActionLink("Log Out", "Logout", "Home")
+  

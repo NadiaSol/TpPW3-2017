@@ -11,7 +11,8 @@ namespace CapaServicio
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Versiones
     {
         public Versiones()
@@ -21,6 +22,7 @@ namespace CapaServicio
         }
     
         public int IdVersion { get; set; }
+        [StringLength(50, ErrorMessage = "Ha sobrepasado el límite de caracteres permitidos")]
         public string Nombre { get; set; }
     
         public virtual ICollection<Carteleras> Carteleras { get; set; }

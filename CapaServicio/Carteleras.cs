@@ -11,24 +11,41 @@ namespace CapaServicio
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Carteleras
     {
         public int IdCartelera { get; set; }
+        [Required]
         public int IdSede { get; set; }
+        [Required]
         public int IdPelicula { get; set; }
+        [Required]
         public int HoraInicio { get; set; }
+        [Required]
         public System.DateTime FechaInicio { get; set; }
+        [Required]
         public System.DateTime FechaFin { get; set; }
+        [Required]
+        [StringLength(2)]
         public int NumeroSala { get; set; }
+        [Required]
         public int IdVersion { get; set; }
+        [Required]
         public bool Lunes { get; set; }
+        [Required]
         public bool Martes { get; set; }
+        [Required]
         public bool Miercoles { get; set; }
+        [Required]
         public bool Jueves { get; set; }
+        [Required]
         public bool Viernes { get; set; }
+        [Required]
         public bool Sabado { get; set; }
+        [Required]
         public bool Domingo { get; set; }
+        [Required]
         public System.DateTime FechaCarga { get; set; }
     
         public virtual Peliculas Peliculas { get; set; }
