@@ -1650,6 +1650,7 @@
 
 			body, input, select, textarea {
 				font-size: 13pt;
+			    color: #261c3e;
 			}
 
 		}
@@ -2427,15 +2428,15 @@
 
 	input[type="checkbox"],
 	input[type="radio"] {
-		-moz-appearance: none;
+		/*-moz-appearance: none;
 		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
+		-ms-appearance: none;*/
+		/*appearance: none;*/
 		display: block;
 		float: left;
 		margin-right: -2em;
-		opacity: 0;
-		width: 1em;
+		/*opacity: 100;*/
+		width: 5em;
 		z-index: -1;
 	}
 

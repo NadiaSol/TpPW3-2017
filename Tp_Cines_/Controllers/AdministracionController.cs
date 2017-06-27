@@ -69,15 +69,22 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult CrearCartelera(int? id)
         {
+            var peliculas = ctx.Peliculas.ToList();
+            ViewBag.Peliculas = peliculas;
+            var sedes = ctx.Sedes.ToList();
+            ViewBag.Sedes = sedes;
+            var versiones = ctx.Versiones.ToList();
+            ViewBag.versiones = versiones;
             if (id != null)
             {
                 if (ctx.Carteleras.Any(x => x.IdCartelera == id))
                 {
                     var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == id);
-                    return View("CrearCartelera", carteleraEditar);
+                    return View( carteleraEditar);
                 }
                 ModelState.AddModelError("Error", "No se encontró la cartelera elegida");
             }
+
             return View();
         }
         [HttpPost]

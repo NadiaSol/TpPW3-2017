@@ -257,7 +257,6 @@
     <Content Include="Views\Home\LogOut.cshtml" />
     <Content Include="Views\Administracion\CrearSede.cshtml" />
     <Content Include="Views\Administracion\CrearCartelera.cshtml" />
-    <Content Include="Views\Administracion\EditarCartelera.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
