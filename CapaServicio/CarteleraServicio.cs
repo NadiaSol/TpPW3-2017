@@ -21,6 +21,7 @@ namespace CapaServicio
                 {
                     Carteleras carteleraNueva = new Carteleras();
                     carteleraNueva = cartelera;
+                    carteleraNueva.FechaCarga = DateTime.Now;
                     db.Carteleras.Add(carteleraNueva);
                     db.SaveChanges();
                     return true;

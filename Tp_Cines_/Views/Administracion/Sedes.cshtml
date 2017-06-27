@@ -22,23 +22,22 @@
             <tbody>
                 @if (Model != null)
                 {
-                foreach (var item in Model)
+                foreach (var s in Model)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
+                            @Html.DisplayFor(modelItem => s.Nombre)
                         </td>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.Direccion)
+                            @Html.DisplayFor(modelItem => s.Direccion)
                         </td>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.PrecioGeneral)
+                            @Html.DisplayFor(modelItem => s.PrecioGeneral)
                         </td>
                         <td>
-                            <!--Corregir para que vaya a Editar-->
-                            @Html.ActionLink("Editar", "EditarSede",  new { id = item.IdSede } )
+                            @Html.ActionLink("Editar", "CrearSede",  new { @id = s.IdSede } )
                         </td>
 
                     </tr>

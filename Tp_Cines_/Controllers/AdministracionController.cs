@@ -36,7 +36,7 @@ namespace Tp_Cines_.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _sedeServicio.Create(sede);
+                    _sedeServicio.Crear(sede);
                     return RedirectToAction("Sedes", "Administracion");
 
                 }
@@ -44,26 +44,26 @@ namespace Tp_Cines_.Controllers
             ViewBag.Mensaje = "Valores incorrectos";
             return View();
         }
-        [HttpGet]
-        public ActionResult EditarSede(int? IdSede)
-        {
-            if (IdSede != null)
-            {
-                if (ctx.Sedes.Any(x => x.IdSede == IdSede))
-                {
-                    var sedeEditar = ctx.Sedes.Where(x => x.IdSede == IdSede);
-                    return View("CrearSede", sedeEditar);
-                }
-            }
-            ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
-            return RedirectToAction("Sedes", "Administracion");
 
-        }
         [HttpGet]
-        public ActionResult CrearSede()
+        public ActionResult CrearSede(int? id)
         {
+            if (id != null) {
+                if (ctx.Sedes.Any(x => x.IdSede == id))
+                {
+                    var sedeEditar = ctx.Sedes.FirstOrDefault(x => x.IdSede == id);
+                    return View(sedeEditar);
+                }
+               ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
+
+            }
             return View();
         }
+
+        //public ActionResult CrearSede()
+        //{
+        //    return View(sede);
+        //}
         [HttpGet]
         public ActionResult Carteleras()
         {
@@ -89,16 +89,14 @@ namespace Tp_Cines_.Controllers
             return RedirectToAction("Carteleras", "Administracion");
         }
         [HttpGet]
-        public ActionResult EditarCartelera(int? IdCartelera)
+        public ActionResult EditarCartelera(int IdCartelera)
         {
-            if (IdCartelera != null)
-            {
+
                 if (ctx.Sedes.Any(x => x.IdSede == IdCartelera))
                 {
-                    var carteleraEditar = ctx.Carteleras.Where(x => x.IdCartelera == IdCartelera);
+                    var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == IdCartelera);
                     return View("CrearCartelera", carteleraEditar);
                 }
-            }
             ModelState.AddModelError("Error", "No se encontró la cartelera elegida"); //adicionar mensaje de error al model
             return RedirectToAction("Carteleras", "Administracion");
 

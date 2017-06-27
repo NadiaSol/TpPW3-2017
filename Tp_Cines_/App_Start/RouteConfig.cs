@@ -39,11 +39,7 @@ namespace Tp_Cines_
             url: "{controller}/{action}/{id}",
             defaults: new { controller = "Administracion", action = "Sedes", id = UrlParameter.Optional }
         );
-            routes.MapRoute(
-            name: "EditarSede",
-            url: "{controller}/{action}/{id}",
-            defaults: new { controller = "Administracion", action = "EditarSede", id = UrlParameter.Optional }
-            );
+
             routes.MapRoute(
             name: "Crear Sede",
             url: "{controller}/{action}/{id}",
@@ -60,11 +56,11 @@ namespace Tp_Cines_
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Administracion", action = "CrearCartelera", IdCartelera = UrlParameter.Optional }
                 );
-                routes.MapRoute(
-                name: "Editar Cartelera",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Administracion", action = "EditarCartelera", IdCartelera = UrlParameter.Optional }
-                );
+                //routes.MapRoute(
+                //name: "Editar Cartelera",
+                //url: "{controller}/{action}/{id}",
+                //defaults: new { controller = "Administracion", action = "EditarCartelera" }
+                //);
             routes.MapRoute(
                 name: "Reportes",
                 url: "{controller}/{action}/{id}",
