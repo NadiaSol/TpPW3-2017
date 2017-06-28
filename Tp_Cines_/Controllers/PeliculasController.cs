@@ -80,8 +80,13 @@ namespace Tp_Cines_.Controllers
 
 
         }
-        [HttpPost]
 
+        public ActionResult Dias() { 
+        
+            return View();
+        }
+
+       [HttpPost]
         public ActionResult Dias(CapaServicio.Sedes s)
         {
             int Peli = Convert.ToInt32(TempData["peli_id"]);
@@ -171,7 +176,7 @@ namespace Tp_Cines_.Controllers
         //{
         //    int Peli = Convert.ToInt32(TempData["Id_peli"]);
 
-
+            [HttpPost]
         public ActionResult Hora()
         {
             int pe = Convert.ToInt32(TempData["peli_h"]);

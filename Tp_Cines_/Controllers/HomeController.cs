@@ -87,6 +87,11 @@ namespace Tp_Cines_.Controllers
 
             //IdSede, Idversion, Idpelicula
 
+            //TempData["Sedes"] = ViewBag.IdSede;
+            //TempData["Version"] = ViewBag.IdVersion;
+            //TempData["Pelicula"] = ViewBag.IdPelicula;
+
+
             ViewBag.IdSede = new SelectList(ctx.Sedes, "IdSede", "Nombre");
             ViewBag.IdVersion = new SelectList(ctx.Versiones, "IdVersion", "Nombre");
             ViewBag.IdPelicula = new SelectList(ctx.Peliculas, "IdPelicula", "Nombre");

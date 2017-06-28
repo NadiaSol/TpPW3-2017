@@ -19,6 +19,10 @@ namespace Tp_Cines_.Controllers
         private CarteleraServicio _carteleraServicio = new CarteleraServicio();
         public ActionResult Inicio()
         {
+
+            //int dato = Convert.ToInt32 ( TempData["Sedes"]);
+            //ViewBag.dato = dato;
+
             return View();
         }
         public ActionResult Peliculas()

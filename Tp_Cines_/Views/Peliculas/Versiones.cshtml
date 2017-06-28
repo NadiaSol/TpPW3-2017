@@ -6,45 +6,41 @@
 
 }
 
-<!DOCTYPE html>
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+            @using (Html.BeginForm("sedes", "Peliculas", FormMethod.Post))
+            {
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Versiones</title>
-</head>
-<body>
-    @using (Html.BeginForm("sedes","Peliculas", FormMethod.Post))
-    {
+                <fieldset>
+                    <legend>Seleccionar</legend>
+                    <div>
+                        <label>Version</label>
+                        @* @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre",ViewBag.ItemSeleccionado), new {onchange= "form.submit();"})
+                            @Html.ActionLink("sedes", "Peliculas", new { ItemSelected = ViewBag.ItemSeleccionado })
+                            @Html.Hidden("Id_Peli");
+                        *@
 
-           <fieldset>
-                <legend>Seleccionar</legend>
-                <div>
-                    <label>Version</label>
-                   @* @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre",ViewBag.ItemSeleccionado), new {onchange= "form.submit();"})
-                    @Html.ActionLink("sedes", "Peliculas", new { ItemSelected = ViewBag.ItemSeleccionado }) 
-                    @Html.Hidden("Id_Peli");  
-             *@
+                        @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"), "seleccionar")
 
-                     @Html.DropDownListFor(m => m.IdVersion, new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"),"seleccionar")
-                    
-                    
-                   
-                </div>
 
-                <br />
-                <input type="submit" name="Enviar" value="Enviar" />
+
+                    </div>
+
+                    <br />
+                    <input type="submit" name="Enviar" value="Enviar" />
                 </fieldset>
-    
-    
-    
-    }
-         
-
-
-                
 
 
 
-</body>
-</html>
+            }
+
+
+
+
+
+
+
+        </div>
+    </section>
+</div>

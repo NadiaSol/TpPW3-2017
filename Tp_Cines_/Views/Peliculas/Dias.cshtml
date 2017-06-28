@@ -6,26 +6,24 @@
 
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Dias</title>
-</head>
-<body>
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
 
 
- @using(Html.BeginForm("Hora","Peliculas", FormMethod.Post))
- {
-                    <label>Dias</label>
-                    @Html.DropDownList("lis","Elegir dia")
+            @using (Html.BeginForm("Hora", "Peliculas", FormMethod.Post))
+            {
+                <label>Dias</label>
+                @Html.DropDownList("lis", "Elegir dia")
 
                 //  @Html.DropDownListFor(m => m. , new SelectList(ViewBag.lis, "IdPelicula"),"Seleccionar")
-     
-                        <input type="submit" name="enviar" value="Enviar" />
- }
-                
 
-</body>
-</html>
+     
+                <input type="submit" name="enviar" value="Enviar" />
+            }
+
+
+        </div>
+    </section>
+</div>
