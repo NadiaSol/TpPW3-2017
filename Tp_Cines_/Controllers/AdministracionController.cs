@@ -85,17 +85,14 @@ namespace Tp_Cines_.Controllers
         }
 
         [HttpPost]
-        public ActionResult CrearActualizarCartelera(CarteleraViewModel carteleraNueva)
+        public ActionResult CrearCartelera(CarteleraViewModel carteleraNueva)
         {
-            if(_carteleraServicio.Exist(carteleraNueva))
-                ModelState.AddModelError("Error", "Ya existe esta pelicula en esta sede y versión"); //adicionar mensaje de error al model
-
-            if (_carteleraServicio.SalaOcupada(carteleraNueva))
-                ModelState.AddModelError("Error", "Esta sala esta ocupada en ese horario"); //adicionar mensaje de error al model
+            
+            Validate(carteleraNueva);
 
             if (ModelState.IsValid)
             {
-                _carteleraServicio.CreateOrUpdate(carteleraNueva);
+                SaveOrUpdate(carteleraNueva);
 
                 return RedirectToAction("Carteleras", "Administracion");
             }
@@ -104,6 +101,19 @@ namespace Tp_Cines_.Controllers
             return View("CrearCartelera", carteleraNueva);
         }
 
+        private void Validate(CarteleraViewModel model)
+        {
+            if (_carteleraServicio.Exist(model))
+                ModelState.AddModelError("Error", "Ya existe esta pelicula en esta sede y versión"); //adicionar mensaje de error al model
+
+            if (_carteleraServicio.SalaOcupada(model))
+                ModelState.AddModelError("Error", "Esta sala esta ocupada en ese horario"); //adicionar mensaje de error al model
+        }
+
+        private void SaveOrUpdate(CarteleraViewModel model)
+        {
+            _carteleraServicio.CreateOrUpdate(model);
+        }
         [HttpGet]
         public ActionResult EditarCartelera(int? id)
         {
@@ -117,6 +127,23 @@ namespace Tp_Cines_.Controllers
             Initialize(carteleraViewModel);
 
             return View("EditCartelera",carteleraViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditarCartelera(CarteleraViewModel carteleraNueva)
+        {
+
+            Validate(carteleraNueva);
+
+            if (ModelState.IsValid)
+            {
+                SaveOrUpdate(carteleraNueva);
+
+                return RedirectToAction("Carteleras", "Administracion");
+            }
+
+            Initialize(carteleraNueva);
+            return View("EditCartelera", carteleraNueva);
         }
 
         public ActionResult Reportes()
