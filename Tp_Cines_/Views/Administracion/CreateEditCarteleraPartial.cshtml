@@ -1,0 +1,80 @@
+﻿@using Tp_Cines_.Models;
+@model  CarteleraViewModel
+
+<div class="split style2">
+    <section>
+        <h2>Crear Cartelera</h2>
+    </section>
+    <section>
+        <!--Armar formulario-->
+        <!--Peliculas-->
+        @Html.LabelFor(u => u.IdPelicula, "Peliculas")
+        @Html.DropDownListFor(u => u.IdPelicula, new SelectList(Model.Peliculas, "IdPelicula", "Nombre"), "Seleccione")
+        @Html.ValidationMessageFor(u => u.IdPelicula)
+        <!--Sedes-->
+
+        @Html.LabelFor(u => u.IdSede, "Sedes")
+        @Html.DropDownListFor(u => u.IdSede, new SelectList(Model.Sedes, "IdSede", "Nombre"), "Seleccione")
+        @Html.ValidationMessageFor(u => u.IdSede)
+        <!--HoraInicio-->
+        <div>
+            @Html.LabelFor(u => u.HoraInicio)
+            @Html.TextBoxFor(u => u.HoraInicio, new {@type = "number", @min = "1"})
+            @Html.ValidationMessageFor(u => u.HoraInicio)
+        </div>
+        <!--FechaInicio-->
+        <div>
+            @Html.LabelFor(u => u.FechaInicio)
+            @Html.TextBoxFor(u => u.FechaInicio, new {@class = "datepicker" })
+            @Html.ValidationMessageFor(u => u.FechaInicio)
+        </div>
+        <!--FechaFin-->
+        <div>
+            @Html.LabelFor(u => u.FechaFin)
+            @Html.TextBoxFor(u => u.FechaFin, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(u => u.FechaFin)
+        </div>
+        <!--NumeroSala-->
+        <div>
+            @Html.LabelFor(u => u.NumeroSala)
+            @Html.TextBoxFor(u => u.NumeroSala, new {@type = "number", @min = "1"})
+            @Html.ValidationMessageFor(u => u.NumeroSala)
+        </div>
+        <!--Version-->
+        @Html.LabelFor(u => u.IdVersion, "Versiones")
+        @Html.DropDownListFor(u => u.IdVersion, new SelectList(Model.Versiones, "IdVersion", "Nombre"), "Seleccione")
+        @Html.ValidationMessageFor(u => u.IdVersion)
+        <!--Lunes-->
+
+        @Html.CheckBoxFor(u => u.Lunes)
+        @Html.LabelFor(u => u.Lunes)
+        <!--Martes-->
+        @Html.CheckBoxFor(u => u.Martes)
+        @Html.LabelFor(u => u.Martes)
+
+        <!--Miercoles-->
+        @Html.CheckBoxFor(u => u.Miercoles)
+        @Html.LabelFor(u => u.Miercoles)
+
+        <!--Jueves-->
+        @Html.CheckBoxFor(u => u.Jueves)
+        @Html.LabelFor(u => u.Jueves)
+
+        <!--Viernes-->
+        @Html.CheckBoxFor(u => u.Viernes)
+        @Html.LabelFor(u => u.Viernes)
+
+        <!--Sabado-->
+        @Html.CheckBoxFor(u => u.Sabado)
+        @Html.LabelFor(u => u.Sabado)
+
+        <!--Domingo-->
+        @Html.CheckBoxFor(u => u.Domingo)
+        @Html.LabelFor(u => u.Domingo)
+
+        @Html.ValidationSummary(true)
+        <ul class="actions">
+            <li><button class="button" type="submit">Guardar</button></li>
+        </ul>
+    </section>
+</div>

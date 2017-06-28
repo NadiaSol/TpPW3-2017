@@ -5,8 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/main.css")
-
+    @*@Styles.Render("~/Content/main.css")*@
+    @Styles.Render("~/Content/styles")
+    @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
@@ -33,13 +34,18 @@
             </ul>
         </div>
     </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/common")
 
-    @Scripts.Render("~/Scripts/jquery.min.js")
-    @Scripts.Render("~/Scripts/jquery.scrollex.min.js")
-    @Scripts.Render("~/Scripts/jquery.scrolly.min.js")
-    @Scripts.Render("~/Scripts/skel.min.js")
-    @Scripts.Render("~/Scripts/util.js")
-    @Scripts.Render("~/Scripts/main.js")
+
+    @*@Scripts.Render("~/Scripts/jquery.min.js")
+        @Scripts.Render("~/Scripts/jquery.scrollex.min.js")
+        @Scripts.Render("~/Scripts/jquery.scrolly.min.js")
+        @Scripts.Render("~/Scripts/skel.min.js")
+        @Scripts.Render("~/Scripts/util.js")
+        @Scripts.Render("~/Scripts/main.js")*@
 
 </body>
 </html>

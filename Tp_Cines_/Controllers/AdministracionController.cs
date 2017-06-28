@@ -3,12 +3,14 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Web.Mvc;
-
+using Tp_Cines_.Models;
+using Tp_Cines_.Models.Extensions;
 
 
 namespace Tp_Cines_.Controllers
 {
     [Authorize]
+    [HandleError]
     public class AdministracionController : Controller
     {
         //
@@ -75,42 +77,46 @@ namespace Tp_Cines_.Controllers
             return View(carteleraActual);
         }
         [HttpGet]
-        public ActionResult CrearCartelera(int? id)
+        public ActionResult CrearCartelera()
         {
-         Initialize();   
-            if (id != null)
-            {
-                if (ctx.Carteleras.Any(x => x.IdCartelera == id))
-                {
-                    var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == id);
-                    
-                    return View(carteleraEditar);
-                }
-                ModelState.AddModelError("Error", "No se encontró la cartelera elegida");
-            }
-
-            return View(new Carteleras { IdCartelera = 0 });
+            var model = new CarteleraViewModel();
+            Initialize(model);
+            return View("CrearCartelera", model);
         }
+
         [HttpPost]
-        public ActionResult CrearCartelera(Carteleras carteleraNueva)
+        public ActionResult CrearActualizarCartelera(CarteleraViewModel carteleraNueva)
         {
-            if (carteleraNueva.HoraInicio <= 15 && carteleraNueva.HoraInicio > 23)
-                ModelState.AddModelError("Hora Inicio", "No puede ser anterior a las 15hs"); //adicionar mensaje de error al model
+            if(_carteleraServicio.Exist(carteleraNueva))
+                ModelState.AddModelError("Error", "Ya existe esta pelicula en esta sede y versión"); //adicionar mensaje de error al model
+
+            if (_carteleraServicio.SalaOcupada(carteleraNueva))
+                ModelState.AddModelError("Error", "Esta sala esta ocupada en ese horario"); //adicionar mensaje de error al model
+
             if (ModelState.IsValid)
             {
-                if (!_carteleraServicio.Create(carteleraNueva))
-                {
-                    ModelState.AddModelError("Error", "No se pudo guardar la cartelera"); //adicionar mensaje de error al model
-                    Initialize();
-                    return View(carteleraNueva);
-                }
-
+                _carteleraServicio.CreateOrUpdate(carteleraNueva);
 
                 return RedirectToAction("Carteleras", "Administracion");
             }
 
-            Initialize();
-            return View(carteleraNueva);
+            Initialize(carteleraNueva);
+            return View("CrearCartelera", carteleraNueva);
+        }
+
+        [HttpGet]
+        public ActionResult EditarCartelera(int? id)
+        {
+            var cartelera = ctx.Carteleras.Find(id);
+
+            if (cartelera == null)
+                return View("NotFound");
+
+            var carteleraViewModel = cartelera.Map();
+
+            Initialize(carteleraViewModel);
+
+            return View("EditCartelera",carteleraViewModel);
         }
 
         public ActionResult Reportes()
@@ -153,14 +159,11 @@ namespace Tp_Cines_.Controllers
             return View(peliculas);
         }
 
-        private void Initialize()
+        private void Initialize(CarteleraViewModel model)
         {
-            var peliculas = ctx.Peliculas.ToList();
-            ViewBag.Peliculas = peliculas;
-            var sedes = ctx.Sedes.ToList();
-            ViewBag.Sedes = sedes;
-            var versiones = ctx.Versiones.ToList();
-            ViewBag.versiones = versiones;
+            model.Peliculas = ctx.Peliculas.ToList();
+            model.Sedes = ctx.Sedes.ToList();
+            model.Versiones = ctx.Versiones.ToList();
         }
     }
 }
