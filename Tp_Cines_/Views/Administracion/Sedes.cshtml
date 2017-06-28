@@ -36,8 +36,8 @@
                                 @Html.DisplayFor(modelItem => item.PrecioGeneral)
                             </td>
                             <td class="button fit">
-                                <!--Corregir para que vaya a Editar-->
-                                @Html.ActionLink("Editar", "EditarSede", new { id = item.IdSede })
+
+                                @Html.ActionLink("Editar", "CrearSede", new { id = item.IdSede })
                             </td>
 
                         </tr>
