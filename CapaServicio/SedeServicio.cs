@@ -1,31 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace CapaServicio
 {
     public class SedeServicio
     {
-        private Entities db = new Entities();
-        public bool Crear(Sedes sede)
+        public void CreateOrUpdate(Sedes sede)
         {
-            if (db.Sedes.Any(x => x.Nombre == sede.Nombre))
-                return false;
-            if (db.Sedes.Any(x => x.IdSede == sede.IdSede))
+            using (var db = new Entities())
             {
-                var sedeDb = db.Carteleras.SingleOrDefault(x => x.IdSede == sede.IdSede);
-                db.Entry(sedeDb).CurrentValues.SetValues(sede);
+                if (db.Sedes.Any(x => x.IdSede == sede.IdSede))
+                {
+                    var sedeDb = db.Carteleras.SingleOrDefault(x => x.IdSede == sede.IdSede);
+                    db.Entry(sedeDb).CurrentValues.SetValues(sede);
+                }
+                else
+                {
+                    db.Sedes.Add(sede);
+                }
+
+                db.SaveChanges();
+                //return true;
             }
-            else
+        }
+        public bool Exist(Sedes sede)
+        {
+            using (var db = new Entities())
             {
-                db.Sedes.Add(sede);
+                if (db.Sedes.Any(x => x.Nombre == sede.Nombre))
+                    return true;
+                return false;
             }
 
-            db.SaveChanges();
-            return true;
         }
     }
 }

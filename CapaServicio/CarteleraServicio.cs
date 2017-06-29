@@ -29,7 +29,7 @@ namespace CapaServicio
             using (var db = new Entities())
             {
                 cartelera.FechaCarga = DateTime.Now;
-                if (cartelera.IdCartelera == 0)
+                if (cartelera.IdCartelera ==0)
                 {
                     db.Carteleras.Add(cartelera);
                 }
@@ -41,11 +41,6 @@ namespace CapaServicio
 
                 db.SaveChanges();
             }
-
-            //        return true;
-            //    }
-            //}
-            //return false;
         }
 
         public bool Exist(Carteleras cartelera)

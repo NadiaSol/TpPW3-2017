@@ -22,20 +22,20 @@ namespace CapaServicio
         }
     
         public int IdPelicula { get; set; }
-        [Required(ErrorMessage = "Campo Requerido")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [StringLength(50)]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "Escriba una descripción")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [StringLength(750)]
         public string Descripcion { get; set; }
-        [Required(ErrorMessage = "Falta cargar el enlace de imagen")]
+        [Required(ErrorMessage = "Escriba enlace de la imagen")]
         [StringLength(300)]
         public string Imagen { get; set; }
-        [Required(ErrorMessage = "Seleccione la Calificación")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public int IdCalificacion { get; set; }
-        [Required(ErrorMessage = "Seleccione el Género")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public int IdGenero { get; set; }
-        [Required(ErrorMessage = "Ingrese la duración")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [Range(1,90,ErrorMessage ="La película no puede superar los 90 minutos")]
         public int Duracion { get; set; }
         [Required]

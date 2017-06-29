@@ -138,6 +138,12 @@
     <Compile Include="Models\CarteleraViewModel.cs" />
     <Compile Include="Models\dias.cs" />
     <Compile Include="Models\Extensions\CarteleraViewModelExtension.cs" />
+    <Compile Include="Models\Extensions\PeliculaViewModelExtension.cs" />
+    <Compile Include="Models\Extensions\SedeViewModelExtension.cs" />
+    <Compile Include="Models\PeliculaViewModel.cs" />
+    <Compile Include="Models\ReservaViewModel.cs" />
+    <Compile Include="Models\SedeViewModel.cs" />
+    <Compile Include="Models\UsuarioModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -264,9 +270,11 @@
     <Content Include="Views\Administracion\CrearCartelera.cshtml" />
     <Content Include="Views\Administracion\EditarPelicula.cshtml" />
     <Content Include="Views\Home\Reserva.cshtml" />
-    <Content Include="Views\Administracion\CreateEditCarteleraPartial.cshtml" />
+    <Content Include="Views\Administracion\CrearEditarCarteleraPartial.cshtml" />
     <Content Include="Views\Administracion\EditCartelera.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Administracion\CrearEditarSedePartial.cshtml" />
+    <Content Include="Views\Administracion\EditarSede.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

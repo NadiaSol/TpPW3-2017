@@ -6,7 +6,6 @@
         <h2>Crear Cartelera</h2>
     </section>
     <section>
-        <!--Armar formulario-->
         <!--Peliculas-->
         @Html.LabelFor(u => u.IdPelicula, "Peliculas")
         @Html.DropDownListFor(u => u.IdPelicula, new SelectList(Model.Peliculas, "IdPelicula", "Nombre"), "Seleccione")

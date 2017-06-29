@@ -15,7 +15,7 @@ namespace Tp_Cines_.Models
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (HoraInicio <= 15 && HoraInicio > 23)
-                yield return new ValidationResult("No puede ser anterior a las 15hs",new []{ "HoraInicio" } ); //adicionar mensaje de error al model
+                yield return new ValidationResult("No puede ser anterior a las 15hs",new []{ "HoraInicio" } );
         }
     }
 }

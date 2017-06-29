@@ -46,28 +46,31 @@ namespace Tp_Cines_.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _sedeServicio.Crear(sede);
+                    _sedeServicio.CreateOrUpdate(sede);
                     return RedirectToAction("Sedes", "Administracion");
                 }
             }
             ViewBag.Mensaje = "Valores incorrectos";
             return View();
         }
-
         [HttpGet]
-        public ActionResult CrearSede(int? id)
+        public ActionResult CrearSede()
         {
-            if (id != null)
-            {
+            var model = new SedeViewModel();
+            return View("CrearSede", model);
+        }
+        
+        [HttpGet]
+        public ActionResult EditarSede(int id)
+        {
                 if (ctx.Sedes.Any(x => x.IdSede == id))
                 {
                     var sedeEditar = ctx.Sedes.FirstOrDefault(x => x.IdSede == id);
-                    return View(sedeEditar);
+                    return View("EditarSede",sedeEditar);
                 }
                 ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
 
-            }
-            return View();
+            return View("EditarSede");
         }
 
         [HttpGet]

@@ -5,19 +5,22 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
-
-
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
 
-        @using (Html.BeginForm("CrearSede","Administracion",FormMethod.Post))
+        @using (Html.BeginForm("EditarSede","Administracion",FormMethod.Post))
         {
+            @Html.HiddenFor(u=>u.IdSede)
             <div class="split style2">
                 <section>
-                    <h2>Crear Sede</h2>
+                    <h2>Editar Sede</h2>
                 </section>
                 @Html.Partial("CrearEditarSedePartial")
+
+
             </div>
+
+
         }
     </div>
 </section>
