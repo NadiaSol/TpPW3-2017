@@ -135,7 +135,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CarteleraViewModel.cs" />
     <Compile Include="Models\dias.cs" />
+    <Compile Include="Models\Extensions\CarteleraViewModelExtension.cs" />
+    <Compile Include="Models\Extensions\PeliculaViewModelExtension.cs" />
+    <Compile Include="Models\Extensions\SedeViewModelExtension.cs" />
+    <Compile Include="Models\PeliculaViewModel.cs" />
+    <Compile Include="Models\ReservaViewModel.cs" />
+    <Compile Include="Models\SedeViewModel.cs" />
+    <Compile Include="Models\UsuarioModelView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
