@@ -5,13 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/main.css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
 
 </head>
 <body>
     <!--Menu-->
-    <header id="header">
+    @*<header id="header">
         <a href="index.html" class="title"><img src="~/img/Logo_MM.png" width="200" height="40" alt="Alternate Text" /></a>
         <nav>
             <ul>
@@ -20,26 +21,46 @@
                 <li><a href="/Home/Login" class="active">Login</a></li>
             </ul>
         </nav>
-    </header>
+    </header>*@
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/Home/Inicio" class="active"> <img src="~/img/Logo_MM.png" width="260" height="50" alt="Alternate Text" /></a>
+</div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/Home/Reserva">Reservar <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/Home/Cartelera">Cartelera</a></li>
+                </ul>
+             
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/Home/Login">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!--Body de cada página-->
     @RenderBody()
 
     <!--Footer-->
-    <footer id="footer" class="wrapper style1-alt">
-        <div class="inner">
-            <ul class="menu">
-                <li>Trabajo Práctico - Programación Web 3 - 2017</li>
-                <li>Alumnas: Paola Ferrara, Nadia Jara, Nadia Villalva</li>
-            </ul>
+    <footer class="container-fluid text-center">
+
+        <div >
+            <p>Trabajo Práctico - Programación Web 3 - 2017</p>
+            <p>Alumnas: Paola Ferrara, Nadia Jara, Nadia Villalva</p>
         </div>
     </footer>
 
-    @Scripts.Render("~/Scripts/jquery.min.js")
-    @Scripts.Render("~/Scripts/jquery.scrollex.min.js")
-    @Scripts.Render("~/Scripts/jquery.scrolly.min.js")
-    @Scripts.Render("~/Scripts/skel.min.js")
-    @Scripts.Render("~/Scripts/util.js")
-    @Scripts.Render("~/Scripts/main.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>
