@@ -3,12 +3,14 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Web.Mvc;
-
+using Tp_Cines_.Models;
+using Tp_Cines_.Models.Extensions;
 
 
 namespace Tp_Cines_.Controllers
 {
     [Authorize]
+    [HandleError]
     public class AdministracionController : Controller
     {
         //
@@ -44,28 +46,31 @@ namespace Tp_Cines_.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _sedeServicio.Crear(sede);
+                    _sedeServicio.CreateOrUpdate(sede);
                     return RedirectToAction("Sedes", "Administracion");
                 }
             }
             ViewBag.Mensaje = "Valores incorrectos";
             return View();
         }
-
         [HttpGet]
-        public ActionResult CrearSede(int? id)
+        public ActionResult CrearSede()
         {
-            if (id != null)
-            {
+            var model = new SedeViewModel();
+            return View("CrearSede", model);
+        }
+        
+        [HttpGet]
+        public ActionResult EditarSede(int id)
+        {
                 if (ctx.Sedes.Any(x => x.IdSede == id))
                 {
                     var sedeEditar = ctx.Sedes.FirstOrDefault(x => x.IdSede == id);
-                    return View(sedeEditar);
+                    return View("EditarSede",sedeEditar);
                 }
                 ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
 
-            }
-            return View();
+            return View("EditarSede");
         }
 
         [HttpGet]
@@ -75,42 +80,73 @@ namespace Tp_Cines_.Controllers
             return View(carteleraActual);
         }
         [HttpGet]
-        public ActionResult CrearCartelera(int? id)
+        public ActionResult CrearCartelera()
         {
-         Initialize();   
-            if (id != null)
-            {
-                if (ctx.Carteleras.Any(x => x.IdCartelera == id))
-                {
-                    var carteleraEditar = ctx.Carteleras.FirstOrDefault(x => x.IdCartelera == id);
-                    
-                    return View(carteleraEditar);
-                }
-                ModelState.AddModelError("Error", "No se encontró la cartelera elegida");
-            }
-
-            return View(new Carteleras { IdCartelera = 0 });
+            var model = new CarteleraViewModel();
+            Initialize(model);
+            return View("CrearCartelera", model);
         }
+
         [HttpPost]
-        public ActionResult CrearCartelera(Carteleras carteleraNueva)
+        public ActionResult CrearCartelera(CarteleraViewModel carteleraNueva)
         {
-            if (carteleraNueva.HoraInicio <= 15 && carteleraNueva.HoraInicio > 23)
-                ModelState.AddModelError("Hora Inicio", "No puede ser anterior a las 15hs"); //adicionar mensaje de error al model
+            
+            Validate(carteleraNueva);
+
             if (ModelState.IsValid)
             {
-                if (!_carteleraServicio.Create(carteleraNueva))
-                {
-                    ModelState.AddModelError("Error", "No se pudo guardar la cartelera"); //adicionar mensaje de error al model
-                    Initialize();
-                    return View(carteleraNueva);
-                }
-
+                SaveOrUpdate(carteleraNueva);
 
                 return RedirectToAction("Carteleras", "Administracion");
             }
 
-            Initialize();
-            return View(carteleraNueva);
+            Initialize(carteleraNueva);
+            return View("CrearCartelera", carteleraNueva);
+        }
+
+        private void Validate(CarteleraViewModel model)
+        {
+            if (_carteleraServicio.Exist(model))
+                ModelState.AddModelError("Error", "Ya existe esta pelicula en esta sede y versión"); //adicionar mensaje de error al model
+
+            if (_carteleraServicio.SalaOcupada(model))
+                ModelState.AddModelError("Error", "Esta sala esta ocupada en ese horario"); //adicionar mensaje de error al model
+        }
+
+        private void SaveOrUpdate(CarteleraViewModel model)
+        {
+            _carteleraServicio.CreateOrUpdate(model);
+        }
+        [HttpGet]
+        public ActionResult EditarCartelera(int? id)
+        {
+            var cartelera = ctx.Carteleras.Find(id);
+
+            if (cartelera == null)
+                return View("NotFound");
+
+            var carteleraViewModel = cartelera.Map();
+
+            Initialize(carteleraViewModel);
+
+            return View("EditCartelera",carteleraViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EditarCartelera(CarteleraViewModel carteleraNueva)
+        {
+
+            Validate(carteleraNueva);
+
+            if (ModelState.IsValid)
+            {
+                SaveOrUpdate(carteleraNueva);
+
+                return RedirectToAction("Carteleras", "Administracion");
+            }
+
+            Initialize(carteleraNueva);
+            return View("EditCartelera", carteleraNueva);
         }
 
         public ActionResult Reportes()
@@ -153,14 +189,11 @@ namespace Tp_Cines_.Controllers
             return View(peliculas);
         }
 
-        private void Initialize()
+        private void Initialize(CarteleraViewModel model)
         {
-            var peliculas = ctx.Peliculas.ToList();
-            ViewBag.Peliculas = peliculas;
-            var sedes = ctx.Sedes.ToList();
-            ViewBag.Sedes = sedes;
-            var versiones = ctx.Versiones.ToList();
-            ViewBag.versiones = versiones;
+            model.Peliculas = ctx.Peliculas.ToList();
+            model.Sedes = ctx.Sedes.ToList();
+            model.Versiones = ctx.Versiones.ToList();
         }
     }
 }

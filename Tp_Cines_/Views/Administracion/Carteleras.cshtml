@@ -5,6 +5,21 @@
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
 
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+
+            $(".dialogDias").dialog({
+                autoOpen: false, modal: true, show: "blind", hide: "blind"
+            });
+
+            $(".linkDias").click(function () {
+                $("#cartelera" + $(this).attr("idCartelera")).dialog("open");
+            });
+        });
+    </script>
+}
 
 <div id="wrapper">
     <section id="main" class="wrapper style1 fade-up">
@@ -19,15 +34,8 @@
                         <th>Hora Inicio</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
-                        <th>Número de Sala</th>
+                        <th>Sala</th>
                         <th>Versión</th>
-                        <th>Lunes</th>
-                        <th>Martes</th>
-                        <th>Miércoles</th>
-                        <th>Jueves</th>
-                        <th>Viernes</th>
-                        <th>Sábado</th>
-                        <th>Domingo</th>
                         <th>Fecha Carga</th>
 
                     </tr>
@@ -49,11 +57,11 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.FechaInicio)
+                                @item.FechaInicio.ToShortDateString()
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.FechaFin)
+                                @item.FechaFin.ToShortDateString()
                             </td>
 
                             <td>
@@ -64,32 +72,57 @@
                                 @Html.DisplayFor(modelItem => item.Versiones.Nombre)
                             </td>
                             <td>
-                                @((bool)item.Lunes ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @((bool)item.Martes ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @((bool)item.Miercoles ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @((bool)item.Jueves ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @((bool)item.Viernes ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @((bool)item.Sabado ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @((bool)item.Domingo ? "Sí" : "No")
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaCarga)
+                                @item.FechaCarga.ToShortDateString()
                             </td>
 
-                            <td >
-                                @Html.ActionLink("Editar", "CrearCartelera", new { id = item.IdCartelera })
+                            <td>
+                                <a href="#" class="linkDias" idCartelera="@item.IdCartelera"> Ver días</a>
+                                <div id="@string.Format("cartelera{0}", item.IdCartelera)" title="Días" class="dialogDias">
+                                    <p>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Lunes</th>
+                                                    <th>Martes</th>
+                                                    <th>Miércoles</th>
+                                                    <th>Jueves</th>
+                                                    <th>Viernes</th>
+                                                    <th>Sábado</th>
+                                                    <th>Domingo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        @(item.Lunes ? "Sí" : "No")
+                                                    </td>
+                                                    <td>
+                                                        @(item.Martes ? "Sí" : "No")
+                                                    </td>
+                                                    <td>
+                                                        @(item.Miercoles ? "Sí" : "No")
+                                                    </td>
+                                                    <td>
+                                                        @(item.Jueves ? "Sí" : "No")
+                                                    </td>
+                                                    <td>
+                                                        @(item.Viernes ? "Sí" : "No")
+                                                    </td>
+                                                    <td>
+                                                        @(item.Sabado ? "Sí" : "No")
+                                                    </td>
+                                                    <td>
+                                                        @(item.Domingo ? "Sí" : "No")
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </p>
+                                </div>
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Editar", "EditarCartelera", new { id = item.IdCartelera })
                             </td>
 
                         </tr>

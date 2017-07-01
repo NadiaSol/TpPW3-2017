@@ -1,19 +1,20 @@
 ﻿@using Tp_Cines_.Models;
 @model  CarteleraViewModel
 
+
 @{
     ViewBag.Title = "Gestión de Carteleras";
     Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
 }
-
 
 <h2>Sedes</h2>
 
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
 
-        @using (Html.BeginForm("CrearCartelera", "Administracion",FormMethod.Post))
+        @using (Html.BeginForm("EditarCartelera", "Administracion", FormMethod.Post))
         {
+            @Html.HiddenFor(u => u.IdCartelera)
             @Html.Partial("CrearEditarCarteleraPartial")
         }
     </div>

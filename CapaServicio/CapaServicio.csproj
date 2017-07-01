@@ -54,6 +54,11 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="CarteleraServicio.cs" />
+    <Compile Include="Extensions\CarteleraExtensions.cs" />
+    <Compile Include="Extensions\PeliculaExtensions.cs" />
+    <Compile Include="Extensions\ReservaExtensions.cs" />
+    <Compile Include="Extensions\SedeExtensions.cs" />
+    <Compile Include="Extensions\UsuarioExtensions.cs" />
     <Compile Include="Generos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -30,7 +30,7 @@ namespace Tp_Cines_.Controllers
         }
 
         [HttpPost]
-        public ActionResult login(CapaServicio.UsuarioServicio user)
+        public ActionResult Login(CapaServicio.UsuarioServicio user)
         {
             if (ModelState.IsValid) //Verificar que el modelo de datos sea válido en cuanto a la definición de las propiedades
             {

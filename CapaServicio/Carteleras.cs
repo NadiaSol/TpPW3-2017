@@ -16,40 +16,20 @@ namespace CapaServicio
     public partial class Carteleras
     {
         public int IdCartelera { get; set; }
-        [Required]
         public int IdSede { get; set; }
-        [Required]
         public int IdPelicula { get; set; }
-        [Required]
-        [Range(15,23,ErrorMessage ="Hora Inicio no puede ser anterior a las 15 hs")]
-        public int HoraInicio { get; set; }
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date,ErrorMessage = "Debe ingresar ua fecha válida")]
-        public System.DateTime FechaInicio { get; set; }
-        [Required]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date, ErrorMessage = "Debe ingresar ua fecha válida")]
-        public System.DateTime FechaFin { get; set; }
-        [Required]
-        public int NumeroSala { get; set; }
-        [Required]
-        public int IdVersion { get; set; }
-        [Required]
-        public bool Lunes { get; set; }
-        [Required]
-        public bool Martes { get; set; }
-        [Required]
-        public bool Miercoles { get; set; }
-        [Required]
-        public bool Jueves { get; set; }
-        [Required]
-        public bool Viernes { get; set; }
-        [Required]
-        public bool Sabado { get; set; }
-        [Required]
-        public bool Domingo { get; set; }
-        [Required]
+        public int HoraInicio { get; set; }        
+        public System.DateTime FechaInicio { get; set; }        
+        public System.DateTime FechaFin { get; set; }       
+        public int NumeroSala { get; set; }        
+        public int IdVersion { get; set; }        
+        public bool Lunes { get; set; }        
+        public bool Martes { get; set; }        
+        public bool Miercoles { get; set; }        
+        public bool Jueves { get; set; }        
+        public bool Viernes { get; set; }        
+        public bool Sabado { get; set; }        
+        public bool Domingo { get; set; }        
         public System.DateTime FechaCarga { get; set; }
     
         public virtual Peliculas Peliculas { get; set; }
