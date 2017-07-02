@@ -11,13 +11,21 @@
 
             @using (Html.BeginForm("Seleccionado", "Peliculas", FormMethod.Post))
             {
+                
+                <fieldset>
+                        <legend>Seleccionar</legend>
+                        <div>
+                            
                 <label>Hora de inicio</label>
 
-                //  @Html.DropDownList("horaInicio","Elegir horario")
+                 @* @Html.DropDownList("horaInicio","Elegir horario")*@
 
                 @Html.DropDownListFor(m => m.HoraInicio, new SelectList(ViewBag.horaInicio, "HoraInicio"), "Seleccionar")
 
                 <input type="submit" name="enviar" value="Enviar" />
+
+                            </div>
+                    </fieldset>
             }
 
 

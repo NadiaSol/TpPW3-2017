@@ -166,7 +166,7 @@ namespace Tp_Cines_.Controllers
 
             //ViewData["horaInicio"] = new SelectList(h, "IdPelicula");
 
-            return View();
+            return View(dias);
         }
 
 
@@ -177,12 +177,14 @@ namespace Tp_Cines_.Controllers
         //    int Peli = Convert.ToInt32(TempData["Id_peli"]);
 
             [HttpPost]
-        public ActionResult Hora()
+        public ActionResult Hora(FormCollection formu)
         {
             int pe = Convert.ToInt32(TempData["peli_h"]);
             int sede = Convert.ToInt32(TempData["id_sede"]);
             int version = Convert.ToInt32(TempData["version_"]);
 
+            string fecha = formu["dia"];
+            TempData["fecha"] = fecha;
             TempData["sedee"] = sede;
             TempData["id_Version"] = version;
             TempData["peli_id"] = pe;
@@ -214,7 +216,7 @@ namespace Tp_Cines_.Controllers
             ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
             ViewBag.hora = h.HoraInicio;
             ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
-
+            ViewBag.fechaInicio= TempData["fecha"];
 
 
             return View();

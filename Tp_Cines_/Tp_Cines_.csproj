@@ -152,8 +152,10 @@
     <Content Include="Content\bootstrap-def.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui-1.7.2.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="img\alien.jpg" />
+    <Content Include="img\datapicker.png" />
     <Content Include="img\Logo_MM.png" />
     <Content Include="img\mujer_maravilla.jpg" />
     <Content Include="img\piratas.jpg" />
