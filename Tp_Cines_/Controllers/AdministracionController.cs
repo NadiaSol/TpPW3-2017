@@ -40,18 +40,18 @@ namespace Tp_Cines_.Controllers
             return View(sedesActuales);
         }
         [HttpPost]
-        public ActionResult CrearSede(Sedes sede)
+        public ActionResult CrearSede(SedeViewModel sedeNueva)
         {
-            if (sede != null)
-            {
+            ValidaSede(sedeNueva);
                 if (ModelState.IsValid)
                 {
-                    _sedeServicio.CreateOrUpdate(sede);
+                    _sedeServicio.CreateOrUpdate(sedeNueva);
                     return RedirectToAction("Sedes", "Administracion");
                 }
-            }
-            ViewBag.Mensaje = "Valores incorrectos";
-            return View();
+
+            //ViewBag.Mensaje = "Valores incorrectos";
+            //todo: ver que devuelva los errores del Model a la vista
+            return View("CrearSede");
         }
         [HttpGet]
         public ActionResult CrearSede()
@@ -63,14 +63,11 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult EditarSede(int id)
         {
-                if (ctx.Sedes.Any(x => x.IdSede == id))
-                {
-                    var sedeEditar = ctx.Sedes.FirstOrDefault(x => x.IdSede == id);
-                    return View("EditarSede",sedeEditar);
-                }
-                ModelState.AddModelError("Error", "No se encontró la sede elegida"); //adicionar mensaje de error al model
-
-            return View("EditarSede");
+            var sede = ctx.Sedes.Find(id);
+            if(sede==null)
+                return View("NotFound");
+            var sedeViewModel =sede.Map();
+            return View("EditarSede", sedeViewModel);
         }
 
         [HttpGet]
@@ -113,22 +110,23 @@ namespace Tp_Cines_.Controllers
                 ModelState.AddModelError("Error", "Esta sala esta ocupada en ese horario"); //adicionar mensaje de error al model
         }
 
+        private void ValidaSede(SedeViewModel model)
+        {
+            if(_sedeServicio.Exist(model))
+                ModelState.AddModelError("SedeRepetida", "Ya existe una Sede con ese nombre");
+        }
         private void SaveOrUpdate(CarteleraViewModel model)
         {
             _carteleraServicio.CreateOrUpdate(model);
         }
         [HttpGet]
-        public ActionResult EditarCartelera(int? id)
+        public ActionResult EditarCartelera(int id)
         {
             var cartelera = ctx.Carteleras.Find(id);
-
             if (cartelera == null)
                 return View("NotFound");
-
             var carteleraViewModel = cartelera.Map();
-
             Initialize(carteleraViewModel);
-
             return View("EditCartelera",carteleraViewModel);
         }
 

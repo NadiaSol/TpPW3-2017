@@ -9,7 +9,6 @@ namespace CapaServicio
 {
     public class CarteleraServicio
     {
-        //private Entities db = new Entities();
         public void CreateOrUpdate(Carteleras cartelera)
         {
             //var exist =
