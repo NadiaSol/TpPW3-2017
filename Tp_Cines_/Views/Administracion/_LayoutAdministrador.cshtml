@@ -5,10 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @*@Styles.Render("~/Content/main.css")*@
-    @Styles.Render("~/Content/styles")
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 
 </head>
 <body>
@@ -30,7 +28,19 @@
     @RenderBody()
 
     <!--Footer-->
-    <footer id="footer" class="wrapper style1-alt">
+    <footer class="container-fluid text-center">
+
+        <div>
+            <p>Trabajo Práctico - Programación Web 3 - 2017</p>
+            <p>Alumnas: Paola Ferrara, Nadia Jara, Nadia Villalva</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery-ui-1.8.24.js")
+    @RenderSection("scripts", required: false)
+    @*<footer id="footer" class="wrapper style1-alt">
         <div class="inner">
             <ul class="menu">
                 <li>Trabajo Práctico - Programación Web 3 - 2017</li>
@@ -43,7 +53,7 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/common")
-    @*@Scripts.Render("~/Scripts/jquery.min.js")
+    @Scripts.Render("~/Scripts/jquery.min.js")
         @Scripts.Render("~/Scripts/jquery.scrollex.min.js")
         @Scripts.Render("~/Scripts/jquery.scrolly.min.js")
         @Scripts.Render("~/Scripts/skel.min.js")
@@ -51,7 +61,6 @@
         @Scripts.Render("~/Scripts/main.js")
         @Scripts.Render("~/Scripts/jquery-ui-1.8.24.js")*@
 
-    @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $(document).ready(function () {
             $(".datepicker").datepicker($.datepicker.regional["es"]);

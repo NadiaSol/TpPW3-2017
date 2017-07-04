@@ -212,6 +212,7 @@
     <Content Include="Views\Administracion\CrearEditarSedePartial.cshtml" />
     <Content Include="Views\Administracion\EditarSede.cshtml" />
     <Content Include="Views\Administracion\EditCartelera.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
