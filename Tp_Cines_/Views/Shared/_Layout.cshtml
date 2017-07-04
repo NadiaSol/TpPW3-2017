@@ -31,18 +31,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/Home/Inicio" class="active"> <img src="~/img/Logo_MM.png" width="260" height="50" alt="Alternate Text" /></a>
+                <a href="/Home/Inicio" class="active"> <img src="~/img/Logo_MM.png" width="260" height="50" alt="Logo" /></a>
 </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                @RenderSection("menu", required: true)
+                @*<ul class="nav navbar-nav">
                     <li class="active"><a href="/Home/Reserva">Reservar <span class="sr-only">(current)</span></a></li>
                     <li><a href="/Home/Cartelera">Cartelera</a></li>
                 </ul>
-             
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/Home/Login">Login</a></li>
-                </ul>
+                </ul>*@
             </div>
         </div>
     </nav>

@@ -213,6 +213,8 @@
     <Content Include="Views\Administracion\EditarSede.cshtml" />
     <Content Include="Views\Administracion\EditCartelera.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Shared\MenuUsuarioPartial.cshtml" />
+    <Content Include="Views\Administracion\_MenuAdministradorPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

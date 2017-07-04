@@ -1,12 +1,12 @@
 ﻿@using CapaServicio;
 
-@model IEnumerable<CapaServicio.Peliculas>
+@model IEnumerable<Peliculas>
 
 @{
     ViewBag.Title = "MovieMark";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
+}
+@section menu { @Html.Partial("MenuUsuarioPartial")}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
     <!-- Imagenes del slider -->

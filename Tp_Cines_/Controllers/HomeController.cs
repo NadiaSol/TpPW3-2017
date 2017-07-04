@@ -12,7 +12,7 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Home/
 
-        Entities ctx = new Entities();
+        private Entities ctx = new Entities();
 
         //private UsuarioServicio _usuariosServicio;
         public ActionResult Inicio()

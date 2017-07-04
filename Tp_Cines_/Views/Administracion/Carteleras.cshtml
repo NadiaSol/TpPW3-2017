@@ -2,8 +2,9 @@
 @model IEnumerable<Carteleras>
 @{
     ViewBag.Title = "Gestión de Carteleras";
-    Layout = "~/Views/Administracion/_LayoutAdministrador.cshtml";
+
 }
+@section menu { @Html.Partial("_MenuAdministradorPartial")}
 
 @section scripts
 {
