@@ -164,6 +164,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datepicker-es.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -176,6 +177,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -206,6 +208,11 @@
     <Content Include="Views\Administracion\CrearCartelera.cshtml" />
     <Content Include="Views\Administracion\EditarPelicula.cshtml" />
     <Content Include="Views\Home\Reserva.cshtml" />
+    <Content Include="Views\Administracion\CrearEditarCarteleraPartial.cshtml" />
+    <Content Include="Views\Administracion\CrearEditarSedePartial.cshtml" />
+    <Content Include="Views\Administracion\EditarSede.cshtml" />
+    <Content Include="Views\Administracion\EditCartelera.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

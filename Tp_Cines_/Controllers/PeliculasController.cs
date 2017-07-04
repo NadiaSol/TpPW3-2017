@@ -21,12 +21,8 @@ namespace Tp_Cines_.Controllers
 
 
             ViewBag.Versiones = versiones;
-
             TempData["Id_peli"] = id;
-
             ViewData["Version"] = new SelectList(versiones, "IdVersion", "Nombre");
-
-
 
             return View();
 
@@ -80,7 +76,7 @@ namespace Tp_Cines_.Controllers
 
 
         }
-
+        [HttpGet]
         public ActionResult Dias() { 
         
             return View();
@@ -147,11 +143,7 @@ namespace Tp_Cines_.Controllers
 
             }
 
-
-
             ViewBag.lis = dias;
-
-
 
             //buscar horarios
 
@@ -168,15 +160,11 @@ namespace Tp_Cines_.Controllers
 
             return View(dias);
         }
-
-
-
-
         //public ActionResult Sedes()
         //{
         //    int Peli = Convert.ToInt32(TempData["Id_peli"]);
 
-            [HttpPost]
+        [HttpPost]
         public ActionResult Hora(FormCollection formu)
         {
             int pe = Convert.ToInt32(TempData["peli_h"]);
@@ -210,14 +198,11 @@ namespace Tp_Cines_.Controllers
 
         public ActionResult Seleccionado(CapaServicio.Carteleras h)
         {
-
-
             ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
             ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
             ViewBag.hora = h.HoraInicio;
             ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
             ViewBag.fechaInicio= TempData["fecha"];
-
 
             return View();
 
