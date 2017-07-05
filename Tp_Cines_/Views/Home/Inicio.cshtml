@@ -7,6 +7,13 @@
 
 }
 @section menu { @Html.Partial("MenuUsuarioPartial")}
+
+<br />
+<br />
+
+<br />
+<br />
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
     <!-- Imagenes del slider -->
@@ -24,69 +31,81 @@
                 </div>
             </div>
         </div>
-   
+
 
     </div>
 
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        @*<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>*@
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        @*<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>*@
-        <span class="sr-only">Next</span>
-    </a>
+
 </div>
 
+<br />
+<br />
 
-<!-- Wrapper -->
-@*<div id="wrapper">*@
-    <!--Intro -->
-    @*<section id="intro" class="wrapper style1 fullscreen fade-up">
-        <div class="inner">
-  
-            <p>
-                <img src="~/img/Publicidad.jpg" width="1150" height="450" alt="Publicidad" data-position="center center" />
-            </p>
-          
-        </div>
-    </section>*@
+    <div class="container-fluid">
 
-    <!-- One -->
-    <section id="one" class="wrapper style2 spotlights">
-       
-@*            <a href="#"><img src="~/img/mujer_maravilla.jpg" width="350" height="450" alt="Mujer_Maravilla" data-position="center center" /></a>*@
-            @foreach(var item in Model)
-            {  <section>
-              <a href="#"><img src="@item.Imagen" width="350" height="450" alt="Mujer_Maravilla" data-position="center center" /></a>
-         
-            <div class="content">
-                <div class="inner">
-                    <h2>@item.Nombre</h2>
-                    <h5>
-                        @item.Descripcion
-                    </h5>
+        <div class="row">
 
-                    <h5>
-                        @item.Generos.Nombre
-                    </h5>
+            
+                <h1 class="text-center">Cartelera</h1> 
 
-                    <h5>
-                        Calificación: @item.Calificaciones.Nombre
-                    </h5>
+                @foreach (var item in Model)
+                {
 
-                    <ul class="actions">
-                       <li> @Html.ActionLink("Comprar Entradas", "Versiones", "Peliculas", new {id = @item.IdPelicula}, null) </li>
 
-                    </ul>
-                  
+
+
+
+                @*<h2>@item.Nombre</h2>
+                <h5>
+                @item.Descripcion
+                </h5>
+
+                <h5>
+                @item.Generos.Nombre
+                </h5>
+
+                <h5>
+                Calificación: @item.Calificaciones.Nombre
+                </h5>
+
+                <ul class="actions">
+                <li> @Html.ActionLink("Comprar Entradas", "Versiones", "Peliculas", new { id = @item.IdPelicula }, null) </li>
+
+                </ul>*@
+
+                <div class="col-sm-6 col-md-4">
+                    <!-- column 1 -->
+                    <div class="thumbnail">
+                        <!--  thumbnail 1  -->
+                        <img src="@item.Imagen" width="350" height="450" alt="Mujer_Maravilla"> <!-- image 1 -->
+                        <div class="caption">
+                            <!-- caption -->
+                            <h3>@item.Nombre</h3>
+                            <p>
+                                @item.Descripcion
+                            </p>
+                            <blockquote>
+                                <h5>
+                                    @item.Generos.Nombre
+                                </h5>
+
+                                <h5>
+                                    Calificación: @item.Calificaciones.Nombre
+                                </h5>
+                                </blockquote>
+                                <p>
+                                    <button class="btn btn-default btn-lg btn-block"> @Html.ActionLink("Comprar Entradas", "Versiones", "Peliculas", new { id = @item.IdPelicula }, null)</button>
+                                </p>  <!-- btn 2 -->
+</div>
+                    </div>
                 </div>
-            </div>
 
-                 </section>
-            }
-       
 
-        </section>
+
+
+                }
+
+</div>
+
+    </div>
