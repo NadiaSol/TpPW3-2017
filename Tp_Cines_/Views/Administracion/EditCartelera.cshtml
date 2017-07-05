@@ -1,21 +1,26 @@
 ﻿@using Tp_Cines_.Models;
 @model  CarteleraViewModel
 
-
 @{
-    ViewBag.Title = "Gestión de Carteleras";
+    ViewBag.Title = "Gestión de Carteleras-Editar Cartelera";
 
 }
-@section menu { @Html.Partial("_MenuAdministradorPartial")}
-<h2>Sedes</h2>
+
+@section scripts {
+    @Html.Partial("CarteleraScriptsPartial")
+}
 
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
-
-        @using (Html.BeginForm("EditarCartelera", "Administracion", FormMethod.Post))
-        {
-            @Html.HiddenFor(u => u.IdCartelera)
-            @Html.Partial("CrearEditarCarteleraPartial")
-        }
+        <div class="split style2">
+            <section>
+                <h2>Editar Cartelera</h2>
+            </section>
+            @using (Html.BeginForm("EditarCartelera", "Administracion", FormMethod.Post))
+            {
+                @Html.HiddenFor(u => u.IdCartelera)
+                @Html.Partial("CrearEditarCarteleraPartial")
+            }
+        </div>
     </div>
 </section>

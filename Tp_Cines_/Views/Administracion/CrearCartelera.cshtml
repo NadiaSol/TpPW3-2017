@@ -2,19 +2,24 @@
 @model  CarteleraViewModel
 
 @{
-    ViewBag.Title = "Gestión de Carteleras";
+    ViewBag.Title = "Gestión de Carteleras-Crear Cartelera";
 
 }
 
-@section menu { @Html.Partial("_MenuAdministradorPartial")}
-<h2>Sedes</h2>
+@section scripts {
+    @Html.Partial("CarteleraScriptsPartial")
+}
 
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
-
-        @using (Html.BeginForm("CrearCartelera", "Administracion",FormMethod.Post))
+    <div class="split style2">
+        <section>
+            <h2>Crear Cartelera</h2>
+        </section>
+        @using (Html.BeginForm("CrearCartelera", "Administracion", FormMethod.Post))
         {
             @Html.Partial("CrearEditarCarteleraPartial")
         }
     </div>
+        </div>
 </section>

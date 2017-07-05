@@ -1,0 +1,21 @@
+﻿<script type="text/javascript">
+    $(function() {
+        $('#FechaInicioDatePicker')
+            .datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+        $('#FechaFinDatePicker')
+            .datetimepicker({
+                locale: 'es',
+                useCurrent: false,
+                format: 'DD/MM/YYYY'
+    });
+        $("#FechaInicioDatePicker").on("dp.change", function (e) {
+            $('#FechaFinDatePicker').data("DateTimePicker").minDate(e.date);
+        });
+        $("#FechaFinDatePicker").on("dp.change", function (e) {
+            $('#FechaInicioDatePicker').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>

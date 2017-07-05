@@ -5,19 +5,19 @@
 
 }
 
-
-@section menu { @Html.Partial("_MenuAdministradorPartial")}
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
 
-        @using (Html.BeginForm("CrearSede","Administracion",FormMethod.Post))
-        {
-            <div class="split style2">
-                <section>
-                    <h2>Crear Sede</h2>
-                </section>
+        <div class="split style2">
+            <section>
+                <h2>Crear Sede</h2>
+            </section>
+
+            @using (Html.BeginForm("CrearSede", "Administracion", FormMethod.Post))
+            {
                 @Html.Partial("CrearEditarSedePartial")
-            </div>
-        }
+            }
+        </div>
+
     </div>
 </section>

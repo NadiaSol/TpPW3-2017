@@ -7,21 +7,21 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    
 </head>
 <body>
     <!--Menu-->
     @*<header id="header">
-        <a href="index.html" class="title"><img src="~/img/Logo_MM.png" width="200" height="40" alt="Alternate Text" /></a>
-        <nav>
-            <ul>
-                <li><a href="/Home/Inicio" class="active">Home</a></li>
-                <li><a href="/Home/Reserva" class="active">Reservar</a></li>
-                <li><a href="/Home/Login" class="active">Login</a></li>
-            </ul>
-        </nav>
-    </header>*@
+            <a href="index.html" class="title"><img src="~/img/Logo_MM.png" width="200" height="40" alt="Alternate Text" /></a>
+            <nav>
+                <ul>
+                    <li><a href="/Home/Inicio" class="active">Home</a></li>
+                    <li><a href="/Home/Reserva" class="active">Reservar</a></li>
+                    <li><a href="/Home/Login" class="active">Login</a></li>
+                </ul>
+            </nav>
+        </header>*@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -32,18 +32,19 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/Home/Inicio" class="active"> <img src="~/img/Logo_MM.png" width="260" height="50" alt="Logo" /></a>
-</div>
+            </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                @RenderSection("menu", required: true)
-                @*<ul class="nav navbar-nav">
-                    <li class="active"><a href="/Home/Reserva">Reservar <span class="sr-only">(current)</span></a></li>
-                    <li><a href="/Home/Cartelera">Cartelera</a></li>
-                </ul>
+                @*@RenderSection("menu", required: true)*@
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.Partial("_MenuAdministradorPartial")
+                }
+                else
+                {
+                    @Html.Partial("MenuUsuarioPartial")
+                }
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/Home/Login">Login</a></li>
-                </ul>*@
             </div>
         </div>
     </nav>
@@ -53,7 +54,7 @@
     <!--Footer-->
     <footer class="container-fluid text-center">
 
-        <div >
+        <div>
             <p>Trabajo Práctico - Programación Web 3 - 2017</p>
             <p>Alumnas: Paola Ferrara, Nadia Jara, Nadia Villalva</p>
         </div>
@@ -61,8 +62,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/datepicker")
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    @RenderSection("scripts", false)
 
 </body>
 </html>
-

@@ -21,10 +21,6 @@ namespace Tp_Cines_.Controllers
         private CarteleraServicio _carteleraServicio = new CarteleraServicio();
         public ActionResult Inicio()
         {
-
-            //int dato = Convert.ToInt32 ( TempData["Sedes"]);
-            //ViewBag.dato = dato;
-
             return View();
         }
         public ActionResult Peliculas()
@@ -44,14 +40,27 @@ namespace Tp_Cines_.Controllers
         {
             ValidaSede(sedeNueva);
                 if (ModelState.IsValid)
-                {
-                    _sedeServicio.CreateOrUpdate(sedeNueva);
+                {   
+                    SaveOrUpdateSede(sedeNueva.Map());
                     return RedirectToAction("Sedes", "Administracion");
                 }
 
             //ViewBag.Mensaje = "Valores incorrectos";
             //todo: ver que devuelva los errores del Model a la vista
             return View("CrearSede");
+        }
+
+        [HttpPost]
+        public ActionResult EditarSede(SedeViewModel sede)
+        {
+            ValidaSede(sede);
+            if (ModelState.IsValid)
+            {
+                var sedeEditar = ctx.Sedes.Find(sede.IdSede);
+                SaveOrUpdateSede(sede.Map(sedeEditar));
+                return RedirectToAction("Sedes", "Administracion");
+            }
+           return View("EditarSede");
         }
         [HttpGet]
         public ActionResult CrearSede()
@@ -92,8 +101,7 @@ namespace Tp_Cines_.Controllers
 
             if (ModelState.IsValid)
             {
-                SaveOrUpdate(carteleraNueva);
-
+                SaveOrUpdateCartelera(carteleraNueva.Map());
                 return RedirectToAction("Carteleras", "Administracion");
             }
 
@@ -115,9 +123,13 @@ namespace Tp_Cines_.Controllers
             if(_sedeServicio.Exist(model))
                 ModelState.AddModelError("SedeRepetida", "Ya existe una Sede con ese nombre");
         }
-        private void SaveOrUpdate(CarteleraViewModel model)
+        private void SaveOrUpdateCartelera(Carteleras model)
         {
             _carteleraServicio.CreateOrUpdate(model);
+        }
+        private void SaveOrUpdateSede(Sedes model)
+        {
+            _sedeServicio.CreateOrUpdate(model);
         }
         [HttpGet]
         public ActionResult EditarCartelera(int id)
@@ -138,8 +150,8 @@ namespace Tp_Cines_.Controllers
 
             if (ModelState.IsValid)
             {
-                SaveOrUpdate(carteleraNueva);
-
+                var cartelera = ctx.Carteleras.Find(carteleraNueva.IdCartelera);
+                SaveOrUpdateCartelera(carteleraNueva.Map(cartelera));
                 return RedirectToAction("Carteleras", "Administracion");
             }
 

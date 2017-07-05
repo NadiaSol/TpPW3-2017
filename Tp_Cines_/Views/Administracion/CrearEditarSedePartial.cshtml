@@ -4,21 +4,21 @@
 <section>
     <div class="field half first">
         @Html.LabelFor(u => u.Nombre)
-        @Html.TextBoxFor(u => u.Nombre)
+        @Html.TextBoxFor(u => u.Nombre, new { @type = "text", @class = "form-control" })
         @Html.ValidationMessageFor(u => u.Nombre)
     </div>
 
     <div class="field half">
         @Html.LabelFor(u => u.PrecioGeneral)
-        @Html.TextBoxFor(u => u.PrecioGeneral)
+        @Html.TextBoxFor(u => u.PrecioGeneral, new {@class = "form-control" })
         @Html.ValidationMessageFor(u => u.PrecioGeneral)
     </div>
     <div class="field">
         @Html.LabelFor(u => u.Direccion)
-        @Html.TextBoxFor(u => u.Direccion)
+        @Html.TextBoxFor(u => u.Direccion, new { @class = "form-control" })
         @Html.ValidationMessageFor(u => u.Direccion)
     </div>
     <ul class="actions">
-        <li><a href="" class="button submit">Guardar</a></li>
+        <li><button class="button" type="submit">Guardar</button></li>
     </ul>
 </section>

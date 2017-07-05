@@ -4,7 +4,7 @@
     ViewBag.Title = "Gestión de Sedes";
 }
 
-@section menu { @Html.Partial("_MenuAdministradorPartial")}
+
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
         <h2>Sedes</h2>
@@ -35,7 +35,7 @@
                             </td>
                             <td class="button fit">
 
-                                @Html.ActionLink("Editar", "CrearSede", new { id = item.IdSede })
+                                @Html.ActionLink("Editar", "EditarSede", new { id = item.IdSede })
                             </td>
 
                         </tr>

@@ -8,9 +8,9 @@ namespace CapaServicio
         {
             using (var db = new Entities())
             {
-                if (db.Sedes.Any(x => x.IdSede == sede.IdSede))
+                if (sede.IdSede!=0)
                 {
-                    var sedeDb = db.Carteleras.SingleOrDefault(x => x.IdSede == sede.IdSede);
+                    var sedeDb = db.Sedes.SingleOrDefault(x => x.IdSede == sede.IdSede);
                     db.Entry(sedeDb).CurrentValues.SetValues(sede);
                 }
                 else
@@ -19,18 +19,14 @@ namespace CapaServicio
                 }
 
                 db.SaveChanges();
-                //return true;
             }
         }
         public bool Exist(Sedes sede)
         {
             using (var db = new Entities())
             {
-                if (db.Sedes.Any(x => x.Nombre == sede.Nombre))
-                    return true;
-                return false;
+                return db.Sedes.Any(x => x.Nombre == sede.Nombre&& x.IdSede!=sede.IdSede);
             }
-
         }
     }
 }

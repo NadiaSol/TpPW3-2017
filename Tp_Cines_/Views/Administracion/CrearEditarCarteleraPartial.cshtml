@@ -1,47 +1,56 @@
 ﻿@using Tp_Cines_.Models;
 @model  CarteleraViewModel
 
-<div class="split style2">
-    <section>
-        <h2>Crear Cartelera</h2>
-    </section>
+
     <section>
         <!--Peliculas-->
         @Html.LabelFor(u => u.IdPelicula, "Peliculas")
-        @Html.DropDownListFor(u => u.IdPelicula, new SelectList(Model.Peliculas, "IdPelicula", "Nombre"), "Seleccione")
+        @Html.DropDownListFor(u => u.IdPelicula, new SelectList(Model.Peliculas, "IdPelicula", "Nombre"), "Seleccione",new {@class="form-control"})
         @Html.ValidationMessageFor(u => u.IdPelicula)
         <!--Sedes-->
 
         @Html.LabelFor(u => u.IdSede, "Sedes")
-        @Html.DropDownListFor(u => u.IdSede, new SelectList(Model.Sedes, "IdSede", "Nombre"), "Seleccione")
+        @Html.DropDownListFor(u => u.IdSede, new SelectList(Model.Sedes, "IdSede", "Nombre"), "Seleccione", new { @class = "form-control" })
         @Html.ValidationMessageFor(u => u.IdSede)
         <!--HoraInicio-->
         <div>
             @Html.LabelFor(u => u.HoraInicio)
-            @Html.TextBoxFor(u => u.HoraInicio, new {@type = "number", @min = "15"})
+            @Html.TextBoxFor(u => u.HoraInicio, new {@type = "number", @min = "15",@max=23, @class = "form-control" })
             @Html.ValidationMessageFor(u => u.HoraInicio)
         </div>
         <!--FechaInicio-->
-        <div>
+        <div class = "input-append date" id="fechaInicioDate">
             @Html.LabelFor(u => u.FechaInicio)
-            @Html.TextBoxFor(u => u.FechaInicio, new {@class = "datepicker" })
+            <div class='input-group date' id='FechaInicioDatePicker'>
+                @Html.TextBoxFor(u => u.FechaInicio, new { @type = "datetime", @class = "form-control" })
+
+                @*<input type='text' class="form-control" name="FechaInicio"/>*@
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
             @Html.ValidationMessageFor(u => u.FechaInicio)
         </div>
         <!--FechaFin-->
-        <div>
+        <div class="input-append date" id="fechaFinDate">
             @Html.LabelFor(u => u.FechaFin)
-            @Html.TextBoxFor(u => u.FechaFin, new { @class = "datepicker" })
+            <div class='input-group date' id='FechaFinDatePicker'>
+                @Html.TextBoxFor(u => u.FechaFin, new { @type = "datetime", @class = "form-control" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
             @Html.ValidationMessageFor(u => u.FechaFin)
         </div>
         <!--NumeroSala-->
         <div>
             @Html.LabelFor(u => u.NumeroSala)
-            @Html.TextBoxFor(u => u.NumeroSala, new {@type = "number", @min = "1"})
+            @Html.TextBoxFor(u => u.NumeroSala, new {@type = "number", @min = "1", @class = "form-control" })
             @Html.ValidationMessageFor(u => u.NumeroSala)
         </div>
         <!--Version-->
         @Html.LabelFor(u => u.IdVersion, "Versiones")
-        @Html.DropDownListFor(u => u.IdVersion, new SelectList(Model.Versiones, "IdVersion", "Nombre"), "Seleccione")
+        @Html.DropDownListFor(u => u.IdVersion, new SelectList(Model.Versiones, "IdVersion", "Nombre"), "Seleccione", new { @class = "form-control" })
         @Html.ValidationMessageFor(u => u.IdVersion)
         <!--Lunes-->
 
@@ -76,4 +85,4 @@
             <li><button class="button" type="submit">Guardar</button></li>
         </ul>
     </section>
-</div>
+
