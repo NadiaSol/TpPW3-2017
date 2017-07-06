@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CapaServicio.Extensions
 {
@@ -8,7 +9,7 @@ namespace CapaServicio.Extensions
         public int IdSede { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int IdPelicula { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [Range(15, 23, ErrorMessage = "Hora Inicio no puede ser anterior a las 15 hs")]
         public int HoraInicio { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
@@ -20,6 +21,7 @@ namespace CapaServicio.Extensions
         [DataType(DataType.Date, ErrorMessage = "Debe ingresar ua fecha válida")]
         public System.DateTime FechaFin { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
+        [DisplayName("Sala")]
         public int NumeroSala { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int IdVersion { get; set; }

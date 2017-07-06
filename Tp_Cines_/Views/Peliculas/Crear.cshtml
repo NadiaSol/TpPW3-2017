@@ -15,8 +15,8 @@
             @using (Html.BeginForm())
             {
 
-                @Html.ValidationSummary(true)
-
+                @*@Html.ValidationSummary(true)*@
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
                 @Html.LabelFor(u => u.Nombre)
 

@@ -37,6 +37,7 @@
             }*@
                 
                 <form action="/Peliculas/Hora" name="formu" method="post">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                     <fieldset>
                         <legend>Seleccionar</legend>
                         <div>

@@ -1,6 +1,7 @@
 ﻿@using Tp_Cines_.Models;
 @model  SedeViewModel
 
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
 <section>
     <div class="field half first">
         @Html.LabelFor(u => u.Nombre)

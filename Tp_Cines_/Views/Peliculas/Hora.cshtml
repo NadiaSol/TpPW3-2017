@@ -11,7 +11,7 @@
 
             @using (Html.BeginForm("Seleccionado", "Peliculas", FormMethod.Post))
             {
-                
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <fieldset>
                         <legend>Seleccionar</legend>
                         <div>

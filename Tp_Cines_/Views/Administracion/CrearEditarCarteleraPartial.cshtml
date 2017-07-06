@@ -1,7 +1,7 @@
 ﻿@using Tp_Cines_.Models;
 @model  CarteleraViewModel
 
-
+@Html.ValidationSummary(false)@Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <section>
         <!--Peliculas-->
         @Html.LabelFor(u => u.IdPelicula, "Peliculas")
@@ -85,4 +85,5 @@
             <li><button class="button" type="submit">Guardar</button></li>
         </ul>
     </section>
+
 
