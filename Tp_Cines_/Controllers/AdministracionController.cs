@@ -1,5 +1,6 @@
 ﻿using CapaServicio;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.Mvc;
@@ -19,6 +20,9 @@ namespace Tp_Cines_.Controllers
         Entities ctx = new Entities();
         private SedeServicio _sedeServicio = new SedeServicio();
         private CarteleraServicio _carteleraServicio = new CarteleraServicio();
+        private PeliculaServicio _peliculaServicio = new PeliculaServicio();
+        private ReservaServicio _reservaServicio = new ReservaServicio();
+
         public ActionResult Inicio()
         {
             return View();
@@ -39,14 +43,12 @@ namespace Tp_Cines_.Controllers
         public ActionResult CrearSede(SedeViewModel sedeNueva)
         {
             ValidaSede(sedeNueva);
-                if (ModelState.IsValid)
-                {   
-                    SaveOrUpdateSede(sedeNueva.Map());
-                    return RedirectToAction("Sedes", "Administracion");
-                }
+            if (ModelState.IsValid)
+            {
+                SaveOrUpdateSede(sedeNueva.Map());
+                return RedirectToAction("Sedes", "Administracion");
+            }
 
-            //ViewBag.Mensaje = "Valores incorrectos";
-            //todo: ver que devuelva los errores del Model a la vista
             return View("CrearSede");
         }
 
@@ -60,7 +62,7 @@ namespace Tp_Cines_.Controllers
                 SaveOrUpdateSede(sede.Map(sedeEditar));
                 return RedirectToAction("Sedes", "Administracion");
             }
-           return View("EditarSede");
+            return View("EditarSede");
         }
         [HttpGet]
         public ActionResult CrearSede()
@@ -68,14 +70,14 @@ namespace Tp_Cines_.Controllers
             var model = new SedeViewModel();
             return View("CrearSede", model);
         }
-        
+
         [HttpGet]
         public ActionResult EditarSede(int id)
         {
             var sede = ctx.Sedes.Find(id);
-            if(sede==null)
+            if (sede == null)
                 return View("NotFound");
-            var sedeViewModel =sede.Map();
+            var sedeViewModel = sede.Map();
             return View("EditarSede", sedeViewModel);
         }
 
@@ -96,12 +98,13 @@ namespace Tp_Cines_.Controllers
         [HttpPost]
         public ActionResult CrearCartelera(CarteleraViewModel carteleraNueva)
         {
-            
+
             Validate(carteleraNueva);
 
             if (ModelState.IsValid)
             {
                 SaveOrUpdateCartelera(carteleraNueva.Map());
+
                 return RedirectToAction("Carteleras", "Administracion");
             }
 
@@ -120,7 +123,7 @@ namespace Tp_Cines_.Controllers
 
         private void ValidaSede(SedeViewModel model)
         {
-            if(_sedeServicio.Exist(model))
+            if (_sedeServicio.Exist(model))
                 ModelState.AddModelError("SedeRepetida", "Ya existe una Sede con ese nombre");
         }
         private void SaveOrUpdateCartelera(Carteleras model)
@@ -139,7 +142,7 @@ namespace Tp_Cines_.Controllers
                 return View("NotFound");
             var carteleraViewModel = cartelera.Map();
             Initialize(carteleraViewModel);
-            return View("EditCartelera",carteleraViewModel);
+            return View("EditCartelera", carteleraViewModel);
         }
 
         [HttpPost]
@@ -158,9 +161,31 @@ namespace Tp_Cines_.Controllers
             Initialize(carteleraNueva);
             return View("EditCartelera", carteleraNueva);
         }
-
+        [HttpGet]
         public ActionResult Reportes()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Reportes(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var dias = fechaFin - fechaInicio;
+            //List<ReservaViewModel> listadoReservas = new List<ReservaViewModel>();
+            if (dias.Days <= 30)
+            {
+                var reservas = _reservaServicio.FiltrarFechas(fechaInicio, fechaFin);
+                //foreach (var reserva in reservas)
+                //{
+
+                //    listadoReservas.Add(reserva.Map());
+                //}
+                //InitializeReserva(listadoReservas);
+                
+                return View("Reportes", reservas);
+            }
+
+            ModelState.AddModelError("CantidadDias", "El reporte no puede ser mayor a 30 días");
             return View();
         }
 
@@ -199,11 +224,35 @@ namespace Tp_Cines_.Controllers
             return View(peliculas);
         }
 
+        //public List<int> Horarios(int funcion, int idPelicula)
+        //{
+        //    var duracion = _peliculaServicio.GetById(idPelicula).Duracion;
+
+        //    var horarios = new List<int> { funcion };
+        //    var i = 1;
+        //    for (i = 1; i <= 6; i++)
+        //    {
+        //        funcion = duracion + 30;
+        //        horarios.Add(funcion);
+        //    }
+
+        //    return horarios;
+        //}
         private void Initialize(CarteleraViewModel model)
         {
             model.Peliculas = ctx.Peliculas.ToList();
             model.Sedes = ctx.Sedes.ToList();
             model.Versiones = ctx.Versiones.ToList();
+        }
+        private void InitializeReserva(List<ReservaViewModel> listado)
+        {
+            foreach (var reserva in listado)
+            {
+                reserva.Peliculas = ctx.Peliculas.ToList();
+                reserva.Sedes = ctx.Sedes.ToList();
+                reserva.Versiones = ctx.Versiones.ToList();
+            }
+
         }
     }
 }

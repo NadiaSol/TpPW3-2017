@@ -140,6 +140,7 @@
     <Compile Include="Models\dias.cs" />
     <Compile Include="Models\Extensions\CarteleraViewModelExtension.cs" />
     <Compile Include="Models\Extensions\PeliculaViewModelExtension.cs" />
+    <Compile Include="Models\Extensions\ReservaViewModelExtension.cs" />
     <Compile Include="Models\Extensions\SedeViewModelExtension.cs" />
     <Compile Include="Models\PeliculaViewModel.cs" />
     <Compile Include="Models\ReservaViewModel.cs" />
@@ -347,6 +348,7 @@
     <Content Include="Views\Shared\MenuUsuarioPartial.cshtml" />
     <Content Include="Views\Shared\_MenuAdministradorPartial.cshtml" />
     <Content Include="Views\Administracion\CarteleraScriptsPartial.cshtml" />
+    <Content Include="Views\Administracion\ReporteReservasPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

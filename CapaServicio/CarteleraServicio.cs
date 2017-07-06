@@ -11,20 +11,7 @@ namespace CapaServicio
     {
         public void CreateOrUpdate(Carteleras cartelera)
         {
-            //var exist =
-            //    db.Carteleras.FirstOrDefault(
-            //        x =>
-            //            x.IdSede == cartelera.IdSede && x.IdPelicula == cartelera.IdPelicula &&
-            //            x.IdVersion == cartelera.IdVersion &&
-            //            x.IdCartelera != cartelera.IdCartelera);
-            //if (exist == null)
-            //{
-            //    if (!db.Carteleras.Any(x => x.IdCartelera != cartelera.IdCartelera &&  x.IdSede == cartelera.IdSede &&
-            //    x.NumeroSala == cartelera.NumeroSala &&
-            //    ((x.FechaInicio.CompareTo(cartelera.FechaInicio) >= 0 && x.FechaInicio.CompareTo(cartelera.FechaFin) <= 0)
-            //    || (x.FechaFin.CompareTo(cartelera.FechaInicio) >= 0 && x.FechaFin.CompareTo(cartelera.FechaFin) <= 0)
-            //    || (x.FechaInicio.CompareTo(cartelera.FechaInicio) <= 0 && x.FechaFin.CompareTo(cartelera.FechaFin) >= 0))))
-            //    {
+           
             using (var db = new Entities())
             {
                 cartelera.FechaCarga = DateTime.Now;
