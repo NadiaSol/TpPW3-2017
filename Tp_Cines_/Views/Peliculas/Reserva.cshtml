@@ -1,0 +1,65 @@
+﻿@model CapaServicio.Reservas
+
+@{
+    ViewBag.Title = "Reserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="wrapper">
+    <section id="main" class="wrapper style1 fade-up">
+        <div class="inner">
+
+              <label>Datos de reserva seleccionada:</label>
+            <br />
+            <div>
+                <label>Pelicula:@ViewBag.pelicula </label>
+                <br />
+                <label>Version:@ViewBag.version </label>
+                <br />
+                <label>Horario:@ViewBag.hora </label>
+                <br />
+                <label>Dia:@ViewBag.fechaInicio </label>
+                <br />
+                <label>Sede:@ViewBag.sede </label>
+            </div>
+            
+
+            <h2>Haga su reserva!</h2>
+
+            <form action="/Peliculas/ValidarReserva" method="post" name="f">
+
+                @Html.ValidationSummary(true)
+                @Html.ValidationMessageFor(r => r.FechaHoraInicio)
+
+                @Html.LabelFor(r => r.Email)
+                @Html.TextBoxFor(r => r.Email)
+                @Html.ValidationMessageFor(r => r.Email)
+
+                @Html.LabelFor(r => r.IdTipoDocumento, "TiposDocumentos")
+                
+
+                @Html.DropDownList("IdTipoDocumento", String.Empty)
+                <br /> <br />
+
+                @Html.LabelFor(r => r.NumeroDocumento)
+                @Html.TextBoxFor(r => r.NumeroDocumento)
+                @Html.ValidationMessageFor(r => r.NumeroDocumento)
+               <br /> <br />
+
+
+
+
+                @Html.LabelFor(r => r.CantidadEntradas)
+                @Html.TextBoxFor(r => r.CantidadEntradas)
+                @Html.ValidationMessageFor(r => r.CantidadEntradas)
+                <br />
+
+
+
+                <input type="submit" name="enviar" value="Enviar" />
+
+            </form>
+            </div>
+        </section>
+        </div>

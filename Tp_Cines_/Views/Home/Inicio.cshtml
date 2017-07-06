@@ -94,9 +94,15 @@
                                     Calificación: @item.Calificaciones.Nombre
                                 </h5>
                                 </blockquote>
-                                <p>
+                                <ul class="actions">
+                                    <li> @Html.ActionLink("Comprar Entradas", "Versiones", "Peliculas", new {id = @item.IdPelicula}, null) </li>
+
+                                 </ul>
+
+
+                                @*<p>
                                     <button class="btn btn-default btn-lg btn-block"> @Html.ActionLink("Comprar Entradas", "Versiones", "Peliculas", new { id = @item.IdPelicula }, null)</button>
-                                </p>  <!-- btn 2 -->
+                                </p>  <!-- btn 2 -->*@ 
 </div>
                     </div>
                 </div>
