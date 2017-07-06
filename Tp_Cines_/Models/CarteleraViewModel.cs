@@ -11,11 +11,12 @@ namespace Tp_Cines_.Models
         public List<Peliculas> Peliculas { get; set; }
         public List<Versiones> Versiones { get; set; }
         public List<Sedes> Sedes { get; set; }
-
+        public List<int> Horarios { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (HoraInicio <= 15 && HoraInicio > 23)
                 yield return new ValidationResult("No puede ser anterior a las 15hs",new []{ "HoraInicio" } );
         }
+
     }
 }
