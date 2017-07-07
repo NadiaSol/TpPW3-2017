@@ -7,38 +7,48 @@
 }
 
 
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
 
-            <h2>Crear Nueva Pelicula</h2>
 
-           @using (Html.BeginForm("Crear", "Peliculas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        <h2>Crear Nueva Pelicula</h2>
+
+        @using (Html.BeginForm("Crear", "Peliculas", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
 
+
+            <div class="form-group">
                 @*@Html.ValidationSummary(true)*@
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
 
-                @Html.LabelFor(u => u.Nombre)
+                @Html.LabelFor(u => u.Nombre, new { @class = "col-lg-2 control-label" })
 
-                @Html.EditorFor(u => u.Nombre)
+                @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control" })
                 @Html.ValidationMessageFor(u => u.Nombre)
 
 
-
+                </div>
 
                 @*@Html.LabelFor(model => model.Descripcion)
 
                     <textarea rows="5" id="Descripcion" name="Descripcion"></textarea>*@
 
-                @Html.LabelFor(u => u.Descripcion)
-                @Html.TextBoxFor(u => u.Descripcion)
+            <div class="form-group">
+                @Html.LabelFor(u => u.Descripcion, new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(u => u.Descripcion, new { @class = "form-control" })
                 @Html.ValidationMessageFor(u => u.Descripcion)
 
+
+            </div>
+
+            <div class="form-group">
                 @*@Html.LabelFor(model => model.IdCalificacion)*@
 
-                @Html.LabelFor(u => u.IdCalificacion, "Calificaciones")
+                @Html.LabelFor(u => u.IdCalificacion, "Calificaciones", new { @class = "col-lg-2 control-label" })
 
-                @Html.DropDownList("IdCalificacion", String.Empty)
+                @Html.DropDownList("IdCalificacion", null , String.Empty , new { @class = "form-control" })
 
-
+                </div>
                 @*<select id="Nombre" name="Nombre">
                         <option>ATP</option>
                         <option>+13</option>
@@ -47,47 +57,40 @@
 
                     </select>*@
                 @*@Html.ValidationMessageFor(u => u.Calificaciones.Nombre)*@
+            <div class="form-group">
+                @Html.LabelFor(u => u.IdGenero, "Generos", new { @class = "col-lg-2 control-label" })
 
-                @Html.LabelFor(u => u.IdGenero, "Generos")
+                @Html.DropDownList("IdGenero", null, String.Empty, new { @class = "form-control" })
 
-                @Html.DropDownList("IdGenero", String.Empty)
+            </div>
 
 
-
-                @*<select id="Nombre" name="Nombre">
-                        <option>Comedia</option>
-                        <option>Drama</option>
-                        <option>Thriller</option>
-                        <option>Infantil</option>
-                        <option>Terror</option>
-                        <option>Comedia Romántica</option>
-                        <option>Acción</option>
-                        <option>Aventura</option>
-                        <option>Suspenso</option>
-                        <option>Animación</option>
-                        <option>Ciencia Ficción</option>
-                    </select>*@
-
-                @*@Html.ValidationMessageFor(u => u.Generos.Nombre)*@
-
-                @Html.LabelFor(u => u.Imagen)
+            <div class="form-group">
+                @Html.LabelFor(u => u.Imagen, new { @class = "col-lg-2 control-label" })
                 @Html.TextBoxFor(u => u.Imagen, new { type = "file" })
                 @Html.ValidationMessageFor(u => u.Imagen)
 
+            </div>
 
-                @Html.LabelFor(u => u.Duracion)
-                @Html.TextBoxFor(u => u.Duracion)
+
+            <div class="form-group">
+
+                @Html.LabelFor(u => u.Duracion, new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(u => u.Duracion, new { @class = "form-control" })
                 @Html.ValidationMessageFor(u => u.Duracion)
 
+            </div>
+
+            <div class="col-md-6 col-md-offset-5">
+                <input type="submit" value="Crear" class="btn btn-success btn-lg" />
+            </div>
+
+        }
 
 
-                <input type="submit" value="Crear" class="button fit" />
+            </div>
+    </div>
 
 
-            }
-
-
-
-
-
-
+<br />
+<br />
