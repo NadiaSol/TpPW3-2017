@@ -25,35 +25,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var Peliculas in Model)
             {
                         <tr class="active">
                             <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
+                                @Html.DisplayFor(modelItem => Peliculas.Nombre)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
+                                @Html.DisplayFor(modelItem => Peliculas.Descripcion)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Generos.Nombre)
+                                @Html.DisplayFor(modelItem => Peliculas.Generos.Nombre)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Calificaciones.Nombre)
+                                @Html.DisplayFor(modelItem => Peliculas.Calificaciones.Nombre)
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Imagen)
+                                @if (!string.IsNullOrEmpty(Peliculas.Imagen))
+                                {
+                                    <a class="pop" href="@Peliculas.Imagen" target="_blank"><img class="img-thumbnail input-sm" src="@Peliculas.Imagen" alt="@Peliculas.Nombre @Peliculas.Descripcion" /></a>
+                                }
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.Duracion)
+                                @Html.DisplayFor(modelItem => Peliculas.Duracion)
                             </td>
 
                             <td>
-                                <a href="/Administracion/EditarPelicula/@item.IdPelicula " class="button fit">Editar</a>
+                                <a href="/Administracion/EditarPelicula/@Peliculas.IdPelicula " class="button fit">Editar</a>
                             </td>
 
                         </tr>

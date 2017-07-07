@@ -6,13 +6,11 @@
 
 }
 
-<div id="wrapper">
-    <section id="main" class="wrapper style1 fade-up">
-        <div class="inner">
+
 
             <h2>Crear Nueva Pelicula</h2>
 
-            @using (Html.BeginForm())
+           @using (Html.BeginForm("Crear", "Peliculas", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
 
                 @*@Html.ValidationSummary(true)*@
@@ -88,11 +86,6 @@
 
             }
 
-
-
-        </div>
-    </section>
-</div>
 
 
 

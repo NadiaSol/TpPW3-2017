@@ -45,6 +45,15 @@ namespace CapaServicio
         public virtual ICollection<Carteleras> Carteleras { get; set; }
         public virtual Generos Generos { get; set; }
         public virtual ICollection<Reservas> Reservas { get; set; }
+
+        public string NombreSignificativoImagen
+        {
+            get
+            {
+                //en caso de ambos null, devuelve "ApellidoNombre"
+                return string.Format("{0}{1}", this.Nombre ?? "Nombre", this.Descripcion ?? "Descripcion");
+            }
+        }
     }
     
 
