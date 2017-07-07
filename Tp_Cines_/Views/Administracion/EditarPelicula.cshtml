@@ -5,14 +5,12 @@
 
 }
 
-<div id="wrapper">
-    <section id="main" class="wrapper style1 fade-up">
-        <div class="inner">
 
             <h2>Editar Pelicula</h2>
 
-            @using (Html.BeginForm())
-            {
+           @using (Html.BeginForm("EditarPelicula", "Administracion", FormMethod.Post,
+                               new { enctype = "multipart/form-data" }))
+           {
 
                 @*@Html.ValidationSummary(true)*@
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -63,6 +61,3 @@
                 </fieldset>
 
             }
-        </div>
-    </section>
-</div>

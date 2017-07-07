@@ -209,8 +209,6 @@ namespace Tp_Cines_.Controllers
         public ActionResult EditarPelicula(Peliculas peliculas)
         {
 
-
-
             if (ModelState.IsValid)
             {
 
@@ -233,8 +231,7 @@ namespace Tp_Cines_.Controllers
                     }
                 }
 
-
-                ctx.Peliculas.Attach(peliculas);
+               // ctx.Peliculas.Attach(peliculas);
                 peliculas.FechaCarga = DateTime.Now;
                 ctx.Entry(peliculas).State = EntityState.Modified;
                 ctx.SaveChanges();

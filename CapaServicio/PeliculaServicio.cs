@@ -8,6 +8,7 @@ namespace CapaServicio
 {
     public class PeliculaServicio
     {
+        private static readonly List<Peliculas> Peliculas = new List<Peliculas>();
         public Peliculas GetById(int id)
         {
             using (var db = new Entities())
@@ -17,5 +18,7 @@ namespace CapaServicio
                 return pelicula;
             }
         }
+
+    
     }
 }
