@@ -12,7 +12,7 @@ namespace CapaServicio
         {
             using (var db = new Entities())
             {
-                var reservasFiltradas = db.Reservas.Where(x => x.FechaHoraInicio >= fechaInicio
+                var reservasFiltradas = db.Reservas.Include("Peliculas").Include("Sedes").Include("Versiones").Where(x => x.FechaHoraInicio >= fechaInicio
                 && x.FechaHoraInicio <= fechaFin).ToList();
                 return reservasFiltradas;
             }

@@ -15,7 +15,7 @@
             </section>
             @using (Html.BeginForm("Reportes", "Administracion", FormMethod.Post))
             {
-                @Html.ValidationSummary(false, "Error", new { @class = "text-danger" })
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <!--FechaInicio-->
                 <div class="input-append date" id="fechaInicioDate">
                     <label for="FechaInicio"></label>
@@ -56,13 +56,14 @@
 
                             @foreach (var item in Model)
                             {
+
                                 <tr class="active">
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IdSede)
+                                        @Html.DisplayFor(modelItem => item.Sedes.Nombre)
                                     </td>
 
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IdPelicula)
+                                        @Html.DisplayFor(modelItem => item.Versiones.Nombre)
                                     </td>
 
                                     <td>
@@ -76,11 +77,11 @@
 
                             }
 
-
                         </tbody>
 
                     </table>
                 }
+
             }
         </div>
 

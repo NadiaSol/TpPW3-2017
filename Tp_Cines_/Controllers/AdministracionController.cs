@@ -174,7 +174,7 @@ namespace Tp_Cines_.Controllers
             //List<ReservaViewModel> listadoReservas = new List<ReservaViewModel>();
             if (dias.Days <= 30)
             {
-                var reservas = _reservaServicio.FiltrarFechas(fechaInicio, fechaFin);
+                var reservas = (_reservaServicio.FiltrarFechas(fechaInicio, fechaFin));
                 //foreach (var reserva in reservas)
                 //{
 
@@ -244,15 +244,15 @@ namespace Tp_Cines_.Controllers
             model.Sedes = ctx.Sedes.ToList();
             model.Versiones = ctx.Versiones.ToList();
         }
-        private void InitializeReserva(List<ReservaViewModel> listado)
-        {
-            foreach (var reserva in listado)
-            {
-                reserva.Peliculas = ctx.Peliculas.ToList();
-                reserva.Sedes = ctx.Sedes.ToList();
-                reserva.Versiones = ctx.Versiones.ToList();
-            }
+        //private void InitializeReserva(List<ReservaViewModel> listado)
+        //{
+        //    foreach (var reserva in listado)
+        //    {
+        //        reserva.Peliculas = ctx.Peliculas.ToList();
+        //        reserva.Sedes = ctx.Sedes.ToList();
+        //        reserva.Versiones = ctx.Versiones.ToList();
+        //    }
 
-        }
+        //}
     }
 }
