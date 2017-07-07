@@ -3,22 +3,21 @@
 
 }
 
-<div id="wrapper">
-    <section id="main" class="wrapper style1 fade-up">
-        <div class="inner">
-            <h2>Bienvenido! @Html.Encode(User.Identity.Name)</h2>
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
 
-            <p class="align-center">¿Quiere irse?</p>
+        <blockquote>
+            <h2>Bienvenido @Html.Encode(User.Identity.Name)!</h2>
+            </blockquote>
+            <h2>¿Quiere irse?</h2>
 
             @*@ViewBag.dato*@
 
+        
+        <div class="btn btn-default btn-lg btn-block">
+    @Html.ActionLink("Log Out", "LogOut", "Home") </div>
+    <br />
+    <br />
+</div>
 
-            <ul class="actions fit">
-                <li class="button fit">
-                    @Html.ActionLink("Log Out", "LogOut", "Home")
-                </li>
-            </ul>
-
-        </div>
-    </section>
 </div>

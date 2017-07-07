@@ -5,12 +5,12 @@
 
 }
 
-<section id="three" class="wrapper style1 fade-up">
-    <div class="inner">
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
 
-        @using (Html.BeginForm("EditarSede","Administracion",FormMethod.Post))
+        @using (Html.BeginForm("EditarSede", "Administracion", FormMethod.Post))
         {
-            @Html.HiddenFor(u=>u.IdSede)
+            @Html.HiddenFor(u => u.IdSede)
             <div class="split style2">
                 <section>
                     <h2>Editar Sede</h2>
@@ -21,4 +21,6 @@
 
         }
     </div>
-</section>
+   </div>
+<br/>
+<br/>

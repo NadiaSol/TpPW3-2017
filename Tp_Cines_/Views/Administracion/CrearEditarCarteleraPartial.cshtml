@@ -2,96 +2,115 @@
 @model  CarteleraViewModel
 
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-    <section>
-        <!--Peliculas-->
-        @Html.LabelFor(u => u.IdPelicula, "Peliculas")
-        @Html.DropDownListFor(u => u.IdPelicula, new SelectList(Model.Peliculas, "IdPelicula", "Nombre"), "Seleccione",new {@class="form-control"})
-        @Html.ValidationMessageFor(u => u.IdPelicula)
-        <!--Sedes-->
+   
+<div class="form-group">
+    <!--Peliculas-->
+    @Html.LabelFor(u => u.IdPelicula, "Peliculas", new { @class = "col-lg-2 control-label" })
+    @Html.DropDownListFor(u => u.IdPelicula, new SelectList(Model.Peliculas, "IdPelicula", "Nombre"), "Seleccione", new { @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.IdPelicula)
+ 
+    </div>
+       <!--Sedes-->
+<div class="form-group">
+    @Html.LabelFor(u => u.IdSede, "Sedes", new { @class = "col-lg-2 control-label" })
+    @Html.DropDownListFor(u => u.IdSede, new SelectList(Model.Sedes, "IdSede", "Nombre"), "Seleccione", new { @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.IdSede)
+    <!--HoraInicio-->
+    </div>
 
-        @Html.LabelFor(u => u.IdSede, "Sedes")
-        @Html.DropDownListFor(u => u.IdSede, new SelectList(Model.Sedes, "IdSede", "Nombre"), "Seleccione", new { @class = "form-control" })
-        @Html.ValidationMessageFor(u => u.IdSede)
-        <!--HoraInicio-->
-        <div>
-            @Html.LabelFor(u => u.HoraInicio)
-            @Html.TextBoxFor(u => u.HoraInicio, new {@type = "number", @min = "15",@max=23, @class = "form-control" })
-            @Html.ValidationMessageFor(u => u.HoraInicio)
+<div class="form-group">
+    @Html.LabelFor(u => u.HoraInicio, new { @class = "col-lg-2 control-label" })
+    @Html.TextBoxFor(u => u.HoraInicio, new { @type = "number", @min = "15", @max = 23, @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.HoraInicio)
+</div>
+
+<div class="form-group">
+    <!--FechaInicio-->
+    <div class="input-append date" id="fechaInicioDate">
+        @Html.LabelFor(u => u.FechaInicio, new { @class = "col-lg-2 control-label" })
+        <div class='input-group date' id='FechaInicioDatePicker'>
+            @Html.TextBoxFor(u => u.FechaInicio, new { @type = "datetime", @class = "form-control" })
+
+            @*<input type='text' class="form-control" name="FechaInicio"/>*@
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
         </div>
-        <!--FechaInicio-->
-        <div class = "input-append date" id="fechaInicioDate">
-            @Html.LabelFor(u => u.FechaInicio)
-            <div class='input-group date' id='FechaInicioDatePicker'>
-                @Html.TextBoxFor(u => u.FechaInicio, new { @type = "datetime", @class = "form-control" })
+        @Html.ValidationMessageFor(u => u.FechaInicio)
+    </div>
 
-                @*<input type='text' class="form-control" name="FechaInicio"/>*@
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            @Html.ValidationMessageFor(u => u.FechaInicio)
+    </div>
+
+<div class="form-group">
+    <!--FechaFin-->
+    <div class="input-append date" id="fechaFinDate">
+        @Html.LabelFor(u => u.FechaFin, new { @class = "col-lg-2 control-label" })
+        <div class='input-group date' id='FechaFinDatePicker'>
+            @Html.TextBoxFor(u => u.FechaFin, new { @type = "datetime", @class = "form-control" })
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
         </div>
-        <!--FechaFin-->
-        <div class="input-append date" id="fechaFinDate">
-            @Html.LabelFor(u => u.FechaFin)
-            <div class='input-group date' id='FechaFinDatePicker'>
-                @Html.TextBoxFor(u => u.FechaFin, new { @type = "datetime", @class = "form-control" })
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            @Html.ValidationMessageFor(u => u.FechaFin)
-        </div>
-        <!--NumeroSala-->
-        <div>
-            @Html.LabelFor(u => u.NumeroSala)
-            @Html.TextBoxFor(u => u.NumeroSala, new {@type = "number", @min = "1", @class = "form-control" })
-            @Html.ValidationMessageFor(u => u.NumeroSala)
-        </div>
-        <!--Version-->
-        @Html.LabelFor(u => u.IdVersion, "Versiones")
-        @Html.DropDownListFor(u => u.IdVersion, new SelectList(Model.Versiones, "IdVersion", "Nombre"), "Seleccione", new { @class = "form-control" })
-        @Html.ValidationMessageFor(u => u.IdVersion)
-        <!--Lunes-->
+        @Html.ValidationMessageFor(u => u.FechaFin)
+    </div>
 
-        @Html.CheckBoxFor(u => u.Lunes)
-        @Html.LabelFor(u => u.Lunes)
-        <!--Martes-->
-        @Html.CheckBoxFor(u => u.Martes)
-        @Html.LabelFor(u => u.Martes)
+    </div>
+    <!--NumeroSala-->
 
-        <!--Miercoles-->
-        @Html.CheckBoxFor(u => u.Miercoles)
-        @Html.LabelFor(u => u.Miercoles)
+    <div class="form-group">
+    @Html.LabelFor(u => u.NumeroSala, new { @class = "col-lg-2 control-label" })
+    @Html.TextBoxFor(u => u.NumeroSala, new { @type = "number", @min = "1", @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.NumeroSala)
+</div>
 
-        <!--Jueves-->
-        @Html.CheckBoxFor(u => u.Jueves)
-        @Html.LabelFor(u => u.Jueves)
+<div class="form-group">
+    <!--Version-->
+    @Html.LabelFor(u => u.IdVersion, "Versiones", new { @class = "col-lg-2 control-label" })
+    @Html.DropDownListFor(u => u.IdVersion, new SelectList(Model.Versiones, "IdVersion", "Nombre"), "Seleccione", new { @class = "form-control" })
+    @Html.ValidationMessageFor(u => u.IdVersion)</div>
+    <!--Lunes-->
+<div class="form-group">
+    @Html.CheckBoxFor(u => u.Lunes)
+    @Html.LabelFor(u => u.Lunes)
+    <!--Martes-->
+    @Html.CheckBoxFor(u => u.Martes)
+    @Html.LabelFor(u => u.Martes)
 
-        <!--Viernes-->
-        @Html.CheckBoxFor(u => u.Viernes)
-        @Html.LabelFor(u => u.Viernes)
+    <!--Miercoles-->
+    @Html.CheckBoxFor(u => u.Miercoles)
+    @Html.LabelFor(u => u.Miercoles)
 
-        <!--Sabado-->
-        @Html.CheckBoxFor(u => u.Sabado)
-        @Html.LabelFor(u => u.Sabado)
+    <!--Jueves-->
+    @Html.CheckBoxFor(u => u.Jueves)
+    @Html.LabelFor(u => u.Jueves)
 
-        <!--Domingo-->
-        @Html.CheckBoxFor(u => u.Domingo)
-        @Html.LabelFor(u => u.Domingo)
+    <!--Viernes-->
+    @Html.CheckBoxFor(u => u.Viernes)
+    @Html.LabelFor(u => u.Viernes)
 
-           <button class="btn btn-primary btn-lg" type="submit">Guardar</button>
+    <!--Sabado-->
+    @Html.CheckBoxFor(u => u.Sabado)
+    @Html.LabelFor(u => u.Sabado)
 
-   </section>
+    <!--Domingo-->
+    @Html.CheckBoxFor(u => u.Domingo)
+    @Html.LabelFor(u => u.Domingo)
 
-<!--Listado de funciones, da error por objeto null-->
-@*@if (Model != null && Model.Horarios.Count > 0)
-{
-    <h5>Funciones Designadas</h5>
-    <li>
-        foreach (var funcion in Model.Horarios)
+    </div>
+    <div class="col-md-6 col-md-offset-5">
+        <button class="btn btn-primary btn-lg" type="submit">Guardar</button>
+    </div>
+    <br />
+    <br />
+
+    <!--Listado de funciones, da error por objeto null-->
+    @*@if (Model != null && Model.Horarios.Count > 0)
         {
-        <ul>funcion</ul>
-        }
-    </li>*@
-}
+            <h5>Funciones Designadas</h5>
+            <li>
+                foreach (var funcion in Model.Horarios)
+                {
+                <ul>funcion</ul>
+                }
+            </li>*@
+
