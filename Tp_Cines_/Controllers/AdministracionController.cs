@@ -164,29 +164,59 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult Reportes()
         {
-            return View();
+            var reporte = new ReporteViewModel();
+            reporte.ListadoReservas = new List<Reservas>();
+            reporte.FechaInicio = DateTime.Now;
+            reporte.FechaFin = DateTime.Now;
+            return View("Reportes", reporte);
         }
 
+        //[HttpPost]
+        //public ActionResult Reportes(DateTime fechaInicio, DateTime fechaFin)
+        //{
+        //    if (fechaInicio != null && fechaFin != null)
+        //    {
+        //        var dias = fechaFin - fechaInicio;
+        //        //List<ReservaViewModel> listadoReservas = new List<ReservaViewModel>();
+        //        if (dias.Days <= 30)
+        //        {
+        //            var reservas = (_reservaServicio.FiltrarFechas(fechaInicio, fechaFin));
+        //            //foreach (var reserva in reservas)
+        //            //{
+
+        //            //    listadoReservas.Add(reserva.Map());
+        //            //}
+        //            //InitializeReserva(listadoReservas);
+
+        //            return View("Reportes", reservas);
+        //        }
+        //        ModelState.AddModelError("CantidadDias", "El reporte no puede ser mayor a 30 días");
+
+        //    }
+        //    ModelState.AddModelError("Fechas", "Debe seleccionar Fechas de Inicio y Fin");
+
+        //    return View();
+        //}
+
         [HttpPost]
-        public ActionResult Reportes(DateTime fechaInicio, DateTime fechaFin)
+        public ActionResult Reportes(ReporteViewModel reporte)
         {
-            var dias = fechaFin - fechaInicio;
-            //List<ReservaViewModel> listadoReservas = new List<ReservaViewModel>();
-            if (dias.Days <= 30)
+            if (reporte.FechaInicio == null && reporte.FechaFin == null)
             {
-                var reservas = (_reservaServicio.FiltrarFechas(fechaInicio, fechaFin));
-                //foreach (var reserva in reservas)
-                //{
-
-                //    listadoReservas.Add(reserva.Map());
-                //}
-                //InitializeReserva(listadoReservas);
-                
-                return View("Reportes", reservas);
+                ModelState.AddModelError("Fechas", "Debe seleccionar Fechas de Inicio y Fin");
             }
-
-            ModelState.AddModelError("CantidadDias", "El reporte no puede ser mayor a 30 días");
-            return View();
+            var dias = reporte.FechaFin - reporte.FechaInicio;
+            if (dias.Days > 30)
+            {
+                ModelState.AddModelError("CantidadDias", "El reporte no puede ser mayor a 30 días");
+            }
+            if (ModelState.IsValid)
+            {
+                reporte.ListadoReservas = (_reservaServicio.FiltrarFechas(reporte.FechaInicio, reporte.FechaFin));
+            }
+            if (reporte.ListadoReservas.Count==0)
+                ModelState.AddModelError("SinReservas", "No se encontraron Reservas en las fechas elegidas");
+            return View("Reportes", reporte);
         }
 
         public ActionResult EditarPelicula(int id = 0)
