@@ -92,6 +92,9 @@ namespace Tp_Cines_.Controllers
         public ActionResult CrearCartelera()
         {
             var model = new CarteleraViewModel();
+            model.Horarios = new List<int>();
+            model.FechaInicio = DateTime.Now;
+            model.FechaFin = DateTime.Now;
             Initialize(model);
             return View("CrearCartelera", model);
         }
@@ -105,8 +108,8 @@ namespace Tp_Cines_.Controllers
             if (ModelState.IsValid)
             {
                 SaveOrUpdateCartelera(carteleraNueva.Map());
-
-                return RedirectToAction("Carteleras", "Administracion");
+                carteleraNueva.Horarios = _peliculaServicio.Horarios(carteleraNueva.HoraInicio, carteleraNueva.IdPelicula);
+                //return RedirectToAction("Carteleras", "Administracion");
             }
 
             Initialize(carteleraNueva);
@@ -149,14 +152,15 @@ namespace Tp_Cines_.Controllers
         [HttpPost]
         public ActionResult EditarCartelera(CarteleraViewModel carteleraNueva)
         {
-
+            
             Validate(carteleraNueva);
 
             if (ModelState.IsValid)
             {
                 var cartelera = ctx.Carteleras.Find(carteleraNueva.IdCartelera);
                 SaveOrUpdateCartelera(carteleraNueva.Map(cartelera));
-                return RedirectToAction("Carteleras", "Administracion");
+                carteleraNueva.Horarios = _peliculaServicio.Horarios(carteleraNueva.HoraInicio, carteleraNueva.IdPelicula);
+                //return RedirectToAction("Carteleras", "Administracion");
             }
 
             Initialize(carteleraNueva);
@@ -171,33 +175,6 @@ namespace Tp_Cines_.Controllers
             reporte.FechaFin = DateTime.Now;
             return View("Reportes", reporte);
         }
-
-        //[HttpPost]
-        //public ActionResult Reportes(DateTime fechaInicio, DateTime fechaFin)
-        //{
-        //    if (fechaInicio != null && fechaFin != null)
-        //    {
-        //        var dias = fechaFin - fechaInicio;
-        //        //List<ReservaViewModel> listadoReservas = new List<ReservaViewModel>();
-        //        if (dias.Days <= 30)
-        //        {
-        //            var reservas = (_reservaServicio.FiltrarFechas(fechaInicio, fechaFin));
-        //            //foreach (var reserva in reservas)
-        //            //{
-
-        //            //    listadoReservas.Add(reserva.Map());
-        //            //}
-        //            //InitializeReserva(listadoReservas);
-
-        //            return View("Reportes", reservas);
-        //        }
-        //        ModelState.AddModelError("CantidadDias", "El reporte no puede ser mayor a 30 días");
-
-        //    }
-        //    ModelState.AddModelError("Fechas", "Debe seleccionar Fechas de Inicio y Fin");
-
-        //    return View();
-        //}
 
         [HttpPost]
         public ActionResult Reportes(ReporteViewModel reporte)
@@ -222,7 +199,6 @@ namespace Tp_Cines_.Controllers
 
         public ActionResult EditarPelicula(int id = 0)
         {
-
             Peliculas peliculas = ctx.Peliculas.Single(p => p.IdPelicula == id);
 
             if (peliculas == null)
@@ -277,35 +253,12 @@ namespace Tp_Cines_.Controllers
             return View(peliculas);
         }
 
-        //public List<int> Horarios(int funcion, int idPelicula)
-        //{
-        //    var duracion = _peliculaServicio.GetById(idPelicula).Duracion;
-
-        //    var horarios = new List<int> { funcion };
-        //    var i = 1;
-        //    for (i = 1; i <= 6; i++)
-        //    {
-        //        funcion = duracion + 30;
-        //        horarios.Add(funcion);
-        //    }
-
-        //    return horarios;
-        //}
         private void Initialize(CarteleraViewModel model)
         {
             model.Peliculas = ctx.Peliculas.ToList();
             model.Sedes = ctx.Sedes.ToList();
             model.Versiones = ctx.Versiones.ToList();
         }
-        //private void InitializeReserva(List<ReservaViewModel> listado)
-        //{
-        //    foreach (var reserva in listado)
-        //    {
-        //        reserva.Peliculas = ctx.Peliculas.ToList();
-        //        reserva.Sedes = ctx.Sedes.ToList();
-        //        reserva.Versiones = ctx.Versiones.ToList();
-        //    }
 
-        //}
     }
 }

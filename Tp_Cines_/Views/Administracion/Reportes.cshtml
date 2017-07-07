@@ -18,8 +18,7 @@
             @*<div class="panel-body">*@
             @using (Html.BeginForm("Reportes", "Administracion", FormMethod.Post))
             {
-                //if (Model.ListadoReservas.Any(x=>x.IdReserva>0))
-                //{
+
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <!--FechaInicio-->
                 <div class="input-append date" id="fechaInicioDate">
@@ -46,8 +45,6 @@
                 </div>
 
                     <button class="btn btn-default btn-primary btn-lg btn-block" type="submit">Generar Reporte</button>
-
-                            @*}*@
 
             if (Model != null && Model.ListadoReservas.Count>0)
 
