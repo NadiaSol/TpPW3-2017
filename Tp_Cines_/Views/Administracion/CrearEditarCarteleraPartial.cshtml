@@ -103,14 +103,15 @@
     <br />
     <br />
 
-    <!--Listado de funciones, da error por objeto null-->
-    @*@if (Model != null && Model.Horarios.Count > 0)
-        {
+    @*Listado de funciones, da error por objeto null*@
+    @if (Model != null && Model.Horarios!=null && Model.Horarios.Count > 0)
+    {
             <h5>Funciones Designadas</h5>
-            <li>
-                foreach (var funcion in Model.Horarios)
+            <ul>
+                @foreach (var funcion in Model.Horarios)
                 {
-                <ul>funcion</ul>
+                <li>@funcion</li>
                 }
-            </li>*@
+            </ul>
+    }
 
