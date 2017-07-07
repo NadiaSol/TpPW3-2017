@@ -12,28 +12,23 @@ namespace CapaServicio
     public class UsuarioServicio
     {
 
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "Nombre")]
-        public string Nombre { get; set; }
+        public bool Isvalid(string Nombre, string Password)
+        {
+            bool Isvalid = false;
+            using (var db = new Entities())
+            {
+                var user = db.Usuarios.FirstOrDefault(u => u.NombreUsuario == Nombre); //consultar el primer registro con el email del usuario
+                if (user != null)
+                {
+                    if (user.Password == Password) //Verificar password del usuario
+                    {
 
-        [Required]
-        [DataType(DataType.Password)]
-        [StringLength(20)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        private Entities db = new Entities();
-        //public Usuarios Autenticar(Usuarios usuario)
-        //{
-
-        //    if (db.Usuarios.Any(x=>x.Password== usuario.Password) && db.Usuarios.Any(x => x.NombreUsuario == usuario.NombreUsuario))
-        //    {
-        //        return new Usuarios { NombreUsuario = "Administrador"};
-        //    }
-
-        //    return null;
-        //}
+                        Isvalid = true;
+                    }
+                }
+            }
+            return Isvalid;
+        }
     }
 
 

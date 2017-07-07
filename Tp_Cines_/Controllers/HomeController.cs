@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using CapaServicio;
 using System.Web.Security;
 using System;
-
+using Tp_Cines_.Models;
 
 namespace Tp_Cines_.Controllers
 {
@@ -13,7 +13,7 @@ namespace Tp_Cines_.Controllers
         // GET: /Home/
 
         private Entities ctx = new Entities();
-
+        private UsuarioServicio _usuarioServicio = new UsuarioServicio();
         //private UsuarioServicio _usuariosServicio;
         public ActionResult Inicio()
         {
@@ -30,14 +30,14 @@ namespace Tp_Cines_.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(CapaServicio.UsuarioServicio user)
+        public ActionResult Login(UsuarioViewModel user)
         {
             if (ModelState.IsValid) //Verificar que el modelo de datos sea válido en cuanto a la definición de las propiedades
             {
-                if (Isvalid(user.Nombre, user.Password))//Verificar que el email y clave exista utilizando el método privado
+                if (_usuarioServicio.Isvalid(user.NombreUsuario, user.Password))//Verificar que el email y clave exista utilizando el método privado
                 {
-
-                    FormsAuthentication.SetAuthCookie(user.Nombre, false); //crea variable de usuario con el correo del usuario
+                    Session["Nombre"] = user.NombreUsuario;
+                    FormsAuthentication.SetAuthCookie(user.NombreUsuario, false); //crea variable de usuario con el correo del usuario
                     if (TempData["returnUrl"] != null)
                         return Redirect(TempData["returnUrl"].ToString());
 
@@ -48,8 +48,6 @@ namespace Tp_Cines_.Controllers
                     ModelState.AddModelError("", "Login Incorrecto"); //adicionar mensaje de error al model
                 }
             }
-
-            
             return View(user);
         }
 

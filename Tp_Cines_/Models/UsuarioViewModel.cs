@@ -9,7 +9,7 @@ using System.Web;
 namespace Tp_Cines_.Models
 {
     [MetadataType(typeof(UsuarioExtensions))]
-    public class UsuarioModelView : Usuarios
+    public class UsuarioViewModel : Usuarios
     {
     }
 }
