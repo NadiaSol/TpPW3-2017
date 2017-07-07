@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using CapaServicio;
 using System.Collections.Generic;
-
+using Tp_Cines_.Utilities;
 
 
 namespace Tp_Cines_.Controllers
@@ -41,18 +41,30 @@ namespace Tp_Cines_.Controllers
         [HttpPost]
         public ActionResult Crear(Peliculas peliculas)
         {
+
             if (ModelState.IsValid)
             {
+
+                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+                {
+                    //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                    //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                    string nombreSignificativo = peliculas.NombreSignificativoImagen;
+                    //Guardar Imagen
+                    string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                    peliculas.Imagen = pathRelativoImagen;
+                }
+
                 peliculas.FechaCarga = DateTime.Now;
                 ctx.Peliculas.Add(peliculas);
                 ctx.SaveChanges();
                 return RedirectToAction("Peliculas", "Administracion");
             }
+
             ViewBag.IdGenero = new SelectList(ctx.Generos, "IdGenero", "Nombre", peliculas.IdGenero);
             ViewBag.IdCalificacion = new SelectList(ctx.Calificaciones, "IdCalificacion", "Nombre", peliculas.IdCalificacion);
             return View(peliculas);
         }
-
 
         [HttpPost]
         public ActionResult sedes(CapaServicio.Versiones v)

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Tp_Cines_.Models;
 using Tp_Cines_.Models.Extensions;
+using Tp_Cines_.Utilities;
 
 
 namespace Tp_Cines_.Controllers
@@ -208,8 +209,30 @@ namespace Tp_Cines_.Controllers
         public ActionResult EditarPelicula(Peliculas peliculas)
         {
 
+
+
             if (ModelState.IsValid)
             {
+
+                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+                {
+                    //TODO: Agregar validacion para confirmar que el archivo es una imagen
+                    if (!string.IsNullOrEmpty(peliculas.Imagen))
+                    {
+                        //recordar eliminar la foto anterior si tenia
+                        if (!string.IsNullOrEmpty(peliculas.Imagen))
+                        {
+                            ImagenesUtility.Borrar(peliculas.Imagen);
+                        }
+
+                        //creo un nombre significativo en este caso apellidonombre pero solo un caracter del nombre, ejemplo BatistutaG
+                        string nombreSignificativo = peliculas.NombreSignificativoImagen;
+                        //Guardar Imagen
+                        string pathRelativoImagen = ImagenesUtility.Guardar(Request.Files[0], nombreSignificativo);
+                        peliculas.Imagen = pathRelativoImagen;
+                    }
+                }
+
 
                 ctx.Peliculas.Attach(peliculas);
                 peliculas.FechaCarga = DateTime.Now;
