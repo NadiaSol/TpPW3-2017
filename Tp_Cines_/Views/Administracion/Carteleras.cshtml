@@ -22,120 +22,120 @@
     </script>
 }
 
-<div id="wrapper">
-    <section id="main" class="wrapper style1 fade-up">
-        <div class="inner">
-            <h2>Carteleras vigentes</h2>
+ <div class="container-fluid">
+    <h2>Carteleras vigentes</h2>
 
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Sede</th>>
-                        <th>Pelicula</th>
-                        <th>Hora Inicio</th>
-                        <th>Fecha Inicio</th>
-                        <th>Fecha Fin</th>
-                        <th>Sala</th>
-                        <th>Versión</th>
-                        <th>Fecha Carga</th>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Sede</th>
+                <th>Pelicula</th>
+                <th>Hora Inicio</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Sala</th>
+                <th>Versión</th>
+                <th>Fecha Carga</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                        <tr class="active">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sedes.Nombre)
-                            </td>
+                <tr class="active">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sedes.Nombre)
+                    </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Peliculas.Nombre)
-                            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Peliculas.Nombre)
+                    </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.HoraInicio)
-                            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraInicio)
+                    </td>
 
-                            <td>
-                                @item.FechaInicio.ToShortDateString()
-                            </td>
+                    <td>
+                        @item.FechaInicio.ToShortDateString()
+                    </td>
 
-                            <td>
-                                @item.FechaFin.ToShortDateString()
-                            </td>
+                    <td>
+                        @item.FechaFin.ToShortDateString()
+                    </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NumeroSala)
-                            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeroSala)
+                    </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Versiones.Nombre)
-                            </td>
-                            <td>
-                                @item.FechaCarga.ToShortDateString()
-                            </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Versiones.Nombre)
+                    </td>
+                    <td>
+                        @item.FechaCarga.ToShortDateString()
+                    </td>
 
-                            <td>
-                                <a href="#" class="linkDias" idCartelera="@item.IdCartelera"> Ver días</a>
-                                <div id="@string.Format("cartelera{0}", item.IdCartelera)" title="Días" class="dialogDias">
-                                    <p>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Lunes</th>
-                                                    <th>Martes</th>
-                                                    <th>Miércoles</th>
-                                                    <th>Jueves</th>
-                                                    <th>Viernes</th>
-                                                    <th>Sábado</th>
-                                                    <th>Domingo</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        @(item.Lunes ? "Sí" : "No")
-                                                    </td>
-                                                    <td>
-                                                        @(item.Martes ? "Sí" : "No")
-                                                    </td>
-                                                    <td>
-                                                        @(item.Miercoles ? "Sí" : "No")
-                                                    </td>
-                                                    <td>
-                                                        @(item.Jueves ? "Sí" : "No")
-                                                    </td>
-                                                    <td>
-                                                        @(item.Viernes ? "Sí" : "No")
-                                                    </td>
-                                                    <td>
-                                                        @(item.Sabado ? "Sí" : "No")
-                                                    </td>
-                                                    <td>
-                                                        @(item.Domingo ? "Sí" : "No")
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </p>
-                                </div>
-                            </td>
+                    <td>
+                        <a href="#" class="linkDias" idCartelera="@item.IdCartelera"> Ver días</a>
+                        <div id="@string.Format("cartelera{0}", item.IdCartelera)" title="Días" class="dialogDias">
+                            <p>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th> Lunes |</th>
+                                            <th> Martes |</th>
+                                            <th> Miércoles |</th>
+                                            <th> Jueves |</th>
+                                            <th> Viernes |</th>
+                                            <th> Sábado |</th>
+                                            <th> Domingo </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                @(item.Lunes ? "Sí" : "No")
+                                            </td>
+                                            <td>
+                                                @(item.Martes ? "Sí" : "No")
+                                            </td>
+                                            <td>
+                                                @(item.Miercoles ? "Sí" : "No")
+                                            </td>
+                                            <td>
+                                                @(item.Jueves ? "Sí" : "No")
+                                            </td>
+                                            <td>
+                                                @(item.Viernes ? "Sí" : "No")
+                                            </td>
+                                            <td>
+                                                @(item.Sabado ? "Sí" : "No")
+                                            </td>
+                                            <td>
+                                                @(item.Domingo ? "Sí" : "No")
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p>
+                        </div>
+                    </td>
 
-                            <td>
-                                @Html.ActionLink("Editar", "EditarCartelera", new { id = item.IdCartelera })
-                            </td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditarCartelera", new { id = item.IdCartelera })
+                    </td>
 
-                        </tr>
+                </tr>
 
-                    }
+            }
 
-                </tbody>
+        </tbody>
 
-            </table>
-            @Html.ActionLink("Crear nuevo", "CrearCartelera", "Administracion", null, new { @class = "btn btn-default btn-success btn-lg btn-block" })
+    </table>
+    @Html.ActionLink("Crear nuevo", "CrearCartelera", "Administracion", null, new { @class = "btn btn-default btn-success btn-lg btn-block" })
 
-        </div>
-    </section>
+
+     <br />
+     <br />
+  
 
 </div>
