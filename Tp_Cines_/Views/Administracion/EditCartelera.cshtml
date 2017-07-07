@@ -10,17 +10,18 @@
     @Html.Partial("CarteleraScriptsPartial")
 }
 
-<section id="three" class="wrapper style1 fade-up">
-    <div class="inner">
-        <div class="split style2">
-            <section>
-                <h2>Editar Cartelera</h2>
-            </section>
-            @using (Html.BeginForm("EditarCartelera", "Administracion", FormMethod.Post))
+
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
+        <section>
+            <h2>Editar Cartelera</h2>
+        </section>
+        @using (Html.BeginForm("EditarCartelera", "Administracion", FormMethod.Post))
             {
-                @Html.HiddenFor(u => u.IdCartelera)
-                @Html.Partial("CrearEditarCarteleraPartial")
-            }
-        </div>
+            @Html.HiddenFor(u => u.IdCartelera)
+            @Html.Partial("CrearEditarCarteleraPartial")
+        }
     </div>
-</section>
+</div>
+<br />
+<br />
