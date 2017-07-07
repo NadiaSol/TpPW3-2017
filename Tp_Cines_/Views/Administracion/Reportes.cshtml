@@ -23,27 +23,27 @@
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <!--FechaInicio-->
                 <div class="input-append date" id="fechaInicioDate">
-                    <label for="FechaInicio"></label>
+                    @Html.LabelFor(u => u.FechaInicio)
                     <div class='input-group date' id='FechaInicioDatePicker'>
+                        @Html.TextBoxFor(u => u.FechaInicio, new { @type = "datetime", @class = "form-control" })
 
-                        <input type='text' class="form-control" id="FechaInicio"
-                               name="FechaInicio" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
+                    @Html.ValidationMessageFor(u => u.FechaInicio)
                 </div>
                 <!--FechaFin-->
-                    <div class="input-append date" id="fechaFinDate">
-                        <label for="FechaFin"></label>
-                        <div class='input-group date' id='FechaFinDatePicker'>
-                            <input type='text' class="form-control" name="FechaFin" id="FechaFin" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-
-                        </div>
+                <div class="input-append date" id="fechaFinDate">
+                    @Html.LabelFor(u => u.FechaFin)
+                    <div class='input-group date' id='FechaFinDatePicker'>
+                        @Html.TextBoxFor(u => u.FechaFin, new { @type = "datetime", @class = "form-control" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
                     </div>
+                    @Html.ValidationMessageFor(u => u.FechaFin)
+                </div>
 
                     <button class="btn btn-default btn-primary btn-lg btn-block" type="submit">Generar Reporte</button>
 

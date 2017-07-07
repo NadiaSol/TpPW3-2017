@@ -215,7 +215,7 @@ namespace Tp_Cines_.Controllers
             {
                 reporte.ListadoReservas = (_reservaServicio.FiltrarFechas(reporte.FechaInicio, reporte.FechaFin));
             }
-            if (reporte.ListadoReservas.Count==0)
+            if (reporte.ListadoReservas==null || reporte.ListadoReservas.Count ==0)
                 ModelState.AddModelError("SinReservas", "No se encontraron Reservas en las fechas elegidas");
             return View("Reportes", reporte);
         }
