@@ -8,7 +8,6 @@ namespace CapaServicio
 {
     public class PeliculaServicio
     {
-        private static readonly List<Peliculas> Peliculas = new List<Peliculas>();
         public Peliculas GetById(int id)
         {
             using (var db = new Entities())
@@ -19,6 +18,21 @@ namespace CapaServicio
             }
         }
 
-    
+        public List<int> Horarios(int funcion, int idPelicula)
+        {
+            var duracion = GetById(idPelicula).Duracion;
+
+            var horarios = new List<int> { funcion };
+            var i = 1;
+            for (i = 1; i <= 6; i++)
+            {
+                funcion = duracion + 30;
+                horarios.Add(funcion);
+            }
+
+            return horarios;
+        }
+
+
     }
 }

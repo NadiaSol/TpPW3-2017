@@ -1,5 +1,5 @@
-﻿@using CapaServicio
-@model List<Reservas>
+﻿@using Tp_Cines_.Models;
+@model  ReporteViewModel
 @{
     ViewBag.Title = "Reportes de Reservas";
 
@@ -9,82 +9,91 @@
 }
 <section id="three" class="wrapper style1 fade-up">
     <div class="inner">
+
+        @*<div class="panel panel-primary">*@
         <div class="split style2">
             <section>
                 <h2>Reportes</h2>
             </section>
+            @*<div class="panel-body">*@
             @using (Html.BeginForm("Reportes", "Administracion", FormMethod.Post))
             {
+
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <!--FechaInicio-->
                 <div class="input-append date" id="fechaInicioDate">
-                    <label for="FechaInicio"></label>
+                    @Html.LabelFor(u => u.FechaInicio)
                     <div class='input-group date' id='FechaInicioDatePicker'>
+                        @Html.TextBoxFor(u => u.FechaInicio, new { @type = "datetime", @class = "form-control" })
 
-                        <input type='text' class="form-control" id="FechaInicio"
-                               name="FechaInicio" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
+                    @Html.ValidationMessageFor(u => u.FechaInicio)
                 </div>
                 <!--FechaFin-->
                 <div class="input-append date" id="fechaFinDate">
-                    <label for="FechaFin"></label>
+                    @Html.LabelFor(u => u.FechaFin)
                     <div class='input-group date' id='FechaFinDatePicker'>
-                        <input type='text' class="form-control" name="FechaFin" id="FechaFin" />
+                        @Html.TextBoxFor(u => u.FechaFin, new { @type = "datetime", @class = "form-control" })
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                     </div>
+                    @Html.ValidationMessageFor(u => u.FechaFin)
                 </div>
-                <button class="btn btn-primary btn-lg" type="submit">Guardar</button>
 
+                    <button class="btn btn-default btn-primary btn-lg btn-block" type="submit">Generar Reporte</button>
 
-                if (Model != null)
-                {
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Sede</th>
-                                <th>Versión</th>
-                                <th>Película</th>
-                                <th>Precio</th>
+            if (Model != null && Model.ListadoReservas.Count>0)
+
+            {
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Sede</th>
+                            <th>Versión</th>
+                            <th>Película</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.ListadoReservas)
+                        {
+
+                            <tr class="active">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sedes.Nombre)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Versiones.Nombre)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Peliculas.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sedes.PrecioGeneral)
+                                </td>
+
                             </tr>
-                        </thead>
-                        <tbody>
 
-                            @foreach (var item in Model)
-                            {
+                        }
 
-                                <tr class="active">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Sedes.Nombre)
-                                    </td>
+                    </tbody>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Versiones.Nombre)
-                                    </td>
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Peliculas.Nombre)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Sedes.PrecioGeneral)
-                                    </td>
-
-                                </tr>
-
-                            }
-
-                        </tbody>
-
-                    </table>
+                </table>
+                    @*<div>
+                            @Html.ActionLink("Generar Nuevo Reporte", "Reportes", "Administracion", null, new { @class = "btn btn-default btn-success btn-lg btn-block" })
+                        </div>*@
                 }
 
             }
         </div>
 
-
     </div>
+
 </section>

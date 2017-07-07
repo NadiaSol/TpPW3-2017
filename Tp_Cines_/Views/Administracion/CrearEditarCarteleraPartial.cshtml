@@ -1,7 +1,7 @@
 ﻿@using Tp_Cines_.Models;
 @model  CarteleraViewModel
 
-@Html.ValidationSummary(false)@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
     <section>
         <!--Peliculas-->
         @Html.LabelFor(u => u.IdPelicula, "Peliculas")
@@ -80,10 +80,18 @@
         @Html.CheckBoxFor(u => u.Domingo)
         @Html.LabelFor(u => u.Domingo)
 
-        @Html.ValidationSummary(true)
-        
            <button class="btn btn-primary btn-lg" type="submit">Guardar</button>
 
-    </section>
+   </section>
 
-
+<!--Listado de funciones, da error por objeto null-->
+@*@if (Model != null && Model.Horarios.Count > 0)
+{
+    <h5>Funciones Designadas</h5>
+    <li>
+        foreach (var funcion in Model.Horarios)
+        {
+        <ul>funcion</ul>
+        }
+    </li>*@
+}
