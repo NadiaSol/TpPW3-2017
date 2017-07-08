@@ -14,5 +14,6 @@ namespace Tp_Cines_.Models
         public List<Peliculas> Peliculas { get; set; }
         public List<Versiones> Versiones { get; set; }
         public List<Sedes> Sedes { get; set; }
+        public List<TiposDocumentos> TiposDocumentos {get; set;}
     }
 }

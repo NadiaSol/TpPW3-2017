@@ -14,7 +14,6 @@ namespace Tp_Cines_.Controllers
 
         private Entities ctx = new Entities();
         private UsuarioServicio _usuarioServicio = new UsuarioServicio();
-        //private UsuarioServicio _usuariosServicio;
         public ActionResult Inicio()
         {
             IQueryable<Peliculas> p = from Peliculas in ctx.Peliculas select Peliculas;
@@ -58,28 +57,13 @@ namespace Tp_Cines_.Controllers
             return RedirectToAction("Inicio", "Home");
         }
 
-        private bool Isvalid(string Nombre, string Password)
-        {
-            bool Isvalid = false;
-            using (var db = new Entities())
-            {
-                var user = db.Usuarios.FirstOrDefault(u => u.NombreUsuario == Nombre); //consultar el primer registro con el email del usuario
-                if (user != null)
-                {
-                    if (user.Password == Password) //Verificar password del usuario
-                    {
-                        Session["Nombre"] = user.NombreUsuario;
-                        Isvalid = true;
-                    }
-                }
-            }
-            return Isvalid;
-        }
+
         //private void AlmacenarEnSesion(Usuarios usuario)
         //{
         //    Session["Nombre"] = usuario.NombreUsuario;
         //    Session["IdUsuario"] = usuario.IdUsuario;
         //}
+        [HttpGet]
         public ActionResult Reserva()
         {
 
@@ -88,15 +72,17 @@ namespace Tp_Cines_.Controllers
             //TempData["Sedes"] = ViewBag.IdSede;
             //TempData["Version"] = ViewBag.IdVersion;
             //TempData["Pelicula"] = ViewBag.IdPelicula;
-
-
-            ViewBag.IdSede = new SelectList(ctx.Sedes, "IdSede", "Nombre");
-            ViewBag.IdVersion = new SelectList(ctx.Versiones, "IdVersion", "Nombre");
-            ViewBag.IdPelicula = new SelectList(ctx.Peliculas, "IdPelicula", "Nombre");
-            ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion");
-            return View();
+            var reservaNueva = new ReservaViewModel();
+            Initialize(reservaNueva);
+            return View("Reserva", reservaNueva);
         }
-
+        private void Initialize(ReservaViewModel model)
+        {
+            model.Peliculas = ctx.Peliculas.ToList();
+            model.Sedes = ctx.Sedes.ToList();
+            model.Versiones = ctx.Versiones.ToList();
+            model.TiposDocumentos = ctx.TiposDocumentos.ToList();
+        }
         [HttpPost]
         public ActionResult Reserva(Reservas reservas)
         {

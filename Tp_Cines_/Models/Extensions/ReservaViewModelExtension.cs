@@ -21,7 +21,7 @@ namespace Tp_Cines_.Models.Extensions
                 Email = value.Email,
                 CantidadEntradas = value.CantidadEntradas,
                 NumeroDocumento = value.NumeroDocumento,
-                TiposDocumentos = value.TiposDocumentos,
+                IdTipoDocumento= value.IdTipoDocumento
 
             };
         }

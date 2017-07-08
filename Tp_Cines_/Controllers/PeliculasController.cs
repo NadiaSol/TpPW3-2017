@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using CapaServicio;
 using System.Collections.Generic;
 using Tp_Cines_.Utilities;
-
+using System.Globalization;
 
 namespace Tp_Cines_.Controllers
 {
@@ -67,7 +67,7 @@ namespace Tp_Cines_.Controllers
         }
 
         [HttpPost]
-        public ActionResult sedes(CapaServicio.Versiones v)
+        public ActionResult sedes(Versiones v)
         {
             int Peli = Convert.ToInt32(TempData["Id_peli"]);
             TempData["peli_id"] = Peli;
@@ -89,13 +89,14 @@ namespace Tp_Cines_.Controllers
 
         }
         [HttpGet]
-        public ActionResult Dias() { 
-        
+        public ActionResult Dias()
+        {
+
             return View();
         }
 
-       [HttpPost]
-        public ActionResult Dias(CapaServicio.Sedes s)
+        [HttpPost]
+        public ActionResult Dias(Sedes s)
         {
             int Peli = Convert.ToInt32(TempData["peli_id"]);
             TempData["peli_h"] = Peli;
@@ -149,7 +150,7 @@ namespace Tp_Cines_.Controllers
                 }
                 if (item.Domingo)
                 {
-                    dias.Add(new SelectListItem() { Text = "Domingo", Value = "7" });
+                    dias.Add(new SelectListItem() { Text = "Domingo", Value = "0" });
 
                 }
 
@@ -220,33 +221,30 @@ namespace Tp_Cines_.Controllers
 
 
         public ActionResult Reserva()
-            {
-                
-                    ModelState.AddModelError("Error", "Debe seleccionar una Pelicula");
-                   
-                
+        {
 
+            ModelState.AddModelError("Error", "Debe seleccionar una Pelicula");
 
-                //ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
-                //ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
-                //ViewBag.hora = h.HoraInicio;
-                //ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
-                //ViewBag.fechaInicio = TempData["fecha"];
-                //ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion");
+            //ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
+            //ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
+            //ViewBag.hora = h.HoraInicio;
+            //ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
+            //ViewBag.fechaInicio = TempData["fecha"];
+            //ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion");
 
-                    return RedirectToAction("Inicio", "Home"); ;
+            return RedirectToAction("Inicio", "Home"); ;
 
-            }
+        }
 
         [HttpPost]
 
-        public ActionResult Reserva(CapaServicio.Carteleras h)
+        public ActionResult Reserva(Carteleras h)
         {
             ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
             ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
             ViewBag.hora = h.HoraInicio;
             ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
-            ViewBag.fechaInicio= TempData["fecha"];
+            ViewBag.fechaInicio = TempData["fecha"];
             ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion");
 
             TempData["Idsede"] = TempData["sedee"];
@@ -254,69 +252,64 @@ namespace Tp_Cines_.Controllers
             TempData["idPeli"] = TempData["peli_id"];
             TempData["hInicio"] = ViewBag.hora;
             TempData["fechaInicio"] = ViewBag.fechaInicio;
-         //   DateTime fechaIni = DateTime.Parse(fechaInicio, new CultureInfo("en-CA"));
+            //   DateTime fechaIni = DateTime.Parse(fechaInicio, new CultureInfo("en-CA"));
 
             return View();
 
         }
 
         [HttpPost]
-
         public ActionResult ValidarReserva(FormCollection f)
-        { 
+        {
             /* Aca intento guardar los datos en el contexto,
             pero tira una excepcion */
-
+            CultureInfo enUS = new CultureInfo("en-US");
             var lis = new List<Reservas>();
             var r = new Reservas();
-  
+
             var email = f["Email"];
             var CantEntradas = f["CantidadEntradas"];
             var docum = f["NumeroDocumento"];
-            var sede = TempData["sedee"];
-            var IdSede=TempData["Idsede"]; 
-            var Idversion= TempData["IdVersion"]; 
-            var idPeli=TempData["idPeli"]; 
+            var sede = TempData["sede"];
+            var IdSede = TempData["Idsede"];
+            var Idversion = TempData["IdVersion"];
+            var idPeli = TempData["idPeli"];
             string hInicio = Convert.ToString(TempData["hInicio"]);
             string fechaInicio = Convert.ToString(TempData["fechaInicio"]);
-            var IdTipoDocumento= f["IdTipoDocumento"];
+            var IdTipoDocumento = f["IdTipoDocumento"];
 
-            string FechaReserva = fechaInicio + " " + hInicio; 
-            
-           
+            String fecha = fechaInicio + " " + hInicio + ":00";
 
-       //     DateTime DiaReserva = Convert.ToDateTime(FechaReserva); // Aca tira la excepcion
+            DateTime DiaReserva = DateTime.ParseExact(fecha, "MM/dd/yyyy HH:mm", enUS, DateTimeStyles.None);
 
             //Aca intento guardar los datos: 
             r.Email = email;
             r.CantidadEntradas = Convert.ToInt32(CantEntradas);
-            r.IdPelicula =  Convert.ToInt32(idPeli);
-            r.IdSede = Convert.ToInt32(sede);
+            r.IdPelicula = Convert.ToInt32(idPeli);
+            r.IdSede = Convert.ToInt32(IdSede);
             r.IdTipoDocumento = Convert.ToInt32(IdTipoDocumento);
             r.IdVersion = Convert.ToInt32(Idversion);
             r.NumeroDocumento = docum;
             r.FechaCarga = DateTime.Now;
-            r.FechaHoraInicio = DateTime.Now;
-            r.FechaHoraInicio= DateTime.Now;
-         
-            ctx.Reservas.Add(r); 
-          //  ctx.SaveChanges();// Otra excepcion
+            r.FechaHoraInicio = DiaReserva;
+
+            ctx.Reservas.Add(r);
+            ctx.SaveChanges();// Otra excepcion
 
             return View();
-        
-        
+
+
         }
 
 
     }
 }
 
-            
 
 
 
 
-    
 
 
-            
+
+
