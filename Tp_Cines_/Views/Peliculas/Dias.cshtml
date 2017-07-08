@@ -46,15 +46,15 @@
 
             <form action="/Peliculas/Hora" name="formu" method="post">
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                @*<fieldset>
+                <fieldset>
                         <legend>Seleccionar</legend>
                         <div>
                             <label>Fecha</label>
                             <input type="text" id="datepicker" name="dia" value="" />
                             <input type="submit" name="enviar" value="Enviar" />
                         </div>
-                    </fieldset>*@
-                <div class="input-append date" id="fechaInicioDate">
+                    </fieldset>
+                @*<div class="input-append date" id="fechaInicioDate">
 
                     <div class='input-group date' id='datePicker'>
 
@@ -64,7 +64,7 @@
                             </span>
                         </span>
                     </div>
-                </div>
+                </div>*@
             </form>
 
         </div>
