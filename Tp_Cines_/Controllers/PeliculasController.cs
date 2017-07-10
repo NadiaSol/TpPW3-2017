@@ -13,7 +13,7 @@ namespace Tp_Cines_.Controllers
         //
         // GET: /Peliculas/
         private Entities ctx = new Entities();
-
+        private PeliculaServicio _peliculaServicio = new PeliculaServicio();
         public ActionResult Versiones(int id)
         {
             var cartelera = ctx.Carteleras.Include("Versiones").Where(x => x.IdPelicula == id).ToList();
@@ -157,25 +157,8 @@ namespace Tp_Cines_.Controllers
             }
 
             ViewBag.lis = dias;
-
-            //buscar horarios
-
-            //var h = (from Carteleras in ctx.Carteleras
-            //        join Sedes in ctx.Sedes on Carteleras.IdSede
-            //        equals Sedes.IdSede
-            //        join Versiones in ctx.Versiones on Carteleras.IdVersion
-            //        equals Versiones.IdVersion
-            //        where Carteleras.IdPelicula == 1
-            //        select Carteleras.HoraInicio).ToList();
-
-
-            //ViewData["horaInicio"] = new SelectList(h, "IdPelicula");
-
             return View(dias);
         }
-        //public ActionResult Sedes()
-        //{
-        //    int Peli = Convert.ToInt32(TempData["Id_peli"]);
 
         [HttpPost]
         public ActionResult Hora(FormCollection formu)
@@ -190,11 +173,8 @@ namespace Tp_Cines_.Controllers
             TempData["id_Version"] = version;
             TempData["peli_id"] = pe;
 
-            // DateTime date = DateTime.ParseExact(fecha, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            // dd/MM/YYYY
-            //   DateTime dia = DateTime.Parse(fecha, System.Globalization.CultureInfo.GetCultureInfo("es"));
-            var h = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == pe).ToList();
-            var hora = h.Select(x => x.HoraInicio).ToList();
+            var h = ctx.Carteleras.FirstOrDefault(x => x.IdPelicula == pe && x.IdVersion==version && x.IdSede==sede).HoraInicio;
+            var hora = _peliculaServicio.Horarios(h, pe);
 
             ViewBag.horaInicio = hora;
             return View();
@@ -261,8 +241,6 @@ namespace Tp_Cines_.Controllers
         [HttpPost]
         public ActionResult ValidarReserva(FormCollection f)
         {
-            /* Aca intento guardar los datos en el contexto,
-            pero tira una excepcion */
             CultureInfo enUS = new CultureInfo("en-US");
             var lis = new List<Reservas>();
             var r = new Reservas();
@@ -282,7 +260,6 @@ namespace Tp_Cines_.Controllers
 
             DateTime DiaReserva = DateTime.ParseExact(fecha, "MM/dd/yyyy HH:mm", enUS, DateTimeStyles.None);
 
-            //Aca intento guardar los datos: 
             r.Email = email;
             r.CantidadEntradas = Convert.ToInt32(CantEntradas);
             r.IdPelicula = Convert.ToInt32(idPeli);
@@ -294,7 +271,7 @@ namespace Tp_Cines_.Controllers
             r.FechaHoraInicio = DiaReserva;
 
             ctx.Reservas.Add(r);
-            ctx.SaveChanges();// Otra excepcion
+            ctx.SaveChanges();
 
             return View();
 
