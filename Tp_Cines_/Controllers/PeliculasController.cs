@@ -75,10 +75,8 @@ namespace Tp_Cines_.Controllers
 
             var carteleras = ctx.Carteleras.Include("Sedes").Where(x => x.IdPelicula == Peli).Where(x => x.IdVersion == v.IdVersion).ToList();
             var Sedess = carteleras.Select(x => x.Sedes).ToList();
-
-            //ViewData["Sede"] = new SelectList(Sedess, "IdSede", "Nombre");
             ViewBag.Sede1 = Sedess;
-            //ViewBag.Sede1 = new SelectList(Sedess,"IdSede","Nombre");
+         
 
 
             TempData["id_version"] = v.IdVersion;
@@ -183,21 +181,6 @@ namespace Tp_Cines_.Controllers
 
 
 
-        // public int Pe { get; set; }
-
-        //[HttpPost]
-
-        //public ActionResult Seleccionado(CapaServicio.Carteleras h)
-        //{
-        //    ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
-        //    ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
-        //    ViewBag.hora = h.HoraInicio;
-        //    ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
-        //    ViewBag.fechaInicio= TempData["fecha"];
-
-        //    return View();
-
-        //}
 
 
         public ActionResult Reserva()
@@ -205,14 +188,8 @@ namespace Tp_Cines_.Controllers
 
             ModelState.AddModelError("Error", "Debe seleccionar una Pelicula");
 
-            //ViewBag.sede = ctx.Sedes.Find(TempData["sedee"]).Nombre;
-            //ViewBag.version = ctx.Versiones.Find(TempData["id_Version"]).Nombre;
-            //ViewBag.hora = h.HoraInicio;
-            //ViewBag.pelicula = ctx.Peliculas.Find(TempData["peli_id"]).Nombre;
-            //ViewBag.fechaInicio = TempData["fecha"];
-            //ViewBag.IdTipoDocumento = new SelectList(ctx.TiposDocumentos, "IdTipoDocumento", "Descripcion");
-
-            return RedirectToAction("Inicio", "Home"); ;
+          
+            return RedirectToAction("Inicio", "Home"); 
 
         }
 
@@ -256,6 +233,14 @@ namespace Tp_Cines_.Controllers
             string fechaInicio = Convert.ToString(TempData["fechaInicio"]);
             var IdTipoDocumento = f["IdTipoDocumento"];
 
+            //Calculo el importe total
+            decimal precio = ctx.Sedes.Find(TempData["Idsede"]).PrecioGeneral;
+            decimal importe = precio * Convert.ToInt32(CantEntradas);
+            //var id_reserva = ctx.Reservas.Find(TempData["idPeli"]).
+
+            TempData["importe"] = importe;
+
+
             String fecha = fechaInicio + " " + hInicio + ":00";
 
             DateTime DiaReserva = DateTime.ParseExact(fecha, "MM/dd/yyyy HH:mm", enUS, DateTimeStyles.None);
@@ -272,6 +257,20 @@ namespace Tp_Cines_.Controllers
 
             ctx.Reservas.Add(r);
             ctx.SaveChanges();
+
+
+            var CodReserva = (from Reservas in ctx.Reservas 
+                            where Reservas.IdPelicula == (int)(idPeli)
+                            && Reservas.IdSede == (int)(IdSede)
+                            && Reservas.NumeroDocumento == docum 
+                            select Reservas.IdReserva).FirstOrDefault();
+
+            int codigo= Convert.ToInt32(CodReserva);
+
+            TempData["codigo"] = codigo;
+
+
+                     
 
             return View();
 
