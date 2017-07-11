@@ -30,20 +30,7 @@ namespace Tp_Cines_.Models.Extensions
                 Horarios= _peliculaServicio.Horarios(value.HoraInicio,value.IdPelicula)
             };
         }
-        //public static List<int> Horarios(int funcion, int idPelicula)
-        //{
-        //    var duracion = _peliculaServicio.GetById(idPelicula).Duracion;
 
-        //    var horarios = new List<int> { funcion };
-        //    var i = 1;
-        //    for (i = 1; i <= 6; i++)
-        //    {
-        //        funcion = duracion + 30;
-        //        horarios.Add(funcion);
-        //    }
-
-        //    return horarios;
-        //}
         public static Carteleras Map(this CarteleraViewModel model, Carteleras entity = null)
         {
             var edit = entity != null;

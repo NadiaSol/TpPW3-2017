@@ -91,10 +91,12 @@ namespace Tp_Cines_.Controllers
         [HttpGet]
         public ActionResult CrearCartelera()
         {
-            var model = new CarteleraViewModel();
-            model.Horarios = new List<int>();
-            model.FechaInicio = DateTime.Now;
-            model.FechaFin = DateTime.Now;
+            var model = new CarteleraViewModel
+            {
+                Horarios = new List<string>(),
+                FechaInicio = DateTime.Now,
+                FechaFin = DateTime.Now
+            };
             Initialize(model);
             return View("CrearCartelera", model);
         }
